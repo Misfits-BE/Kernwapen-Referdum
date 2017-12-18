@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>
+    <p class="mt-22">
         Deze website is eigendom van <a href="{{ config('platform.author.website')  }}">{{ config('platform.author.name') }}</a>.
         Door de toegang tot en het gebruik van deze website verklaart u zich uitdrukkelijk akkoord met de volgende algemene voorwaarden.
     </p>
