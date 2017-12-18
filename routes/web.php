@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Disclaimer routes
+Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
