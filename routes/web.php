@@ -14,5 +14,8 @@
 // Home routes
 Route::get('/', 'Frontend\WelcomeController@index')->name('frontend.index');
 
+// Signature route
+Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
+
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
