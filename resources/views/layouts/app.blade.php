@@ -26,7 +26,7 @@
 
                     <ul class="nav nav-tabs" role="tablist"> <!-- Tab menu -->
                         <li role="presentation" @if (Request::is('/')) class="active" @endif>
-                            <a href="">Uitleg</a>
+                            <a href="{{ route('frontend.index') }}">Uitleg</a>
                         </li>
                         <li role="presentation" @if (Request::is('disclaimer')) class="active" @endif>
                             <a href="{{ route('disclaimer.index') }}">Disclaimer</a>
