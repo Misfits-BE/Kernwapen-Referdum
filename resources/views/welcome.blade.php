@@ -34,47 +34,57 @@
                     <div class="col-md-9">
                     <input type="date" class="form-control">
                 </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-3"> Uw adres: <span class="text-danger">*</span></label>
-
-            <div class="col-md-6 @error('address' , 'has-error')">
-                <input type="text" class="form-control" placeholder="Uw straatcnaam">
             </div>
 
-            <div class="col-md-3 @error('house_number', 'has-error')">
-                <input type="text" class="form-control" placeholder="Uw Huisnummer">
-            </div>
-        </div>
+            <div class="form-group">
+                <label class="control-label col-md-3"> Uw adres: <span class="text-danger">*</span></label>
 
-        <div class="form-group">
-            <div class="col-md-offset-3 col-md-3 @error('postal_code', 'has-error')">
-                <input type="text" class="form-control" placeholder="Stadsnaam">
+                <div class="col-md-6 @error('address' , 'has-error')">
+                    <input type="text" class="form-control" placeholder="Uw straatcnaam">
+                </div>
+
+                <div class="col-md-3 @error('house_number', 'has-error')">
+                    <input type="text" class="form-control" placeholder="Uw Huisnummer">
+                </div>
             </div>
 
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Stadsnaam">
-            </div>
-        </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-3 @error('postal_code', 'has-error')">
+                    <input type="text" class="form-control" placeholder="Stadsnaam">
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn btn-sm btn-success">
-                    <i class="fa fa-check"></i> Tekenen
-                </button>
-
-                <button type="reset" class="btn btn-sm btn-link">
-                    <i class="fa fa-undo"></i> Annuleren
-                </button>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Stadsnaam">
+                </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn btn-sm btn-success">
+                        <i class="fa fa-check"></i> Tekenen
+                    </button>
+
+                    <button type="reset" class="btn btn-sm btn-link">
+                        <i class="fa fa-undo"></i> Annuleren
+                    </button>
+                </div>
+            </div>
         </form>
 
         </div>
 
         <div class="col-md-3">
             <div class="p-30">
+
+                <div class="panel panel-default" style="margin-bottom: 0">
+                    <div class="panel-body" style="padding-top: 5px;">
+                        <h4 style="padding-top:0"><strong>2444</strong></h4>
+                        <span class="text-muted">Handtekeningen</span>
+                    </div>
+                </div>
+
+                <hr style="margin-top: 15px; margin-bottom: 15px;">
+
                 <a class="btn btn-block btn-social btn-facebook">
                     <span class="fa fa-facebook"></span>
                     Deel op facebook
