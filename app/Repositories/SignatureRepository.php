@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Signature;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 
 /**
@@ -21,5 +20,16 @@ class SignatureRepository extends Repository
     public function model()
     {
         return Signature::class;
+    }
+
+    /**
+     * Slaag een handtekening op in het systeem.
+     *
+     * @param  array $input De gegeven invoer van de gebruiker. (Validatie -> controller)
+     * @return Signature
+     */
+    public function createSignature(array $input): Signature
+    {
+        return $this->create($input);
     }
 }

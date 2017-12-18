@@ -35,7 +35,6 @@ class SignatureController extends Controller
     /**
      * Slaag een handtekening op in het systeem.
      *
-     * @todo implementatie routering
      * @todo uitwerken van een phpunit test.
      *
      * @param  SignatureValidator $input De gegeven gebruiker invoer. (Gevalideerd)
@@ -43,6 +42,8 @@ class SignatureController extends Controller
      */
     public function store(SignatureValidator $input): RedirectResponse
     {
-        dd($input->all());
+        if ($this->signatureRepository->createSignature($input->all())) {
+
+        }
     }
 }
