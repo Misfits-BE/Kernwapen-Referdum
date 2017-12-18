@@ -43,13 +43,13 @@
                     <input type="text" class="form-control" placeholder="Uw straatcnaam">
                 </div>
 
-                <div class="col-md-3 @error('house_number', 'has-error')">
+                <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="Uw Huisnummer">
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-3 col-md-3 @error('postal_code', 'has-error')">
+                <div class="col-md-offset-3 col-md-3">
                     <input type="text" class="form-control" placeholder="Stadsnaam">
                 </div>
 
