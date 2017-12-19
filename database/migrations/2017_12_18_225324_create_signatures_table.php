@@ -17,7 +17,7 @@ class CreateSignaturesTable extends Migration
             $table->increments('id');
             $table->string('voornaam', 50);
             $table->string('achternaam', 50);
-            $table->date('geboortedatum');
+            $table->timestamp('geboortedatum');
             $table->string('postcode', 4);
             $table->string('straatnaam', 125);
             $table->string('stadsnaam', 100);

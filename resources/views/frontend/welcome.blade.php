@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="row">
+        @if (! empty(session('flash_notification')))
+            <div class="col-md-12">
+                @include('flash::message')
+            </div>
+        @endif
+
         <div class="col-md-9">
             <h3>Laat Belgie nuclaire wapens verbieden.</h3>
 
