@@ -91,11 +91,11 @@
 
                 <hr style="margin-top: 15px; margin-bottom: 15px;">
 
-                <a class="btn btn-block btn-social btn-facebook">
+                <a href="{{ $social['facebook'] }}" class="btn btn-block btn-social btn-facebook">
                     <span class="fa fa-facebook"></span>
                     Deel op facebook
                 </a>
-                <a class="btn btn-block btn-social btn-twitter">
+                <a href="{{ $social['twitter'] }}" class="btn btn-block btn-social btn-twitter">
                     <span class="fa fa-twitter"></span>
                     Deel op Twitter
                 </a>

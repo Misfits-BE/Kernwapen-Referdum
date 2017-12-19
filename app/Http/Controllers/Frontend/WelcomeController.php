@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\SignatureRepository;
+use Share;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -40,8 +41,12 @@ class WelcomeController extends Controller
      */
     public function index(): View
     {
+        $social = Share::load(config('app.url'), 'Belgie verban de kernwapens!')
+            ->services('facebook', 'twitter');
+
         return view('frontend.welcome', [
-            'signatures' => $this->signatureRepository->countSignatures()
+            'signatures' => $this->signatureRepository->countSignatures(),
+            'social'     => $social
         ]);
     }
 }
