@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="row">
+        @if (! empty(session('flash_notification')))
+            <div class="col-md-12">
+                @include('flash::message')
+            </div>
+        @endif
+
         <div class="col-md-9">
             <h3>Laat Belgie nuclaire wapens verbieden.</h3>
 
@@ -12,49 +18,49 @@
 
             <hr>
 
-            <form method="POST" class="form-horizontal" action="">
+            <form method="POST" class="form-horizontal" action="{{ route('signature.store') }}">
                 {{ csrf_field() }} {{-- CSRF token protection --}}
 
                 <div class="form-group">
                     <label class="control-label col-md-3"> Uw naam: <span class="text-danger">*</span></label>
 
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Uw voornaam">
+                    <div class="col-md-4 @error('voornaam', 'has-error')">
+                        <input type="text" class="form-control" @input('voornaam') placeholder="Uw voornaam">
 
                     </div>
 
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Uw achternaam">
+                    <div class="col-md-5 @error('achternaam', 'has-error')">
+                        <input type="text" class="form-control" @input('achternaam') placeholder="Uw achternaam">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-3">Geboortedatum: <span class="text-danger">*</span> </label>
 
-                    <div class="col-md-9">
-                    <input type="date" class="form-control">
+                    <div class="col-md-9 @error('geboortedatum', 'has-error')">
+                    <input type="date" class="form-control" @input('geboortedatum')>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-3"> Uw adres: <span class="text-danger">*</span></label>
 
-                <div class="col-md-6 @error('address' , 'has-error')">
-                    <input type="text" class="form-control" placeholder="Uw straatcnaam">
+                <div class="col-md-6 @error('straatnaam' , 'has-error')">
+                    <input type="text" class="form-control" @input('straatnaam') placeholder="Uw straatcnaam">
                 </div>
 
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Uw Huisnummer">
+                <div class="col-md-3 @error('huis_nr', 'has-error')">
+                    <input type="text" class="form-control" placeholder="Uw Huisnummer" @input('huis_nr')>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-3 col-md-3">
-                    <input type="text" class="form-control" placeholder="Stadsnaam">
+                <div class="col-md-offset-3 col-md-3 @error('postcode', 'has-error')">
+                    <input type="text" class="form-control" placeholder="Postcode" @input('postcode')>
                 </div>
 
-                <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Stadsnaam">
+                <div class="col-md-6 @error('stadsnaam', 'has-error')">
+                    <input type="text" class="form-control" @input('stadsnaam') placeholder="Stadsnaam">
                 </div>
             </div>
 
