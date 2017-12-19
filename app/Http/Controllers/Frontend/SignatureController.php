@@ -43,8 +43,9 @@ class SignatureController extends Controller
     public function store(SignatureValidator $input): RedirectResponse
     {
         if ($person = $this->signatureRepository->createSignature($input->all())) {
-            flash("Beste {$person->voornaam} {$person->achternaam}, bedankt om je steun te betuigen.")
-                ->success();
+            flash(trans('signature.flash-thank-you', [
+                'firstname' => $person->voornaam, 'lastname' => $person->achternaam
+            ]))->success();
         }
 
         return redirect()->route('frontend.index');
