@@ -24,7 +24,7 @@ class Signature extends Model
     /**
      * Zorg ervoor dat de eerste letter van de voornaam altijd een hoofdletter is.
      *
-     * @param  string $voornaam De gegeven voornaam in de invoer van de gebruiker.
+     * @param  string $voornaam De gegeven voornaam in de gebruikersinvoer..
      * @return void
      */
     public function setVoornaamAttribute(string $voornaam): void
@@ -35,7 +35,7 @@ class Signature extends Model
     /**
      * Zorg ervoor dat de eerste letter van de achternaam altijd een hoofdletter is.
      *
-     * @param  string $achternaam De gegeven achternaam in de invoer van de gebruiker.
+     * @param  string $achternaam De gegeven achternaam in de gebruikersinvoer.
      * @return void
      */
     public function setAchternaamAttribute(string $achternaam): void
@@ -43,13 +43,25 @@ class Signature extends Model
         $this->attributes['achternaam'] = ucfirst($achternaam);
     }
 
-    public function setStadsnaam(): void
+    /**
+     * Zorg ervoor dat de eerste letter van de stadsnaam altijd een hoofdletter is.
+     *
+     * @param  string $stadsnaam De gegeven stadsnaam in de gebruikersinvoer.
+     * @return void
+     */
+    public function setStadsnaam(string $stadsnaam): void
     {
-        //
+        $this->attributes['stadsnaam'] = ucfirst($stadsnaam);
     }
 
-    public function setStraatnaam(): void
+    /**
+     * Zorg ervoor dat de eerste letter in de straatnaam altijd een hoofdletter is. 
+     *
+     * @param  string $straatnaam De gegeven straatnaam in de gebruikers invoer.
+     * @return void
+     */
+    public function setStraatnaam(string $straatnaam): void
     {
-        //
+        $this->attributes['straatnaam'] = ucfirst($straatnaam);
     }
 }
