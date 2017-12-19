@@ -41,7 +41,7 @@ class WelcomeController extends Controller
      */
     public function index(): View
     {
-        $social = Share::load(config('app.url'), 'Belgie verban de kernwapens!')
+        $social = Share::load(config('platform.social.link'), config('platform.social.title'))
             ->services('facebook', 'twitter');
 
         return view('frontend.welcome', [
