@@ -84,7 +84,7 @@
 
                 <div class="panel panel-default" style="margin-bottom: 0">
                     <div class="panel-body" style="padding-top: 5px;">
-                        <h4 style="padding-top:0"><strong>2444</strong></h4>
+                        <h4 style="padding-top:0"><strong>{{ $signatures }}</strong></h4>
                         <span class="text-muted">Handtekeningen</span>
                     </div>
                 </div>

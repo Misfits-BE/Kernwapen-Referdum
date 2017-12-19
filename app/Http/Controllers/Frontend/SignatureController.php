@@ -24,7 +24,7 @@ class SignatureController extends Controller
     /**
      * SignatureController constructor.
      *
-     * @param  SignatureRepository $signatureRepository
+     * @param  SignatureRepository $signatureRepository Abstractie laag tussen controller en model.
      * @return void
      */
     public function __construct(SignatureRepository $signatureRepository)

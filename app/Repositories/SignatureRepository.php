@@ -32,4 +32,14 @@ class SignatureRepository extends Repository
     {
         return $this->create($input);
     }
+
+    /**
+     * Tel alle hand tekeningen in de databank op return ze naar de controller.
+     *
+     * @return int
+     */
+    public function countSignatures(): int
+    {
+        return $this->model->count();
+    }
 }
