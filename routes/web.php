@@ -13,12 +13,10 @@
 
 // Home routes
 Route::get('/', 'Frontend\WelcomeController@index')->name('frontend.index');
+Route::get('/home', 'Backend\WelcomeController@index')->name('backend.index');
 
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
-
-// Admin routes
-Route::get('/home', 'HomeController@index')->name('home');
