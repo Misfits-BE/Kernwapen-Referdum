@@ -17,7 +17,7 @@ class SignatureRepository extends Repository
      *
      * @return string
      */
-    public function model()
+    public function model(): string
     {
         return Signature::class;
     }

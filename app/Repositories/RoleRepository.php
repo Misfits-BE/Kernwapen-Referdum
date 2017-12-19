@@ -18,8 +18,22 @@ class RoleRepository extends Repository
      *
      * @return string
      */
-    public function model()
+    public function model(): string
     {
         return Role::class;
+    }
+
+    /**
+     * Creer een nieuwe rol in het systeem.
+     *
+     * Dit is een functie voor de UsersTableSeeder die rust op de
+     * Eloquent ORM ->firstOrCreate() methode.
+     *
+     * @param  array $role De naam voor de rol
+     * @return Role
+     */
+    public function seedFirstOrCreate(array $role): Role
+    {
+        return $this->model->firstOrCreate($role);
     }
 }
