@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "143a08bfc4fe231d3a4debca997e0116",
+    "content-hash": "19fa397f361defa7170ade9e1e3ffd84",
     "packages": [
         {
             "name": "activismebe/database-layering",
@@ -1734,6 +1734,121 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "03eb748141432b5d94eb1613b99f818aac1f5070"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/03eb748141432b5d94eb1613b99f818aac1f5070",
+                "reference": "03eb748141432b5d94eb1613b99f818aac1f5070",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0",
+                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0",
+                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0",
+                "illuminate/database": "~5.4.0|~5.5.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^1.22",
+                "orchestra/testbench": "~3.3.0|~3.4.2|~3.5.0",
+                "phpunit/phpunit": "^5.7|6.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2017-11-27T10:22:46+00:00"
+        },
+        {
+            "name": "spatie/laravel-robots-middleware",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-robots-middleware.git",
+                "reference": "843d09705a581b1efb9377605381a439bacb3ad5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-robots-middleware/zipball/843d09705a581b1efb9377605381a439bacb3ad5",
+                "reference": "843d09705a581b1efb9377605381a439bacb3ad5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^5.1",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.2",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\RobotsMiddleware\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Add an `all` or `none` robots header to your requests via a middleware in Laravel",
+            "homepage": "https://github.com/spatie/laravel-robots-middleware",
+            "keywords": [
+                "index",
+                "robots",
+                "seo",
+                "spatie"
+            ],
+            "time": "2016-01-12T12:28:05+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

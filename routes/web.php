@@ -19,3 +19,6 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
+
+// Admin routes
+Route::get('/home', 'HomeController@index')->name('home');
