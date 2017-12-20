@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\AccountInfoValidator;
+use App\Http\Requests\Auth\AccountSecurityValidator;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,10 +18,20 @@ use Illuminate\Http\RedirectResponse;
  */
 class AccountSettingsController extends Controller
 {
+    /**
+     * @var UserRepository  $userRepository
+     */
     private $userRepository;
 
+    /**
+     * AccountSettingsController constructor
+     * .
+     * @param  UserRepository $userRepository Abstractie laag tussen controller en model.
+     * @return void
+     */
     public function __construct(UserRepository $userRepository)
     {
+        $this->middleware(['auth']);
         $this->userRepository = $userRepository;
     }
 
@@ -36,12 +48,16 @@ class AccountSettingsController extends Controller
         return view('auth.account-settings');
     }
 
-    public function updateInformation(): RedirectResponse
+    /**
+     * @param  AccountInfoValidator $input
+     * @return RedirectResponse
+     */
+    public function updateInformation(AccountInfoValidator $input): RedirectResponse
     {
         //
     }
 
-    public function updateSecurity(): RedirectResponse
+    public function updateSecurity(AccountSecurityValidator $input): RedirectResponse
     {
         //
     }
