@@ -7,13 +7,18 @@ use Illuminate\Foundation\Http\FormRequest;
 class AccountSecurityValidator extends FormRequest
 {
     /**
+     * {@inheritdoc}
+     */
+    protected $redirectRoute = 'account.settings';
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -23,8 +28,16 @@ class AccountSecurityValidator extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        return ['password' => 'required|string|min:6|confirmed'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRedirectUrl() 
+    {
+        return $this->redirector->getUrlgenerator()->route(
+            $this->redirectRoute, ['type' => 'beveiliging']
+        );
     }
 }

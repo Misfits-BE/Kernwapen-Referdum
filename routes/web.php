@@ -15,6 +15,11 @@
 Route::get('/', 'Frontend\WelcomeController@index')->name('frontend.index');
 Route::get('/home', 'Backend\WelcomeController@index')->name('backend.index');
 
+// Account settings 
+Route::get('/admin/account/instellingen/{type}', 'Auth\AccountSettingsController@index')->name('account.settings');
+Route::patch('/admin/account/instellingen/informatie', 'Auth\AccountSettingsController@updateInformation')->name('account.settings.info');
+Route::patch('/admin/account/instellingen/beveiliging', 'Auth\AccountSettingsController@updateSecurity')->name('account.settings.security');
+
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 

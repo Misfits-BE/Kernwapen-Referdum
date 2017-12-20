@@ -14,7 +14,9 @@ use Illuminate\Http\RedirectResponse;
  * AccountSettingsController
  *
  * De controller voor de account configuratie.
- *
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
  */
 class AccountSettingsController extends Controller
 {
@@ -38,27 +40,42 @@ class AccountSettingsController extends Controller
     /**
      * Index paneel voor de account configuratie.
      *
-     * @todo uitwerken phpunit test
-     * @todo registreer routering
-     *
      * @return View
      */
     public function index(): View
     {
-        return view('auth.account-settings');
+        return view('auth.account-settings', ['user' => $this->userRepository->getUser()]);
     }
 
     /**
-     * @param  AccountInfoValidator $input
+     * Pas de account informatie aan in de databank.
+     * 
+     * @param  AccountInfoValidator $input De gegeven gebruikers invoer (Gevalideerd)
      * @return RedirectResponse
      */
     public function updateInformation(AccountInfoValidator $input): RedirectResponse
     {
-        //
+        if ($this->userRepository->updateUser($input->except('_token', '_method'))) {
+            flash(trans('user.flash-update-information'))->success();
+        }
+
+        return redirect()->route('account.settings', ['type' => 'informatie']);
     }
 
+    /**
+     * Pas de account beveiliging aan in de databank.
+     * 
+     * @param  AccountSecurityValidator $input De gegeven gebruikers invoer (Gevalideerd)
+     * @return RedirectResponse
+     */
     public function updateSecurity(AccountSecurityValidator $input): RedirectResponse
     {
-        //
+        $input = $input->except('_token', '_method', 'password_confirmation');
+
+        if ($this->userRepository->updateUser($input)) {
+            flash(trans('user.flash-update-security'))->success();
+        }
+
+        return redirect()->route('account.settings', ['type' => 'beveiliging']);
     }
 }
