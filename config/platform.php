@@ -13,9 +13,9 @@ return [
      */
 
     'author' => [
-        'name' => 'Activisme_be',
+        'name'    => 'Activisme_be',
         'website' => 'https://www.activisme.be',
-        'email' => 'acties@activisme.be'
+        'email'   => 'acties@activisme.be'
     ],
 
     /**
@@ -31,5 +31,22 @@ return [
     'social' => [
         'link'  => config('app.name'),
         'title' => 'Belgie verban de kernwapens!'
+    ], 
+
+    /** 
+     * --------------------------------------------------------------------------
+     * Github credentails config
+     * --------------------------------------------------------------------------
+     *
+     * De nodige configuratie is nodig voor de brug tussen Github en de applicatie.
+     * 
+     */
+    
+    'github' => [
+        'username'     => env('GITHUB_USERNAME', 'username'),
+        'password'     => env('GITHUB_PASSWORD', 'password'),
+        'organization' => '', 
+        'repo-name'    => '',
     ]
+
 ];
