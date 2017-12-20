@@ -42,4 +42,25 @@ class UserRepository extends Repository
             $commandBus->warn('Password is "secret"');
         }
     }
+
+    /**
+     * Get the database output for the currently authenticated user. 
+     *
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->find(auth()->user()->id, ['name', 'email']);
+    }
+
+    /**
+     * Wijzig de accoutn beveiliging in de databank. 
+     * 
+     * @param  array $user The aangemelde gebruiker. 
+     * @return int
+     */
+    public function updateUser(array $input): int
+    {
+        return $this->update($input, auth()->user()->id);
+    }
 }
