@@ -21,7 +21,7 @@ use Illuminate\Http\RedirectResponse;
 class AccountSettingsController extends Controller
 {
     /**
-     * @var UserRepository  $userRepository
+     * @var UserRepository $userRepository
      */
     private $userRepository;
 

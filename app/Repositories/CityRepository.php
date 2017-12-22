@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\City;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use Illuminate\Pagination\Paginator;
 
 /**
  * Class CityRepository
@@ -21,5 +22,16 @@ class CityRepository extends Repository
     public function model()
     {
         return City::class;
+    }
+
+    /**
+     * Oplijsting van alle gemeentes in de databak. 
+     *  
+     * @param  int $perPage Het aantal steden dat je wilt weergeven per stad.
+     * @return Paginator 
+     */
+    public function listCities(int $perPage): Paginator
+    {
+        return $this->entity()->simplePaginate($perPage);
     }
 }
