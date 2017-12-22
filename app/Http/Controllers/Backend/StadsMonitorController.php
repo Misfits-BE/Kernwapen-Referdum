@@ -56,8 +56,6 @@ class StadsMonitorController extends Controller
      */
     public function index(): View
     {
-        $cities = $this->cityRepository->listCities(15);
-
-        return view('backend.stadsmonitor.index', compact('cities'));
+        return view('backend.stadsmonitor.index', ['cities' => $this->cityRepository->listCities(15)]);
     }
 }
