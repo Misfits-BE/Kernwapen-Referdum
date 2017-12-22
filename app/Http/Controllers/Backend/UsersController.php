@@ -77,6 +77,22 @@ class UsersController extends Controller
     }
 
     /**
+     * @todo build up controller and shit.
+     */
+    public function edit(int $user): View
+    {
+
+    }
+
+    /**
+     * @todo build up controller and shit.
+     */
+    public function update(): RedirectResponse
+    {
+        //
+    }
+
+    /**
      * Verwijder een gebruiker uit het systeem.
      *
      * @todo creatie phpunit test
