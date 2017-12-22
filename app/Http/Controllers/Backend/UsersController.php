@@ -10,40 +10,40 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-/** 
- * UsersController 
+/**
+ * UsersController
  *
- * Controller met beheers functie die een betrekking hebben. 
- * Tot het wijzigen, toevoegen van gebruikers. 
+ * Controller met beheers functie die een betrekking hebben.
+ * Tot het wijzigen, toevoegen van gebruikers.
  *
- * @author  	Tim Joosten <tim@activisme.be>
+ * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  */
 class UsersController extends Controller
 {
-	/** 
-	 * @var UserRepository $userRepository
-	 */
-	private $userRepository;
+    /**
+     * @var UserRepository $userRepository
+     */
+    private $userRepository;
 
     /**
      * @var RoleRepository $roleRepository
      */
     private $roleRepository;
 
-	/** 
-	 * UsersController constructor. 
-	 *
-	 * @param  UserRepository $userRepository Abstractie laag tussen logica, controller en database.
+    /**
+     * UsersController constructor.
+     *
+     * @param  UserRepository $userRepository Abstractie laag tussen logica, controller en database.
      * @param  RoleRepository $roleRepository Abstractie laag tussen logica, controller en database.
-	 * @return void
-	 */
+     * @return void
+     */
     public function __construct(UserRepository $userRepository, RoleRepository $roleRepository)
     {
-    	$this->middleware(['auth']);
+        $this->middleware(['auth']);
 
-    	$this->roleRepository = $roleRepository;
-    	$this->userRepository = $userRepository; 
+        $this->roleRepository = $roleRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -55,9 +55,9 @@ class UsersController extends Controller
      */
     public function index(): View
     {
-    	return view('backend.users.index', [
-    		'users' => $this->userRepository->paginateUsers(20, 'simple')
-    	]); 
+        return view('backend.users.index', [
+            'users' => $this->userRepository->paginateUsers(20, 'simple')
+        ]);
     }
 
     /**
