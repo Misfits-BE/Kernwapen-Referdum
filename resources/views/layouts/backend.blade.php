@@ -57,7 +57,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="{{ route('bug.create') }}">
                                         <i class="fa fa-fw fa-bug"></i> Meld een probleem.
                                     </a>
                                 </li>

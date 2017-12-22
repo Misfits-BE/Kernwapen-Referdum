@@ -10,9 +10,11 @@
         "activismebe/laravel-form-helpers": "^1.2",
         "chencha/share": "^5.2",
         "fideloper/proxy": "~3.3",
+        "knplabs/github-api": "^2.7",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "php-http/guzzle6-adapter": "^1.1",
         "spatie/laravel-permission": "^2.7",
         "spatie/laravel-robots-middleware": "^1.0"
     },

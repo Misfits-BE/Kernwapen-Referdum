@@ -13,7 +13,7 @@ class BugValidator extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,9 @@ class BugValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titel'         => 'required|max:100', 
+            'label'         => 'required|max:60', 
+            'beschrijving'  => 'required', 
         ];
     }
 }

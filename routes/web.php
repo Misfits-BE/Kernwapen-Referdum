@@ -20,6 +20,10 @@ Route::get('/admin/account/instellingen/{type}', 'Auth\AccountSettingsController
 Route::patch('/admin/account/instellingen/informatie', 'Auth\AccountSettingsController@updateInformation')->name('account.settings.info');
 Route::patch('/admin/account/instellingen/beveiliging', 'Auth\AccountSettingsController@updateSecurity')->name('account.settings.security');
 
+// Bug routes 
+Route::get('/admin/meld-een-probleem', 'Backend\GithubController@create')->name('bug.create');
+Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name('bug.store');
+
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 

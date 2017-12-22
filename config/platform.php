@@ -45,8 +45,8 @@ return [
     'github' => [
         'username'     => env('GITHUB_USERNAME', 'username'),
         'password'     => env('GITHUB_PASSWORD', 'password'),
-        'organization' => '', 
-        'repo-name'    => '',
+        'organization' => 'Misfits-BE', 
+        'repo-name'    => 'Kernwapen-Referendum',
     ]
 
 ];

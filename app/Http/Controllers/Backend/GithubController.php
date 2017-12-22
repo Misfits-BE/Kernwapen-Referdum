@@ -35,27 +35,22 @@ class GithubController extends Controller
         $github->authenticate(
             config('platform.github.username'), 
             config('platform.github.password'), 
-            $client::AUTH_HTTP_PASSWORD
+            $github::AUTH_HTTP_PASSWORD
         ); 
 
-        $this->github = $github
+        $this->github = $github;
     }
 
 
     /**
      * De creatie pagina voor een fout melding. 
-     *
-     * @todo  implementeer routering (bug.index)
-     * 
-     * @todo  opbouwen van de view
-     * @todo  test de view op het einde ook zeker uit in de browser.
      * 
      * @return View
      */
     public function create(): View 
     {
         return view('backend.bugs.report', [
-            'labels' => $this->github->api('issue')->all(
+            'labels' => $this->github->api('issue')->labels()->all(
                 config('platform.github.organization'), config('platform.github.repo-name')
             )
         ]);
@@ -66,11 +61,7 @@ class GithubController extends Controller
      *
      * NOTE: Hier voorde functie is geen test nodig. WOrd al in de package gedaan. 
      * We testen niet met de volgende redenen. Credentails komen openbaar in CI en 
-     * we willen geen repo vol met faKe isses.
-     *
-     * @todo  implement routering.
-     * @todo  Registreer de store routering in de blade view.
-     * @todo  Maak translatie bestand
+     * we willen geen repo vol met fake isses.
      * 
      * @param  BugValidator $input de gegeven gebruikers invoer. (Gevalideerd.)
      * @return RedirectReponse
@@ -79,7 +70,7 @@ class GithubController extends Controller
     {
         $githubBase = $this->github->api('issue'); // Basis instantie van de GitHub API Wrapper
 
-        $create = $this->githubBase->labels()->add( // Slaag de foutmelding op (GitHub)
+        $create = $githubBase->create( // Slaag de foutmelding op (GitHub)
             config('platform.github.organization'), config('platform.github.repo-name'), [
                 'title' => $input->titel, 'body' => $input->beschrijving
         ]);
@@ -88,11 +79,10 @@ class GithubController extends Controller
             config('platform.github.organization'), config('platform.github.repo-name'), $create['number'], $input->label
         );
 
-        if ($create && $attach) {
-            // Ticket is aangemaakt en er is een label geattacheerd. 
+        if ($create && $attach) { // Ticket is aangemaakt en er is een label geattacheerd. 
             flash(trans('bug.flash-create'))->success(); 
         }
 
-        return redirect()->route('bug.index');
+        return redirect()->route('bug.create');
     }
 }
