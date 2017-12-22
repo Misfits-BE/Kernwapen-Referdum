@@ -5,6 +5,9 @@ namespace App\Repositories;
 use App\User;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use Illuminate\Http\Response;
+use Illuminate\Pagination\Paginator;
+use RuntimeException;
 use Spatie\Permission\Models\Role;
 
 /**
@@ -54,7 +57,7 @@ class UserRepository extends Repository
     }
 
     /**
-     * Wijzig de accoutn beveiliging in de databank. 
+     * Wijzig de account beveiliging in de databank. 
      * 
      * @param  array $user The aangemelde gebruiker. 
      * @return int
@@ -62,5 +65,34 @@ class UserRepository extends Repository
     public function updateUser(array $input): int
     {
         return $this->update($input, auth()->user()->id);
+    }
+
+    /**
+     * Haal de gebruikers op in de database en splits ze op per page.
+     *
+     * @param  int    $perPage  Het aantal data records in een pagina weergave.
+     * @param  string $type     Type van de paginatie.
+     * @return Paginator
+     */
+    public function paginateUsers(int $perPage, string $type): Paginator
+    {
+        switch ($type) {
+            case 'default': return $this->entity()->paginate($perPage);
+            case 'simple' : return $this->entity()->simplePaginate($perPage);
+
+            // Geen geldig formaat gegeven.
+            default: throw new RuntimeException('The type param can only contains simple or default', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Verwijder een gebruiker uit de databank.
+     *
+     * @param  int $user De unieke nummer voor de gebruiker in de databank.
+     * @return int
+     */
+    public function deleteUser(int $user): int
+    {
+        return $this->delete($user);
     }
 }

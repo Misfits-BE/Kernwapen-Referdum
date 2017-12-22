@@ -38,7 +38,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li @if (request()->is('admin/gebruikers*')) class="active" @endif>
+                        <a href="{{ route('admin.users.index') }}">
+                            <i class="fa fa-users"></i> Gebruikers
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -47,7 +51,7 @@
                     @if (! auth()->guest())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ auth()->user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user"></i> {{ auth()->user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
