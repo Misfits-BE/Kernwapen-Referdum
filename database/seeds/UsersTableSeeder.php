@@ -18,6 +18,12 @@ class UsersTableSeeder extends Seeder
     public function run(
         PermissionRepository $permissionRepository, RoleRepository $roleRepository, UserRepository $userRepository
     ) {
+        //! Vraag voor verversing van de databank zou moeten verplaatst worden
+        //! Dit zou gevraagd moeten worden in DatabaseSeeder.php 
+        //! Omdat niet alleen gerelateerd is aan de gebruikers. 
+
+        // TODO: (Localisation) Mogelijk heb bekijken om de commando vragon ook te laten vertalen. 
+
         // Ask for db migration refresh, default is no
         if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data?')) {
             // Call the php artisan migrate:refresh
@@ -25,6 +31,7 @@ class UsersTableSeeder extends Seeder
             $this->command->warn('Data cleared, starting from blank database.');
         }
 
+        // TODO: (acl) Registratie van permissies voor de stadsmonitor.
         $permissions = []; // No default permissions assigned for now. 
 
         foreach ($permissions as $perms) { // Seed default permissions

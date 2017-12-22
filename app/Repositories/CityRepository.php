@@ -34,4 +34,15 @@ class CityRepository extends Repository
     {
         return $this->entity()->simplePaginate($perPage);
     }
+
+    /**
+     * Creeer de stad in de databank. 
+     * 
+     * @param  array $input. De gegeven invoer die afkomstig is van de seeder. 
+     * @return City
+     */
+    public function seedCreate(array $input): City 
+    {
+        return $this->create($input);
+    }
 }

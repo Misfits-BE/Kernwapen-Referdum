@@ -12,7 +12,7 @@ class City extends Model
      * 
      * @return array
      */
-    protected $fillable = ['province_id'];
+    protected $fillable = ['province_id', 'postal', 'name', 'lat', 'lng'];
 
     /**
      * De data relatie voor de provincie gegevens van de gemeente. 

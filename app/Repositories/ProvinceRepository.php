@@ -22,4 +22,16 @@ class ProvinceRepository extends Repository
     {
         return Province::class;
     }
+
+    /**
+     * Haal de eerste provincie op bij naam.
+     * Indien niet gevonden word er een provincie aangemaakt. 
+     *
+     * @param  array $province De naam van de provincie. 
+     * @return Province
+     */
+    public function seedCreate(array $province): Province 
+    {
+        return $this->entity()->firstOrCreate($province);
+    }
 }
