@@ -56,6 +56,11 @@
                                         <i class="fa fa-fw fa-cogs"></i> Instellingen
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('bug.create') }}">
+                                        <i class="fa fa-fw fa-bug"></i> Meld een probleem.
+                                    </a>
+                                </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('logout') }}"

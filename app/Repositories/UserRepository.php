@@ -33,7 +33,7 @@ class UserRepository extends Repository
      */
     public function seedCreateUser(Role $role, $commandBus): void
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['password' => 'secret']);
         $user->assignRole($role->name);
 
         if ($role->name == 'admin' ) {
