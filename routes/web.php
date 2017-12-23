@@ -31,4 +31,8 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
 
 // Support routes (frontend)
-Route::get('ondersteuning', 'Frontend\SupportController@index')->name('support.index');
+Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');
+
+// Support routes (backend)
+Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('admin.support.index'); 
+Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->name('admin.support.create');
