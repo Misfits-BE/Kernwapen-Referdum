@@ -28,6 +28,9 @@
                         <li role="presentation" @if (Request::is('/')) class="active" @endif>
                             <a href="{{ route('frontend.index') }}">Uitleg</a>
                         </li>
+                        <li role="presentation" @if (request()->is('ondersteuning*')) class="active" @endif>
+                            <a href="{{ route('support.index') }}">Ondersteuning</a>
+                        </li>
                         <li role="presentation" @if (Request::is('disclaimer')) class="active" @endif>
                             <a href="{{ route('disclaimer.index') }}">Disclaimer</a>
                         </li>
