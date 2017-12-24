@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Repositories\ContactsRepository;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Requests\Backend\OrganizationValidator;
+use App\Http\Requests\Backend\OrganizationValidator;
 use App\Repositories\SupportRepository;
 use App\Http\Controllers\Controller;
 
@@ -22,18 +23,26 @@ class SupportController extends Controller
     /**
      * @var SupportRepository $supportRepository;
      */
-    private $supportRepository; 
+    private $supportRepository;
+
+    /**
+     * @var ContactsRepository $contactsRepository
+     */
+    private $contactsRepository;
 
     /**
      * SupportController Constructor 
-     * 
-     * @param  SupportRepository $supportRepository ABstractielaag tussen controller, logica, databank. 
+     *
+     * @param  SupportRepository  $supportRepository  abstractielaag tussen controller, logica, databank.
+     * @param  ContactsRepository $contactsRepository abstractielaag tussen controller, logica, databank.
      * @return void 
      */
-    public function __construct(SupportRepository $supportRepository) 
+    public function __construct(SupportRepository $supportRepository, ContactsRepository $contactsRepository)
     {
         $this->middleware(['auth']);
-        $this->supportRepository = $supportRepository;
+
+        $this->supportRepository  = $supportRepository;
+        $this->contactsRepository = $contactsRepository;
     }
 
     /**
@@ -71,12 +80,12 @@ class SupportController extends Controller
      * @todo Implement activity logger.
      *  
      * @param  OrganizationValidator $input De door de gebruiker gegeven invoer (Gevalideerd).
-     * @return RedirectReponse
+     * @return RedirectResponse
      */
     public function store(OrganizationValidator $input): RedirectResponse
     {
         $organizationCreate = $this->supportRepository->createOrganization($input->all());
-        $contactsCreate     = $this->contactRepository->createPerson($input->all());
+        $contactsCreate     = $this->contactsRepository->createPerson($input->all());
 
         // Not stored in the organization table. Because we can have more that one 
         // Person as contact for the organisation. Think of big organisations like political parties.
