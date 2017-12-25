@@ -12,15 +12,5 @@ class Support extends Model
      * 
      * @return array
      */
-    protected $fillable = [];
-
-    /**
-     * Databank relatie voor de contact personen van de organisatie.
-     * 
-     * @return BelongsToMany 
-     */
-    public function contact(): BelongsToMany
-    {
-        return $this->belongsToMany(Contacts::class)->withTimestamps();
-    }
+    protected $fillable = ['name', 'link', 'telefoon_nr', 'verantwoordelijke_naam', 'verantwoordelijke_email'];
 }

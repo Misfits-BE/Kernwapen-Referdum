@@ -13,7 +13,7 @@ class OrganizationValidator extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,11 @@ class OrganizationValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+            'link'                      => 'required|max:255',
+            'name'                      => 'required|max:255',
+            'verantwoordelijke_naam'    => 'required|max:255',
+            'verantwoordelijke_email'   => 'required|email',
+            'telefoon_nr'               => 'required|max:255',
         ];
     }
 }

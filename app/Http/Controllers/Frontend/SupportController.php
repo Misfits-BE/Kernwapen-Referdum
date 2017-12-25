@@ -23,7 +23,7 @@ class SupportController extends Controller
     /**
      * SupportController constructor 
      * 
-     * @param  SuppportRepository $supportRepository Abstractie laag tussen controller, logica, databank.
+     * @param  SupportRepository $supportRepository Abstractie laag tussen controller, logica, databank.
      * @return void
      */
     public function __construct(SupportRepository $supportRepository) 

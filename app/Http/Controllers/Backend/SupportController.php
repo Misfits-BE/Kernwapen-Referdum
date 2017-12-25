@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\ContactsRepository;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -26,23 +25,15 @@ class SupportController extends Controller
     private $supportRepository;
 
     /**
-     * @var ContactsRepository $contactsRepository
-     */
-    private $contactsRepository;
-
-    /**
      * SupportController Constructor 
      *
      * @param  SupportRepository  $supportRepository  abstractielaag tussen controller, logica, databank.
-     * @param  ContactsRepository $contactsRepository abstractielaag tussen controller, logica, databank.
      * @return void 
      */
-    public function __construct(SupportRepository $supportRepository, ContactsRepository $contactsRepository)
+    public function __construct(SupportRepository $supportRepository)
     {
         $this->middleware(['auth']);
-
         $this->supportRepository  = $supportRepository;
-        $this->contactsRepository = $contactsRepository;
     }
 
     /**
@@ -84,15 +75,25 @@ class SupportController extends Controller
      */
     public function store(OrganizationValidator $input): RedirectResponse
     {
-        $organizationCreate = $this->supportRepository->createOrganization($input->all());
-        $contactsCreate     = $this->contactsRepository->createPerson($input->all());
-
-        // Not stored in the organization table. Because we can have more that one 
-        // Person as contact for the organisation. Think of big organisations like political parties.
-        $attachContact      = $organizationCreate->contacts()->attach($contactsCreate->id);
-
-        if ($organizationCreate && $contactsCreate && $attachContact) {
+        if ($this->supportRepository->createOrganization($input->all())) {
             flash('De ondersteunende organisatie is toegevoegd aan het systeem.')->success();
+        }
+
+        return redirect()->route('admin.support.index');
+    }
+
+    /**
+     * Verwijder een ondersteunende organisatie uit het systeem.
+     *
+     * @todo uitwerken van een phpunit test.
+     *
+     * @param  int $organisation De unieke waarde van de organisatie in de databank.
+     * @return RedirectResponse
+     */
+    public function destroy(int $organisation): RedirectResponse
+    {
+        if ($this->supportRepository->deleteOrganisation($organisation)) {
+            flash('De ondersteunende organisatie is verwijder.')->success();
         }
 
         return redirect()->route('admin.support.index');

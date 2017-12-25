@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Contacts;
 use App\Support;
 use RuntimeException;
 use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
@@ -52,5 +53,27 @@ class SupportRepository extends Repository
             // Geen correct type gegeven dus smijt een runtime exception.
             default: throw new RuntimeException('The needs to ben simple or default', 500);
         }
+    }
+
+    /**
+     * Creer een ondersteunende organisatie in de databank. 
+     * 
+     * @param  array $input De gegeven invoer voor de databank
+     * @return Support
+     */
+    public function createOrganization(array $input): Support
+    {
+        return $this->create($input);
+    }
+
+    /**
+     * Verwijder een ondersteunende organisatie uit de databank.
+     *
+     * @param  int $organisatie De unieke waarde van de organisatie.
+     * @return bool
+     */
+    public function deleteOrganisation(int $organisatie): bool
+    {
+        return $this->delete($organisatie);
     }
 }

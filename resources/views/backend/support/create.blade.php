@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.support.store') }}">
                             {{ csrf_field() }}
 
                             <fieldset> {{-- Organization name and website --}}
@@ -45,18 +45,18 @@
                             <fieldset>
                                 <legend>Contactgegevens organisatie:</legend>
 
-                                <div class="form-group @errror('verantwoordelijke_naam', 'has-error')">
+                                <div class="form-group @error('verantwoordelijke_naam', 'has-error')">
                                     <label class="control-label col-md-3">
                                         Naam: <span class="text-danger">*</span>
                                     </label>
 
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" @input('verantwoordelijk_naam') placeholder="Naam contact persoon">
+                                        <input type="text" class="form-control" @input('verantwoordelijke_naam') placeholder="Naam contact persoon">
                                         @error('verantwoordelijke_naam')
                                     </div>
                                 </div>
 
-                                <div class="form-group" @error('verantwoordelijke_email', 'has-error')>
+                                <div class="form-group @error('verantwoordelijke_email', 'has-error')">
                                     <label class="control-label col-md-3">
                                         E-mail adres: <span class="text-danger">*</span>
                                     </label>
