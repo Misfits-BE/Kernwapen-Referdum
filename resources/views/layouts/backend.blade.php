@@ -38,7 +38,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li @if (request()->is('admin/ondersteuning*')) class="active" @endif>
+                        <a href="{{ route('admin.support.index') }}">
+                            <i class="fa fa-list"></i> Organisaties
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

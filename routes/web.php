@@ -29,3 +29,12 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
+
+// Support routes (frontend)
+Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');
+
+// Support routes (backend)
+Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('admin.support.index'); 
+Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->name('admin.support.create');
+Route::get('/admin/ondersteuning/verwijder/{id}', 'Backend\SupportController@destroy')->name('admin.support.delete');
+Route::post('/admin/ondersteuning/opslaan', 'Backend\SupportController@store')->name('admin.support.store');
