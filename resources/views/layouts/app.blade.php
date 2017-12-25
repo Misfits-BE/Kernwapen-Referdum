@@ -26,14 +26,39 @@
 
                     <ul class="nav nav-tabs" role="tablist"> <!-- Tab menu -->
                         <li role="presentation" @if (Request::is('/')) class="active" @endif>
-                            <a href="{{ route('frontend.index') }}">Uitleg</a>
+                            <a href="{{ route('frontend.index') }}">
+                               Uitleg
+                            </a>
                         </li>
                         <li role="presentation" @if (request()->is('ondersteuning*')) class="active" @endif>
-                            <a href="{{ route('support.index') }}">Ondersteuning</a>
+                            <a href="{{ route('support.index') }}">
+                                Ondersteuning
+                            </a>
+                        </li>
+                        <li role="presentation" @if (Request::is('contact')) class="active" @endif>
+                            <a href="">
+                                Contact
+                            </a>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="">
+                                Stadsmonitor
+                            </a>
                         </li>
                         <li role="presentation" @if (Request::is('disclaimer')) class="active" @endif>
-                            <a href="{{ route('disclaimer.index') }}">Disclaimer</a>
+                            <a href="{{ route('disclaimer.index') }}">
+                                Disclaimer
+                            </a>
                         </li>
+
+                        @if (auth()->check())
+                            <li role="presentation">
+                                <a href="{{ route('backend.index') }}">
+                                    <i class="text-danger fa fa-fw fa-cogs"></i> Beheer
+                                </a>
+                            </li>
+                        @endif
                     </ul> <!-- /END Tab menu -->
 
                     <div class="tab-content">
