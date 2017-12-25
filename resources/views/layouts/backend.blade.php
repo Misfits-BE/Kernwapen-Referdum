@@ -43,6 +43,16 @@
                             <i class="fa fa-home"></i> Stadsmonitor
                         </a>
                     </li>
+                    <li @if (request()->is('admin/gebruikers*')) class="active" @endif>
+                        <a href="{{ route('admin.users.index') }}">
+                            <i class="fa fa-users"></i> Gebruikers
+                        </a>
+                    </li>
+                    <li @if (request()->is('admin/ondersteuning*')) class="active" @endif>
+                        <a href="{{ route('admin.support.index') }}">
+                            <i class="fa fa-list"></i> Organisaties
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -51,7 +61,7 @@
                     @if (! auth()->guest())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ auth()->user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user"></i> {{ auth()->user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">

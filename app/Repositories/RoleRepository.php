@@ -36,4 +36,15 @@ class RoleRepository extends Repository
     {
         return $this->model->firstOrCreate($role);
     }
+
+    /**
+     * Oplijsting voor de systeem rollen;
+     *
+     * @param  array $fields De array van de nodige database columns.
+     * @return mixed
+     */
+    public function listRoles(array $fields)
+    {
+        return $this->all($fields);
+    }
 }

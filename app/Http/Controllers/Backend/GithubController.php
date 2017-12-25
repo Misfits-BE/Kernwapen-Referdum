@@ -21,11 +21,11 @@ use Illuminate\Http\RedirectResponse;
 class GithubController extends Controller
 {
     /**
-     * GithubController constructor 
+     * GithubController constructor
      *
-     * @todo  schrijf het config variable bij in het blad voor platform configuratie.
+     * @todo     schrijf het config variable bij in het blad voor platform configuratie.
      *
-     * @param  $client De GitHub api client wrapper.
+     * @param  Client $github De GitHub api client wrapper.
      * @return void
      */
     public function __construct(Client $github)
