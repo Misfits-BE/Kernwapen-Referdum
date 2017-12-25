@@ -30,6 +30,11 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
 
+// User management routes
+Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');
+Route::get('/admin/gebruikers/nieuw', 'Backend\UsersController@create')->name('admin.users.create');
+Route::get('/admin/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
+
 // Support routes (frontend)
 Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');
 
