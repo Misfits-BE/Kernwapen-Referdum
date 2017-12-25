@@ -29,7 +29,7 @@ return [
      */
 
     'social' => [
-        'link'  => config('app.name'),
+        'link'  => config('app.url'),
         'title' => 'Belgie verban de kernwapens!'
     ], 
 

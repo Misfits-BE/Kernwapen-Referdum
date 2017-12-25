@@ -43,6 +43,11 @@
                             <i class="fa fa-users"></i> Gebruikers
                         </a>
                     </li>
+                    <li @if (request()->is('admin/ondersteuning*')) class="active" @endif>
+                        <a href="{{ route('admin.support.index') }}">
+                            <i class="fa fa-list"></i> Organisaties
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
