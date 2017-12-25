@@ -50,7 +50,6 @@ class StadsMonitorController extends Controller
      * 
      * @todo aanmaken view.
      * @todo phpunit
-     * @todo routering 
      * 
      * @return View 
      */
