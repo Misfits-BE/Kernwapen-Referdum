@@ -38,6 +38,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    <li @if (Request::is('admin/stadsmonitor*')) class="active" @endif>
+                        <a href="{{ route('admin.stadsmonitor.index') }}">
+                            <i class="fa fa-home"></i> Stadsmonitor
+                        </a>
+                    </li>
                     <li @if (request()->is('admin/gebruikers*')) class="active" @endif>
                         <a href="{{ route('admin.users.index') }}">
                             <i class="fa fa-users"></i> Gebruikers
