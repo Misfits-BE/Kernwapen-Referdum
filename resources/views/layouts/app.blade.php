@@ -55,7 +55,7 @@
                         @if (auth()->check())
                             <li role="presentation">
                                 <a href="{{ route('backend.index') }}">
-                                    <i class="text-danger fa fa-fw fa-cogs"></i> Beheer
+                                    Beheer
                                 </a>
                             </li>
                         @endif
