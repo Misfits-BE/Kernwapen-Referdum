@@ -45,7 +45,9 @@
                                                     @else <span class="label label-danger">Offline</span>
                                                     @endif
 
-                                                    {{-- TODO: Implement banned status indicator --}}
+                                                    @if ($user->isBanned())
+                                                        <span class="label label-danger">Geblokkeerd</span>
+                                                    @endif
                                                 </td> {{-- /END status --}}
                                                 <td>{{ $user->name }}</td>
                                                 <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
@@ -57,9 +59,15 @@
                                                             <i class="fa fa-fw fa-cogs"></i>
                                                         </a>
 
-                                                        <a href="{{ route('admin.users.lock', $user) }}" class="text-danger">
-                                                            <i class="fa fa-fw fa-lock"></i>
-                                                        </a>
+                                                        @if ($user->isNotBanned())
+                                                            <a href="{{ route('admin.users.lock', $user) }}" class="text-danger">
+                                                                <i class="fa fa-fw fa-lock"></i>
+                                                            </a>
+                                                        @elseif ($user->isBanned())
+                                                            <a href="" class="text-success">
+                                                                <i class="fa fa-fw fa-unlock"></i>
+                                                            </a>
+                                                        @endif
 
                                                         <a href="{{ route('admin.users.delete', $user) }}" class="text-danger">
                                                             <i class="fa fa-fw fa-close"></i>
@@ -68,8 +76,10 @@
                                                 </td> {{-- /Opties --}}
                                             </tr>
                                         @endforeach
-                                    @else
-                                        {{-- // --}}
+                                    @else {{-- Geen gebruikers gevonden. --}}
+                                        <tr>
+                                            <td colspan="6">Er zijn geen gebruikers gevonden in het systeem.</td>
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>

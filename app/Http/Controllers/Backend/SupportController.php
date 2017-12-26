@@ -33,7 +33,7 @@ class SupportController extends Controller
     {
         parent::__construct();
 
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'forbid-banned-user']);
         $this->supportRepository  = $supportRepository;
     }
 

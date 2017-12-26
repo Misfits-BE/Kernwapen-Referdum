@@ -42,7 +42,7 @@ class UsersController extends Controller
     {
         parent::__construct();
 
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'forbid-banned-user']);
 
         $this->roleRepository = $roleRepository;
         $this->userRepository = $userRepository;
