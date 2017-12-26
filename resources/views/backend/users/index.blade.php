@@ -57,7 +57,7 @@
                                                             <i class="fa fa-fw fa-cogs"></i>
                                                         </a>
 
-                                                        <a href="" class="text-danger">
+                                                        <a href="{{ route('admin.users.lock', $user) }}" class="text-danger">
                                                             <i class="fa fa-fw fa-lock"></i>
                                                         </a>
 

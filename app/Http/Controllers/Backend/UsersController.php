@@ -82,7 +82,7 @@ class UsersController extends Controller
      * Weergave formulier om een gebruiker te wijzigen.
      *
      * @todo implementatie phpunit test
-     * @todo uitwerken van een phpunit test.
+     * @todo uitwerken van een view.
      *
      * @param  User $user De unieke gebruikers waarde in de databank
      * @return View

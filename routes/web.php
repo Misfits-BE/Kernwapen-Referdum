@@ -38,7 +38,8 @@ Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')-
 // User management routes
 Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');
 Route::get('/admin/gebruikers/nieuw', 'Backend\UsersController@create')->name('admin.users.create');
-Route::get('/admin/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
+Route::get('/admin/gebruikers/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
+Route::get('/admin/gebruikers/blokkeer/{id}', 'Backend\BanController@lock')->name('admin.users.lock');
 
 // Support routes (frontend)
 Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');

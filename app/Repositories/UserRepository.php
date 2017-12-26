@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\User;
+use Cog\Contracts\Ban\Ban;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use RuntimeException;
@@ -93,5 +94,21 @@ class UserRepository extends Repository
     public function deleteUser(int $user): int
     {
         return $this->delete($user);
+    }
+
+    /**
+     * Blokkeer een gebruiker in de databank.
+     *
+     * @param  User $user De unieke waarde van de gebruiker in de databank.
+     * @return bool
+     */
+    public function lockUser(User $user): Ban
+    {
+        $authUser = $this->getUser()->name;
+
+        return $user->ban([
+            'expired_at' => '+2 weeks',
+            'comments'   => "{$user->name} geblokkeerd door {$authUser}"
+        ]);
     }
 }

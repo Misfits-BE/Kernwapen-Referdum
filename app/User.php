@@ -2,14 +2,16 @@
 
 namespace App;
 
+use Cog\Laravel\Ban\Traits\Bannable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,10 +30,10 @@ class User extends Authenticatable
     /**
      * Methode voor de wachtwoord encryptie.
      *
-     * @param  $password Het gegeven wachtwoord van de gebruiker.
+     * @param  string $password Het gegeven wachtwoord van de gebruiker.
      * @return void
      */
-    public function setPasswordAttribute($password): void
+    public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
     }
