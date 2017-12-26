@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /.vagrant
+/.php_cs.cache
 /Vagrantfile 
 /after.sh 
 /aliases
