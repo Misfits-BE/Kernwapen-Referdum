@@ -29,6 +29,8 @@ class GithubController extends Controller
      */
     public function __construct(Client $github)
     {
+        parent::__construct();
+
         $this->middleware(['auth']);
 
         $github->authenticate(

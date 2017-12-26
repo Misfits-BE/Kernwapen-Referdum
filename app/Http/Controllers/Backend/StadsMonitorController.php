@@ -38,6 +38,8 @@ class StadsMonitorController extends Controller
      */
     public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository)
     {
+        parent::__construct();
+
         $this->middleware(['auth']);
 
         $this->provinceRepository = $provinceRepository;

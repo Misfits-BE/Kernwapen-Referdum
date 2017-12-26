@@ -31,6 +31,8 @@ class SupportController extends Controller
      */
     public function __construct(SupportRepository $supportRepository)
     {
+        parent::__construct();
+
         $this->middleware(['auth']);
         $this->supportRepository  = $supportRepository;
     }

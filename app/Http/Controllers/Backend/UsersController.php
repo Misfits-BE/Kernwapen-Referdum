@@ -40,6 +40,8 @@ class UsersController extends Controller
      */
     public function __construct(UserRepository $userRepository, RoleRepository $roleRepository)
     {
+        parent::__construct();
+
         $this->middleware(['auth']);
 
         $this->roleRepository = $roleRepository;

@@ -28,6 +28,7 @@ class SignatureController extends Controller
      */
     public function __construct(SignatureRepository $signatureRepository)
     {
+        parent::__construct();
         $this->signatureRepository = $signatureRepository;
     }
 
