@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Signature extends Model
@@ -55,7 +54,7 @@ class Signature extends Model
     }
 
     /**
-     * Zorg ervoor dat de eerste letter in de straatnaam altijd een hoofdletter is. 
+     * Zorg ervoor dat de eerste letter in de straatnaam altijd een hoofdletter is.
      *
      * @param  string $straatnaam De gegeven straatnaam in de gebruikers invoer.
      * @return void

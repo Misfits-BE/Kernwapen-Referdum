@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     /**
-     * Mass-assign velden voor de databank tabel. 
+     * Mass-assign velden voor de databank tabel.
      *
      * @var array
      */

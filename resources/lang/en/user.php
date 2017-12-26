@@ -13,8 +13,8 @@ return [
       *
       */
 
-      // Flash sessions 
-      'flash-update-information' => 'Your account information has been updated.', 
+      // Flash sessions
+      'flash-update-information' => 'Your account information has been updated.',
       'flash-update-security'    => 'Your account security has been updated',
 
 ];

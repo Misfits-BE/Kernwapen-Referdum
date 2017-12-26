@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use Spatie\Permission\Models\Role;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class RoleRepository

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -68,13 +68,13 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     *  Define the "auth" routes for the application. 
-     * 
+     *  Define the "auth" routes for the application.
+     *
      * These route all receive session state, CSRF protection, etc.
-     * 
+     *
      * @return void
      */
-    protected function mapAuthRoutes(): void 
+    protected function mapAuthRoutes(): void
     {
         Route::middleware('web')
             ->namespace($this->namespace)

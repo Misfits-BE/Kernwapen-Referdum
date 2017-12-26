@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Github\Client;
-use Illuminate\Http\Request;
-use App\Http\Requests\Backend\BugValidator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\BugValidator;
+use Github\Client;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-/** 
- * GithubController 
+/**
+ * GithubController
  *
- * Deze controller dient als brug tussen applicatie en github. 
- * En geeft ook de mogelijkheid dat gebruikers vanuit de applicatie fouten kunnen melden. 
+ * Deze controller dient als brug tussen applicatie en github.
+ * En geeft ook de mogelijkheid dat gebruikers vanuit de applicatie fouten kunnen melden.
  *
  * @author    Tim Joosten <tim@activisme.be>
  * @copyright 2018 Tim Joosten
@@ -33,36 +32,37 @@ class GithubController extends Controller
         $this->middleware(['auth']);
 
         $github->authenticate(
-            config('platform.github.username'), 
-            config('platform.github.password'), 
+            config('platform.github.username'),
+            config('platform.github.password'),
             $github::AUTH_HTTP_PASSWORD
-        ); 
+        );
 
         $this->github = $github;
     }
 
 
     /**
-     * De creatie pagina voor een fout melding. 
-     * 
+     * De creatie pagina voor een fout melding.
+     *
      * @return View
      */
-    public function create(): View 
+    public function create(): View
     {
         return view('backend.bugs.report', [
             'labels' => $this->github->api('issue')->labels()->all(
-                config('platform.github.organization'), config('platform.github.repo-name')
+                config('platform.github.organization'),
+                config('platform.github.repo-name')
             )
         ]);
     }
 
     /**
-     * Opslag van het formulie in de GitHub Issue tracker. 
+     * Opslag van het formulie in de GitHub Issue tracker.
      *
-     * NOTE: Hier voorde functie is geen test nodig. WOrd al in de package gedaan. 
-     * We testen niet met de volgende redenen. Credentails komen openbaar in CI en 
+     * NOTE: Hier voorde functie is geen test nodig. WOrd al in de package gedaan.
+     * We testen niet met de volgende redenen. Credentails komen openbaar in CI en
      * we willen geen repo vol met fake isses.
-     * 
+     *
      * @param  BugValidator $input de gegeven gebruikers invoer. (Gevalideerd.)
      * @return RedirectReponse
      */
@@ -76,11 +76,14 @@ class GithubController extends Controller
         ]);
 
         $attach = $githubBase->labels()->add( // Attach een labelaan het vooraf aangemaakte ticket.
-            config('platform.github.organization'), config('platform.github.repo-name'), $create['number'], $input->label
+            config('platform.github.organization'),
+            config('platform.github.repo-name'),
+            $create['number'],
+            $input->label
         );
 
-        if ($create && $attach) { // Ticket is aangemaakt en er is een label geattacheerd. 
-            flash(trans('bug.flash-create'))->success(); 
+        if ($create && $attach) { // Ticket is aangemaakt en er is een label geattacheerd.
+            flash(trans('bug.flash-create'))->success();
         }
 
         return redirect()->route('bug.create');

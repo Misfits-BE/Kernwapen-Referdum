@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\Backend\CityValidator;
-use App\Repositories\CityRepository;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+use App\Repositories\CityRepository;
 use App\Repositories\ProvinceRepository;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 /**
- * StadsMonitor Controller 
- * 
- * De Stadsmonitor is een systeem. Dat alle informatie bundelt. Omtrent hoe een stad 
- * staat t.o.v Nukes en hun wapen technologie. 
- * 
+ * StadsMonitor Controller
+ *
+ * De Stadsmonitor is een systeem. Dat alle informatie bundelt. Omtrent hoe een stad
+ * staat t.o.v Nukes en hun wapen technologie.
+ *
  * @author    Tim Joosten <tim@activisme.be>
  * @copyright 2018 Tim Joosten
  */
@@ -24,7 +22,7 @@ class StadsMonitorController extends Controller
     /**
      * @var ProvinceRepository $provinceRepository
      */
-    private $provinceRepository; 
+    private $provinceRepository;
     
     /**
      * @var CityRepository $cityRepository
@@ -38,21 +36,21 @@ class StadsMonitorController extends Controller
      * @param  CityRepository       $cityRepository     ABstractie laag tussen controller, logica en database
      * @return void
      */
-    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository) 
+    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository)
     {
         $this->middleware(['auth']);
 
-        $this->provinceRepository = $provinceRepository; 
+        $this->provinceRepository = $provinceRepository;
         $this->cityRepository     = $cityRepository;
     }
 
     /**
-     * Cockpit voor de stads monitor. 
-     * 
+     * Cockpit voor de stads monitor.
+     *
      * @todo aanmaken view.
      * @todo phpunit
-     * 
-     * @return View 
+     *
+     * @return View
      */
     public function index(): View
     {

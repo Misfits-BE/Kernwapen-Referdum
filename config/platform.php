@@ -31,21 +31,21 @@ return [
     'social' => [
         'link'  => config('app.url'),
         'title' => 'Belgie verban de kernwapens!'
-    ], 
+    ],
 
-    /** 
+    /**
      * --------------------------------------------------------------------------
      * Github credentails config
      * --------------------------------------------------------------------------
      *
      * De nodige configuratie is nodig voor de brug tussen Github en de applicatie.
-     * 
+     *
      */
     
     'github' => [
         'username'     => env('GITHUB_USERNAME', 'username'),
         'password'     => env('GITHUB_PASSWORD', 'password'),
-        'organization' => 'Misfits-BE', 
+        'organization' => 'Misfits-BE',
         'repo-name'    => 'Kernwapen-Referendum',
     ]
 

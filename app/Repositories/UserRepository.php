@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\User;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use RuntimeException;
@@ -39,7 +38,7 @@ class UserRepository extends Repository
         $user = factory(User::class)->create(['password' => 'secret']);
         $user->assignRole($role->name);
 
-        if ($role->name == 'admin' ) {
+        if ($role->name == 'admin') {
             $commandBus->info('Here is your admin details to login:');
             $commandBus->warn($user->email);
             $commandBus->warn('Password is "secret"');
@@ -47,7 +46,7 @@ class UserRepository extends Repository
     }
 
     /**
-     * Get the database output for the currently authenticated user. 
+     * Get the database output for the currently authenticated user.
      *
      * @return User
      */
@@ -57,9 +56,9 @@ class UserRepository extends Repository
     }
 
     /**
-     * Wijzig de account beveiliging in de databank. 
-     * 
-     * @param  array $user The aangemelde gebruiker. 
+     * Wijzig de account beveiliging in de databank.
+     *
+     * @param  array $user The aangemelde gebruiker.
      * @return int
      */
     public function updateUser(array $input): int
@@ -78,7 +77,7 @@ class UserRepository extends Repository
     {
         switch ($type) {
             case 'default': return $this->entity()->paginate($perPage);
-            case 'simple' : return $this->entity()->simplePaginate($perPage);
+            case 'simple': return $this->entity()->simplePaginate($perPage);
 
             // Geen geldig formaat gegeven.
             default: throw new RuntimeException('The type param can only contains simple or default', Response::HTTP_INTERNAL_SERVER_ERROR);

@@ -15,12 +15,12 @@
 Route::get('/', 'Frontend\WelcomeController@index')->name('frontend.index');
 Route::get('/home', 'Backend\WelcomeController@index')->name('backend.index');
 
-// Account settings 
+// Account settings
 Route::get('/admin/account/instellingen/{type}', 'Auth\AccountSettingsController@index')->name('account.settings');
 Route::patch('/admin/account/instellingen/informatie', 'Auth\AccountSettingsController@updateInformation')->name('account.settings.info');
 Route::patch('/admin/account/instellingen/beveiliging', 'Auth\AccountSettingsController@updateSecurity')->name('account.settings.security');
 
-// Bug routes 
+// Bug routes
 Route::get('/admin/meld-een-probleem', 'Backend\GithubController@create')->name('bug.create');
 Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name('bug.store');
 
@@ -44,7 +44,7 @@ Route::get('/admin/verwijder/{id}', 'Backend\UsersController@destroy')->name('ad
 Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');
 
 // Support routes (backend)
-Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('admin.support.index'); 
+Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('admin.support.index');
 Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->name('admin.support.create');
 Route::get('/admin/ondersteuning/verwijder/{id}', 'Backend\SupportController@destroy')->name('admin.support.delete');
 Route::post('/admin/ondersteuning/opslaan', 'Backend\SupportController@store')->name('admin.support.store');

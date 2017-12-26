@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AccountInfoValidator;
 use App\Http\Requests\Auth\AccountSecurityValidator;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 /**
  * AccountSettingsController
  *
  * De controller voor de account configuratie.
- * 
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  */
@@ -49,7 +48,7 @@ class AccountSettingsController extends Controller
 
     /**
      * Pas de account informatie aan in de databank.
-     * 
+     *
      * @param  AccountInfoValidator $input De gegeven gebruikers invoer (Gevalideerd)
      * @return RedirectResponse
      */
@@ -64,7 +63,7 @@ class AccountSettingsController extends Controller
 
     /**
      * Pas de account beveiliging aan in de databank.
-     * 
+     *
      * @param  AccountSecurityValidator $input De gegeven gebruikers invoer (Gevalideerd)
      * @return RedirectResponse
      */

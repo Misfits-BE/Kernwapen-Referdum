@@ -2,14 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class DisclaimerTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseTransactions; 
+    use DatabaseTransactions, DatabaseTransactions;
     
     /**
      * @test

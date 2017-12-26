@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Signature;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\Signature;
 
 /**
  * Class SignatureRepository

@@ -2,22 +2,20 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\User;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class AccountSettingsTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions; 
+    use DatabaseMigrations, DatabaseTransactions;
 
     /**
-     * @test 
-     * @testdox Test als een niet ngelogde gesbruiker de account instellingen kan benaderen. 
+     * @test
+     * @testdox Test als een niet ngelogde gesbruiker de account instellingen kan benaderen.
      */
-    public function testAccountInstellingenNietAangemeld() 
+    public function testAccountInstellingenNietAangemeld()
     {
         $this->get(route('account.settings', ['type' => 'informatie']))
             ->assertStatus(302)
@@ -25,10 +23,10 @@ class AccountSettingsTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test dat een aangemelde gebruiker geen errors krijgt op de account instellingen pagina.
      */
-    public function testAccountInstellingenAangemeld() 
+    public function testAccountInstellingenAangemeld()
     {
         $user = factory(User::class)->create();
 
@@ -42,10 +40,10 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een niet aangemelde gebruiker geen account info kan aanpassen.
      */
-    public function updateInfoGeenAuthencatie() 
+    public function updateInfoGeenAuthencatie()
     {
-        $user  = factory(User::class)->create(); 
-        $input = ['name' => 'test gebruiker', 'email' => 'test@doemin.tld']; 
+        $user  = factory(User::class)->create();
+        $input = ['name' => 'test gebruiker', 'email' => 'test@doemin.tld'];
 
         $this->patch(route('account.settings.info'), $input)
             ->assertStatus(302)
@@ -56,9 +54,9 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test als een aangemelde gebruiker zijn informatie niet kan aanpassen met validatie fouten.
      */
-    public function updateInfoAuthencatieValidatieFouten() 
+    public function updateInfoAuthencatieValidatieFouten()
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -76,9 +74,9 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een aangemelde gebruiker zijn account informatie kan aanpassen.
      */
-    public function updateInfoAuthencatieMetSuccess() 
+    public function updateInfoAuthencatieMetSuccess()
     {
-        $user  = factory(User::class)->create(); 
+        $user  = factory(User::class)->create();
         $input = ['name' => 'test gebruiker', 'email' => 'test@domain.tld'];
 
         $this->actingAs($user)
@@ -90,7 +88,7 @@ class AccountSettingsTest extends TestCase
                 $this->flashSession . '.level'   => 'success'
             ]);
 
-        $this->assertDatabaseMissing('users', ['name' => $user->name, 'email' => $user->email]); 
+        $this->assertDatabaseMissing('users', ['name' => $user->name, 'email' => $user->email]);
         $this->assertDatabaseHas('users', $input);
     }
 
@@ -98,7 +96,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een niet aangemelde een login zijn beveiliging niet kan aanpassen.
      */
-    public function updateBeveiligingGeenAuthencatie() 
+    public function updateBeveiligingGeenAuthencatie()
     {
         $input = ['password' => '123456789!', 'password_confirmation' => '123456789!'];
 
@@ -110,9 +108,9 @@ class AccountSettingsTest extends TestCase
     /**
      * @test
      */
-    public function updateBeveilingValidatieFouten() 
+    public function updateBeveilingValidatieFouten()
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -129,9 +127,9 @@ class AccountSettingsTest extends TestCase
     /**
      * @test
      */
-    public function updateBeveiligingMetSuccess() 
+    public function updateBeveiligingMetSuccess()
     {
-        $user  = factory(User::class)->create(); 
+        $user  = factory(User::class)->create();
         $input = ['password' => '123456789!', 'password_confirmation' => '123456789!'];
 
         $this->actingAs($user)

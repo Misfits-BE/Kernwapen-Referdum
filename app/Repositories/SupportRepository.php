@@ -2,13 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Contacts;
-use App\Support;
-use RuntimeException;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\Support;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
+use RuntimeException;
 
 /**
  * Class SupportRepository
@@ -29,7 +27,7 @@ class SupportRepository extends Repository
 
     /**
      * Oplijsting van alle ondersteunende organisaties in het systeem.
-     * 
+     *
      * @return Support
      */
     public function listSupports(): Collection
@@ -39,10 +37,10 @@ class SupportRepository extends Repository
 
     /**
      * Pagineer de ondersteunende organisaties uit de databank.
-     * 
+     *
      * @param  int      $perPage    Het aantal resultaten per pagina.
-     * @param  string   $type       Het type van de paginatie die nodig is. 
-     * @return Paginator 
+     * @param  string   $type       Het type van de paginatie die nodig is.
+     * @return Paginator
      */
     public function paginateOrgs(int $perPage, string $type): Paginator
     {
@@ -56,8 +54,8 @@ class SupportRepository extends Repository
     }
 
     /**
-     * Creer een ondersteunende organisatie in de databank. 
-     * 
+     * Creer een ondersteunende organisatie in de databank.
+     *
      * @param  array $input De gegeven invoer voor de databank
      * @return Support
      */

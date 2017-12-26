@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -26,9 +26,9 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * Methode voor de wachtwoord encryptie. 
-     * 
-     * @param  $password Het gegeven wachtwoord van de gebruiker. 
+     * Methode voor de wachtwoord encryptie.
+     *
+     * @param  $password Het gegeven wachtwoord van de gebruiker.
      * @return void
      */
     public function setPasswordAttribute($password): void

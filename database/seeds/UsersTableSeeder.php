@@ -16,13 +16,15 @@ class UsersTableSeeder extends Seeder
      * @return void
      */
     public function run(
-        PermissionRepository $permissionRepository, RoleRepository $roleRepository, UserRepository $userRepository
+        PermissionRepository $permissionRepository,
+        RoleRepository $roleRepository,
+        UserRepository $userRepository
     ) {
         //! Vraag voor verversing van de databank zou moeten verplaatst worden
-        //! Dit zou gevraagd moeten worden in DatabaseSeeder.php 
-        //! Omdat niet alleen gerelateerd is aan de gebruikers. 
+        //! Dit zou gevraagd moeten worden in DatabaseSeeder.php
+        //! Omdat niet alleen gerelateerd is aan de gebruikers.
 
-        // TODO: (Localisation) Mogelijk heb bekijken om de commando vragon ook te laten vertalen. 
+        // TODO: (Localisation) Mogelijk heb bekijken om de commando vragon ook te laten vertalen.
 
         // Ask for db migration refresh, default is no
         if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data?')) {
@@ -32,20 +34,20 @@ class UsersTableSeeder extends Seeder
         }
 
         // TODO: (acl) Registratie van permissies voor de stadsmonitor.
-        $permissions = []; // No default permissions assigned for now. 
+        $permissions = []; // No default permissions assigned for now.
 
         foreach ($permissions as $perms) { // Seed default permissions
             $permissionRepository->seedFirstOrCreate(['name' => $perms]);
         }
 
-        $this->command->info('Default permissions added.'); 
+        $this->command->info('Default permissions added.');
 
         // Confirm roles needed
         if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
-            // Ask role from input 
-            $inputRoles = $this->command->ask('Enter roles in comma seperated format.', 'admin,user'); 
+            // Ask role from input
+            $inputRoles = $this->command->ask('Enter roles in comma seperated format.', 'admin,user');
 
-            // Explode roles 
+            // Explode roles
             $rolesArray = explode(',', $inputRoles); // BOOM!
 
             foreach ($rolesArray as $role) { // Add roles

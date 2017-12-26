@@ -34,10 +34,11 @@ class AccountSecurityValidator extends FormRequest
     /**
      * {@inheritdoc}
      */
-    protected function getRedirectUrl() 
+    protected function getRedirectUrl()
     {
         return $this->redirector->getUrlgenerator()->route(
-            $this->redirectRoute, ['type' => 'beveiliging']
+            $this->redirectRoute,
+            ['type' => 'beveiliging']
         );
     }
 }

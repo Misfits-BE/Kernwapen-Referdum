@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use Spatie\Permission\Models\Permission;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use Spatie\Permission\Models\Permission;
 
 /**
  * Class PermissionRepository

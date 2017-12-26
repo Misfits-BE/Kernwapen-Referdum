@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\UserValidator;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
-use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**

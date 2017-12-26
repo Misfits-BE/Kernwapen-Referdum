@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Repositories\SignatureRepository;
-use Share;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\SignatureRepository;
 use Illuminate\View\View;
+use Share;
 
 /**
  * WelcomeController

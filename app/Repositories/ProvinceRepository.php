@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Province;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\Province;
 
 /**
  * Class ProvinceRepository
@@ -25,12 +24,12 @@ class ProvinceRepository extends Repository
 
     /**
      * Haal de eerste provincie op bij naam.
-     * Indien niet gevonden word er een provincie aangemaakt. 
+     * Indien niet gevonden word er een provincie aangemaakt.
      *
-     * @param  array $province De naam van de provincie. 
+     * @param  array $province De naam van de provincie.
      * @return Province
      */
-    public function seedCreate(array $province): Province 
+    public function seedCreate(array $province): Province
     {
         return $this->entity()->firstOrCreate($province);
     }

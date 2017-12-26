@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\SupportRepository;
 use Illuminate\View\View;
 
 /**
- * Support Controller 
- * 
+ * Support Controller
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  */
@@ -18,15 +17,15 @@ class SupportController extends Controller
     /**
      * @var SupportRepository $supportRepository
      */
-    private $supportRepository; 
+    private $supportRepository;
 
     /**
-     * SupportController constructor 
-     * 
+     * SupportController constructor
+     *
      * @param  SupportRepository $supportRepository Abstractie laag tussen controller, logica, databank.
      * @return void
      */
-    public function __construct(SupportRepository $supportRepository) 
+    public function __construct(SupportRepository $supportRepository)
     {
         $this->supportRepository = $supportRepository;
     }
@@ -35,7 +34,7 @@ class SupportController extends Controller
      * De front-end index controller voor de ondersteunende organisatie(s).
      *
      * @todo Uitwerken van een phpunit test.
-     * 
+     *
      * @return View
      */
     public function index(): View

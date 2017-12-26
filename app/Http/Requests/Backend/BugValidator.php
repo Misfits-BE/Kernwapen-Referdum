@@ -24,9 +24,9 @@ class BugValidator extends FormRequest
     public function rules()
     {
         return [
-            'titel'         => 'required|max:100', 
-            'label'         => 'required|max:60', 
-            'beschrijving'  => 'required', 
+            'titel'         => 'required|max:100',
+            'label'         => 'required|max:60',
+            'beschrijving'  => 'required',
         ];
     }
 }

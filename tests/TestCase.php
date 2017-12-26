@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Session bag voor de flash sessies. (package: laracasts/flash)
-     * 
+     *
      * @var $flashSession
      */
     protected $flashSession = 'flash_notification.0';

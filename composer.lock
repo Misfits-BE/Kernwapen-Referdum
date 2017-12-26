@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d0d2f6df1714cd6174b65c24c165a0d3",
-    "content-hash": "07d701539b99ad1ac5d40424ba0f3eb3",
+    "content-hash": "1cc005b4b729931c5071f94f3c1819e8",
     "packages": [
         {
             "name": "activismebe/database-layering",
@@ -1454,7 +1453,7 @@
                 "read",
                 "write"
             ],
-            "time": "2017-11-28 08:29:49"
+            "time": "2017-11-28T08:29:49+00:00"
         },
         {
             "name": "league/flysystem",

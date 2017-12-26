@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\OrganizationValidator;
 use App\Repositories\SupportRepository;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 /**
- * SupportController 
- * 
- * De controller voor het beheer van de ondersteunende organisaties. 
- *  
+ * SupportController
+ *
+ * De controller voor het beheer van de ondersteunende organisaties.
+ *
  * @author    Tim Joosten <tim@activisme.be>
  * @copyright 2018 Tim Joosten
  */
@@ -25,10 +24,10 @@ class SupportController extends Controller
     private $supportRepository;
 
     /**
-     * SupportController Constructor 
+     * SupportController Constructor
      *
      * @param  SupportRepository  $supportRepository  abstractielaag tussen controller, logica, databank.
-     * @return void 
+     * @return void
      */
     public function __construct(SupportRepository $supportRepository)
     {
@@ -37,39 +36,39 @@ class SupportController extends Controller
     }
 
     /**
-     * Index pagina voor de organisatie beheer. 
-     * 
+     * Index pagina voor de organisatie beheer.
+     *
      * @todo uitschrijven phpunit test
-     * 
+     *
      * @return view
      */
-    public function index(): View 
+    public function index(): View
     {
         return view('backend.support.index', [
             'organizations' => $this->supportRepository->paginateOrgs(15, 'simple')
-        ]); 
-    }
-
-    /** 
-     * Creatie weergave voor een nieuwe organisatie. 
-     * 
-     * @todo uitschrijven phpunit test.
-     * 
-     * @return View
-     */
-    public function create(): View 
-    {
-        return view('backend.support.create'); 
+        ]);
     }
 
     /**
-     * Sla de ondersteunende organisatie op in de databanK. 
+     * Creatie weergave voor een nieuwe organisatie.
      *
-     * @todo implementatie routering 
+     * @todo uitschrijven phpunit test.
+     *
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('backend.support.create');
+    }
+
+    /**
+     * Sla de ondersteunende organisatie op in de databanK.
+     *
+     * @todo implementatie routering
      * @todo uitschrijven phpunit test.
      * @todo Trnaslatie flash message
      * @todo Implement activity logger.
-     *  
+     *
      * @param  OrganizationValidator $input De door de gebruiker gegeven invoer (Gevalideerd).
      * @return RedirectResponse
      */

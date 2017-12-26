@@ -29,7 +29,7 @@ class AccountInfoValidator extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:255', 
+            'name'  => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . auth()->user()->id,
         ];
     }
@@ -40,7 +40,8 @@ class AccountInfoValidator extends FormRequest
     protected function getRedirectUrl()
     {
         return $this->redirector->getUrlGenerator()->route(
-            $this->redirectRoute, ['type' => 'informatie']
+            $this->redirectRoute,
+            ['type' => 'informatie']
         );
     }
 }

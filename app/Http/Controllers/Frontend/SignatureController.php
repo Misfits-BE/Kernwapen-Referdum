@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Shared\SignatureValidator;
 use App\Repositories\SignatureRepository;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 /**
  * SignatureController

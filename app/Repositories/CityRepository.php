@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\City;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\City;
 use Illuminate\Pagination\Paginator;
 
 /**
@@ -25,10 +24,10 @@ class CityRepository extends Repository
     }
 
     /**
-     * Oplijsting van alle gemeentes in de databak. 
-     *  
+     * Oplijsting van alle gemeentes in de databak.
+     *
      * @param  int $perPage Het aantal steden dat je wilt weergeven per stad.
-     * @return Paginator 
+     * @return Paginator
      */
     public function listCities(int $perPage): Paginator
     {
@@ -36,12 +35,12 @@ class CityRepository extends Repository
     }
 
     /**
-     * Creeer de stad in de databank. 
-     * 
-     * @param  array $input. De gegeven invoer die afkomstig is van de seeder. 
+     * Creeer de stad in de databank.
+     *
+     * @param  array $input. De gegeven invoer die afkomstig is van de seeder.
      * @return City
      */
-    public function seedCreate(array $input): City 
+    public function seedCreate(array $input): City
     {
         return $this->create($input);
     }
