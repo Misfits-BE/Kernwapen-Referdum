@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 /**
  * BanController
@@ -53,9 +52,7 @@ class BanController extends Controller
         if ($user->isNotBanned() && $this->userRepository->lockUser($user)) {
             // 2de statement in de IF blokkeerd de gebruiker.
             flash("{$user->name} is geblokkeerd in the systeem.")->error();
-        }
-
-        else { // De gebruiker is al geblokkeerd in het systeem.
+        } else { // De gebruiker is al geblokkeerd in het systeem.
             flash("Helaas! Er is iets misgelopen. :(")->warning();
         }
 
@@ -78,9 +75,7 @@ class BanController extends Controller
         if ($user->isBanned() && $this->userRepository->activateUser($user)) {
             // 2de statement in de IF activeerd de gebruiker terug.
             flash("{$user->name} is terug actief in het systeem.")->success();
-        }
-
-        else { // De gebruiker is nog actief.
+        } else { // De gebruiker is nog actief.
             flash("Helaas! Er is iets misgelopen. :(")->warning();
         }
     }

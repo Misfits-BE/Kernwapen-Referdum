@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Cog\Laravel\Ban\Traits\Bannable;
 use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
