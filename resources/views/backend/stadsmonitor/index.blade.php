@@ -28,18 +28,34 @@
                                         @foreach ($cities as $city) 
                                             <tr>
                                                 <td>{{ $city->postal }}</td>
-                                                <td></td> {{-- TODO: Verweef de status --}}
+
+                                                <td>
+                                                    @if ($city->kernwapen_vrij) {{-- Heeft zich kernwapen vrij verklaard --}}
+                                                        <span class="label label-success">Kernwapen vrij</span>
+                                                    @elseif (! $city->kernwapen_vrij)  {{-- Is niet kernwapen vrij --}}
+                                                        <span class="label label-danger">Niet kernwapen vrij</span>
+                                                    @else {{-- Status onbekend --}}
+                                                        <span class="label label-warning">Onbekend</span>
+                                                    @endif
+                                                </td>
+
                                                 <td>{{ $city->name }}</td>
                                                 <td>{{ $city->province->name }}</td>
                                                 
                                                 <td class="text-center"> {{-- Options --}}
-                                                    <a href="" class="text-muted">
+                                                    <a href="{{ route('admin.stadsmonitor.show', $city) }}" class="text-muted">
                                                         <i class="fa fa-fw fa-info-circle"></i>
                                                     </a>
 
-                                                    <a href="">
-                                                        <i class="fa fa-fw fa-check text-success"></i>
-                                                    </a>
+                                                    @if ($city->kernwapen_vrij)
+                                                        <a href="{{ route('admin.stadsmonitor.update', ['city' => $city->id, 'status' => 0]) }}">
+                                                            <i class="fa fa-fw fa-undo text-warning"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('admin.stadsmonitor.update', ['city' => $city->id, 'status' => 1]) }}">
+                                                            <i class="fa fa-fw fa-check text-success"></i>
+                                                        </a>
+                                                    @endif
                                                 </td> {{-- /Options --}}
                                             </tr>
                                         @endforeach
@@ -60,7 +76,7 @@
 
                 <div class="panel panel-success"> {{-- Teller voor kernvrije gemeentes --}}
                      <div class="panel-body" style="padding-top: 5px;">
-                        <h4 style="padding-top:0"><strong>0</strong></h4>
+                        <h4 style="padding-top:0"><strong>{{ $kernvrijeGemeentes }}</strong></h4>
                         <span class="text-muted">Kernvrije gemeentes</span>
                     </div>
                 </div> {{-- /Teller voor kernvrije gemeentes --}}

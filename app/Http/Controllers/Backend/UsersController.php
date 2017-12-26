@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\Backend\UserValidator;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
@@ -77,19 +78,36 @@ class UsersController extends Controller
     }
 
     /**
-     * @todo build up controller and shit.
+     * Weergave formulier om een gebruiker te wijzigen.
+     *
+     * @todo implementatie phpunit test
+     * @todo uitwerken van een phpunit test.
+     *
+     * @param  User $user De unieke gebruikers waarde in de databank
+     * @return View
      */
-    public function edit(int $user): View
+    public function edit(User $user): View
     {
-
+        return view('', compact('user'));
     }
 
     /**
-     * @todo build up controller and shit.
+     * Wijzig een gebruiker in de databank.
+     *
+     * @todo Implementatie routering
+     * @todo uitwerken phpunit test
+     *
+     * @param  User          $user  De gebruiker in de databank.
+     * @param  UserValidator $input De door de gebruiker gebruiker gegeven invoer.
+     * @return RedirectResponse
      */
-    public function update(): RedirectResponse
+    public function update(User $user, UserValidator $input): RedirectResponse
     {
-        //
+        if ($user->update($input->all())) {
+            flash("{$user->name} is aangep-ast in het systeem.")->success();
+        }
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

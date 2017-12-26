@@ -20,6 +20,7 @@ class CreateCitiesTable extends Migration
             $table->string('name', 100);
             $table->string('lat', 50);
             $table->string('lng', 50);
+            $table->boolean('kernwapen_vrij')->default(0);
             $table->timestamps();
         });
     }

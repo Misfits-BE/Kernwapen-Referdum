@@ -45,4 +45,34 @@ class CityRepository extends Repository
     {
         return $this->create($input);
     }
+
+    /**
+     * Bepaal de flash message indien de gemeente kernwapen vrij is of niet.
+     *
+     * @param  bool $status De status. Is de gemeente kernwapen vrij of niet?
+     * @param  City $city   De databank entiteit van de gemeente
+     * @return string
+     */
+    public function determineFlashSession(bool $status, City $city): string
+    {
+        switch ($status) {
+            case true:  return "{$city->name} heeft zich kernwapen vrij verklaard.";
+            case false: return "{$city->name} heeft zich niet kernwapen vrij verklaard.";
+
+            // Indien geen van beide is gegeven
+            default: return "Kon niet uitmaken of de stad kernwapen vrij is of niet.";
+        }
+    }
+
+    /**
+     * Zoek voor een specifieke waarde. En tel de gevonden records op.
+     *
+     * @param  string $column De naam van de databank kolom.
+     * @param  mixed  $value  De waarde van de gegeven databank kolom.
+     * @return int
+     */
+    public function count(string $column, $value): int
+    {
+        return $this->entity()->where($column, $value)->count();
+    }
 }

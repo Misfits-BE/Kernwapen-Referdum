@@ -32,6 +32,8 @@ Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaim
 
 // Stads monitor routes (Backend)
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');
+Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@update')->name('admin.stadsmonitor.update');
+Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')->name('admin.stadsmonitor.show');
 
 // User management routes
 Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');

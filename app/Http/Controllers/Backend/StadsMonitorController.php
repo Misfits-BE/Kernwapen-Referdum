@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\CityRepository; 
-use App\Repositories\ProcinveRepository;
+use App\Http\Requests\Backend\CityValidator;
+use App\Repositories\CityRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -28,11 +29,11 @@ class StadsMonitorController extends Controller
     /**
      * @var CityRepository $cityRepository
      */
-    private $cityRepository; 
+    private $cityRepository;
 
     /**
      * StadsMonitorConstructor
-     * 
+     *
      * @param  ProvinceRepository   $provinceRepository Abstractie laag tussen controller, logica en database
      * @param  CityRepository       $cityRepository     ABstractie laag tussen controller, logica en database
      * @return void
@@ -55,6 +56,45 @@ class StadsMonitorController extends Controller
      */
     public function index(): View
     {
-        return view('backend.stadsmonitor.index', ['cities' => $this->cityRepository->listCities(15)]);
+        return view('backend.stadsmonitor.index', [
+            'cities'             => $this->cityRepository->listCities(15),
+            'kernvrijeGemeentes' => $this->cityRepository->count('kernwapen_vrij', 1)
+        ]);
+    }
+
+    /**
+     * Wijzig een stad in de databank.
+     *
+     * @todo implementatie phpunit
+     * @todo implementatie activiteits logger.
+     *
+     * @param  int  $city   De databank entiteit van de stad
+     * @param  bool $status De door de gebruiker gegeven invoer.
+     * @return RedirectResponse
+     */
+    public function update(int $city, bool $status): RedirectResponse
+    {
+        $city = $this->cityRepository->findOrFail($city);
+
+        if ($city->update(['kernwapen_vrij' => $status])) {
+            $message = $this->cityRepository->determineFlashSession($status, $city);
+
+            flash($message)->info();
+        }
+
+        return redirect()->route('admin.stadsmonitor.index');
+    }
+
+    /**
+     * Geef een specifieke stad weer in de applicatie.
+     *
+     * @todo Implementeer phpunit test
+     *
+     * @param  int $city De datacel van de stad in de databank.
+     * @return View
+     */
+    public function show(int $city): View
+    {
+        return view('backend.stadsmonitor.show', compact('city'));
     }
 }
