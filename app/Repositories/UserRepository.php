@@ -111,4 +111,19 @@ class UserRepository extends Repository
             'comments'   => "{$user->name} geblokkeerd door {$authUser}"
         ]);
     }
+
+    /**
+     * Activieer terug een gebruiker in het systeem.
+     *
+     * @param  User $user De unieke waarde van de gebruiker in de databank.
+     * @return bool
+     */
+    public function activateUser(User $user): bool
+    {
+        if ($user->unban()) {
+            return true;
+        };
+
+        return false;
+    }
 }

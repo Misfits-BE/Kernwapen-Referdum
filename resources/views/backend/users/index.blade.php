@@ -64,7 +64,7 @@
                                                                 <i class="fa fa-fw fa-lock"></i>
                                                             </a>
                                                         @elseif ($user->isBanned())
-                                                            <a href="" class="text-success">
+                                                            <a href="{{ route('admin.users.active', $user) }}" class="text-success">
                                                                 <i class="fa fa-fw fa-unlock"></i>
                                                             </a>
                                                         @endif

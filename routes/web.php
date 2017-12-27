@@ -40,6 +40,7 @@ Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.us
 Route::get('/admin/gebruikers/nieuw', 'Backend\UsersController@create')->name('admin.users.create');
 Route::get('/admin/gebruikers/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
 Route::get('/admin/gebruikers/blokkeer/{id}', 'Backend\BanController@lock')->name('admin.users.lock');
+Route::get('/admin/gebruikers/activeer/{id}', 'Backend\BanController@destroy')->name('admin.users.active');
 
 // Support routes (frontend)
 Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.index');

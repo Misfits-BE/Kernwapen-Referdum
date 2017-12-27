@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\ActivityRepository;
 use App\Repositories\UserRepository;
+use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 
 /**
@@ -17,6 +19,8 @@ use Illuminate\Http\RedirectResponse;
  */
 class BanController extends Controller
 {
+    use ActivityLog;
+
     /**
      * @var UserRepository $userRepository
      */
@@ -33,14 +37,13 @@ class BanController extends Controller
         parent::__construct();
 
         $this->middleware(['auth', 'forbid-banned-user']);
-        $this->userRepository = $userRepository;
+        $this->userRepository     = $userRepository;
     }
 
     /**
      * Blokkeer een login in het systeem.
      *
      * @todo Implementeer phpunit test
-     * @todo Implementeer activiteits logger
      *
      * @param  int $user De gegeven gebruiker in de databank.
      * @return RedirectResponse
@@ -52,6 +55,7 @@ class BanController extends Controller
         if ($user->isNotBanned() && $this->userRepository->lockUser($user)) {
             // 2de statement in de IF blokkeerd de gebruiker.
             flash("{$user->name} is geblokkeerd in the systeem.")->error();
+            $this->addActivity($user, "Heeft {$user->name} geblokkeerd in het systeem");
         } else { // De gebruiker is al geblokkeerd in het systeem.
             flash("Helaas! Er is iets misgelopen. :(")->warning();
         }
@@ -63,7 +67,6 @@ class BanController extends Controller
      * Activeer een gebruiker in het systeem.
      *
      * @todo Implementeer phpunit test
-     * @todo Implementeer activiteits logger
      *
      * @param  int $user De gegeven gebruiker in de databank.
      * @return RedirectResponse
@@ -72,11 +75,16 @@ class BanController extends Controller
     {
         $user = $this->userRepository->findOrFail($user);
 
-        if ($user->isBanned() && $this->userRepository->activateUser($user)) {
+        if ($user->isBanned()) {
             // 2de statement in de IF activeerd de gebruiker terug.
             flash("{$user->name} is terug actief in het systeem.")->success();
+
+            $this->userRepository->activateUser($user);
+            $this->addActivity($user, "Heeft {$user->name} teruig geactiveerd het systeem.");
         } else { // De gebruiker is nog actief.
             flash("Helaas! Er is iets misgelopen. :(")->warning();
         }
+
+        return redirect()->route('admin.users.index');
     }
 }
