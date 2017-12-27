@@ -5,8 +5,12 @@ namespace App\Traits;
 use Spatie\Activitylog\Models\Activity;
 
 /**
- * Trait ActivityLog
+ * ActivityLog
  *
+ * Trait voor het registreren van gebruikers activiteit in de back-end van de website. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
  */
 trait ActivityLog
 {
