@@ -95,6 +95,7 @@ class StadsMonitorController extends Controller
      */
     public function show(int $city): View
     {
+        $city = $this->cityRepository->findOrFail($city);
         return view('backend.stadsmonitor.show', compact('city'));
     }
 }

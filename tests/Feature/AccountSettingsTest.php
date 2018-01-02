@@ -15,7 +15,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test als een niet ngelogde gesbruiker de account instellingen kan benaderen.
      */
-    public function testAccountInstellingenNietAangemeld()
+    public function accountInstellingenNietAangemeld()
     {
         $this->get(route('account.settings', ['type' => 'informatie']))
             ->assertStatus(302)
@@ -26,7 +26,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een aangemelde gebruiker geen errors krijgt op de account instellingen pagina.
      */
-    public function testAccountInstellingenAangemeld()
+    public function accountInstellingenAangemeld()
     {
         $user = factory(User::class)->create();
 
@@ -42,7 +42,6 @@ class AccountSettingsTest extends TestCase
      */
     public function updateInfoGeenAuthencatie()
     {
-        $user  = factory(User::class)->create();
         $input = ['name' => 'test gebruiker', 'email' => 'test@doemin.tld'];
 
         $this->patch(route('account.settings.info'), $input)
