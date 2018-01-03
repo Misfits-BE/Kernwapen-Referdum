@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class City extends Model
 {
@@ -23,5 +24,15 @@ class City extends Model
     {
         return $this->belongsTo(Province::class, 'province_id')
             ->withDefault(['name' => 'Provincie onbekend.']);
+    }
+
+    /**
+     * Data relatie voor de notities van de gegeven stad. 
+     * 
+     * @return HasMany
+     */
+    public function notitions(): HasMany
+    {
+        return $this->hasMany(Notitions::class);
     }
 }

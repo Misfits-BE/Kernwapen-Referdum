@@ -7,6 +7,9 @@ use App\Repositories\CityRepository;
 use App\Repositories\ProvinceRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Traits\ActivityLog;
+use App\City;
+use App\Repositories\NotitionsRepository;
 
 /**
  * StadsMonitor Controller
@@ -19,6 +22,8 @@ use Illuminate\View\View;
  */
 class StadsMonitorController extends Controller
 {
+    use ActivityLog;
+
     /**
      * @var ProvinceRepository $provinceRepository
      */
@@ -30,13 +35,18 @@ class StadsMonitorController extends Controller
     private $cityRepository;
 
     /**
+     * @var NotitionsRepository $notitionRepository
+     */
+    private $notitionRepository; 
+
+    /**
      * StadsMonitorConstructor
      *
      * @param  ProvinceRepository   $provinceRepository Abstractie laag tussen controller, logica en database
      * @param  CityRepository       $cityRepository     ABstractie laag tussen controller, logica en database
      * @return void
      */
-    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository)
+    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository, NotitionsRepository $notitionRepository)
     {
         parent::__construct();
 
@@ -44,6 +54,7 @@ class StadsMonitorController extends Controller
 
         $this->provinceRepository = $provinceRepository;
         $this->cityRepository     = $cityRepository;
+        $this->notitionRepository = $notitionRepository;
     }
 
     /**
@@ -63,7 +74,7 @@ class StadsMonitorController extends Controller
     }
 
     /**
-     * Wijzig een stad in de databank.
+     * Wijzig een stad zijn status in de databank.
      *
      * @todo implementatie phpunit
      * @todo implementatie activiteits logger.
@@ -72,17 +83,36 @@ class StadsMonitorController extends Controller
      * @param  bool $status De door de gebruiker gegeven invoer.
      * @return RedirectResponse
      */
-    public function update(int $city, bool $status): RedirectResponse
+    public function kernwapenVrij(int $city, bool $status): RedirectResponse
     {
         $city = $this->cityRepository->findOrFail($city);
 
         if ($city->update(['kernwapen_vrij' => $status])) {
-            $message = $this->cityRepository->determineFlashSession($status, $city);
+            $this->addActivity($city, 'Heeft de stad ' . $city->name . ' zijn status gewijzigd.');
 
-            flash($message)->info();
+            flash($this->cityRepository->determineFlashSession($status, $city))->info();
         }
 
-        return redirect()->route('admin.stadsmonitor.index');
+        return redirect()->back(302);
+    }
+
+    /**
+     * Wijzig een stad in de databank in de databank. 
+     * 
+     * @todo Registratie routering
+     * @todo Registratie phpunit test 
+     * @todo Implementatie activity logger.
+     * 
+     * @param  City $city   De databank entiteit van de stad. 
+     * @return RedirectResponse
+     */
+    public function update(City $city): RedirectResponse 
+    {
+        if ($city->update($input->all())) {
+            flash()->success("{$city->name} is aangepast in het systeem.");
+        }
+
+        return redirect()->route('admin->stadsmonitor.index');
     }
 
     /**
@@ -95,7 +125,7 @@ class StadsMonitorController extends Controller
      */
     public function show(int $city): View
     {
-        $city = $this->cityRepository->findOrFail($city);
+        $city = $this->cityRepository->with(['notitions.author'])->findOrFail($city);
         return view('backend.stadsmonitor.show', compact('city'));
     }
 }

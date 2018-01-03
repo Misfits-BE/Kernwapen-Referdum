@@ -17,7 +17,7 @@ class ProvinceRepository extends Repository
      *
      * @return string
      */
-    public function model()
+    public function model(): string
     {
         return Province::class;
     }

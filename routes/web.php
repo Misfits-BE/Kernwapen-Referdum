@@ -32,7 +32,7 @@ Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaim
 
 // Stads monitor routes (Backend)
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');
-Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@update')->name('admin.stadsmonitor.update');
+Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@kernwapenVrij')->name('admin.stadsmonitor.status');
 Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')->name('admin.stadsmonitor.show');
 
 // User management routes
@@ -50,3 +50,8 @@ Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('adm
 Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->name('admin.support.create');
 Route::get('/admin/ondersteuning/verwijder/{id}', 'Backend\SupportController@destroy')->name('admin.support.delete');
 Route::post('/admin/ondersteuning/opslaan', 'Backend\SupportController@store')->name('admin.support.store');
+
+// Notition routes 
+Route::get('/admin/notities/nieuw/{city}', 'Backend\NotitionController@create')->name('admin.notition.create');
+Route::get('/admin/notities/verwijder/{notition}/{city}', 'Backend\NotitionController@destroy')->name('admin.notition.delete');
+Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store')->name('admin.notition.store');

@@ -27,7 +27,7 @@
                                     @if (count($cities) > 0)
                                         @foreach ($cities as $city) 
                                             <tr>
-                                                <td>{{ $city->postal }}</td>
+                                                <td><strong>{{ $city->postal }}</strong></td>
 
                                                 <td>
                                                     @if ($city->kernwapen_vrij) {{-- Heeft zich kernwapen vrij verklaard --}}
@@ -48,11 +48,11 @@
                                                     </a>
 
                                                     @if ($city->kernwapen_vrij)
-                                                        <a href="{{ route('admin.stadsmonitor.update', ['city' => $city->id, 'status' => 0]) }}">
+                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 0]) }}">
                                                             <i class="fa fa-fw fa-undo text-warning"></i>
                                                         </a>
                                                     @else
-                                                        <a href="{{ route('admin.stadsmonitor.update', ['city' => $city->id, 'status' => 1]) }}">
+                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 1]) }}">
                                                             <i class="fa fa-fw fa-check text-success"></i>
                                                         </a>
                                                     @endif
@@ -65,7 +65,6 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
 

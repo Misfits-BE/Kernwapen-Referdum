@@ -20,7 +20,7 @@ class SupportRepository extends Repository
      *
      * @return string
      */
-    public function model()
+    public function model(): string
     {
         return Support::class;
     }
