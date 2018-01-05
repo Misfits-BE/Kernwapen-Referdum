@@ -40,8 +40,6 @@ class SupportController extends Controller
     /**
      * Index pagina voor de organisatie beheer.
      *
-     * @todo uitschrijven phpunit test
-     *
      * @return view
      */
     public function index(): View
@@ -53,8 +51,6 @@ class SupportController extends Controller
 
     /**
      * Creatie weergave voor een nieuwe organisatie.
-     *
-     * @todo uitschrijven phpunit test.
      *
      * @return View
      */
@@ -86,7 +82,7 @@ class SupportController extends Controller
     /**
      * Verwijder een ondersteunende organisatie uit het systeem.
      *
-     * @todo uitwerken van een phpunit test.
+     * @todo implementatie activity logger. 
      *
      * @param  int $organisation De unieke waarde van de organisatie in de databank.
      * @return RedirectResponse
