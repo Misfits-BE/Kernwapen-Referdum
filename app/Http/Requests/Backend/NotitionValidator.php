@@ -24,8 +24,8 @@ class NotitionValidator extends FormRequest
     public function rules()
     {
         return [
-            'titel'         => 'required|string|max:255', 
-            'status'        => 'required|numeric|max:1', 
+            'titel'         => 'required|string|max:255',
+            'status'        => 'required|numeric|max:1',
             'beschrijving'  => 'required|string'
         ];
     }

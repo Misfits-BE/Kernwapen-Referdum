@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Notitions extends Model
 {
     /**
-     * Mass-assign velden voor de databank tabel. 
-     * 
+     * Mass-assign velden voor de databank tabel.
+     *
      * @var array
      */
     protected $fillable = ['author_id', 'titel', 'status', 'beschrijving'];
 
     /**
-     * Data relati voor de autheur. 
-     * 
+     * Data relati voor de autheur.
+     *
      * @return BelongsTo
      */
     public function author(): BelongsTo

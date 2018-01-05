@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class HomeTest extends TestCase
 {
-    use DatabaseTransactions, DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
     
     /**
      * @test

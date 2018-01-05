@@ -2,9 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Notitions;
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\Notitions;
 
 /**
  * Class NotitionsRepository
@@ -25,16 +24,16 @@ class NotitionsRepository extends Repository
 
     /**
      * Voorbereiding van de data omtrent de notitie
-     * 
-     * @param  mixed $înput De data rechtstreeks van de data validator instantie. 
+     *
+     * @param  mixed $înput De data rechtstreeks van de data validator instantie.
      * @return Notitions
      */
-    public function prepHasMany($input): Notitions 
+    public function prepHasMany($input): Notitions
     {
-        $notition               = new Notitions; 
-        $notition->author_id    = $input->user()->id;  
+        $notition               = new Notitions;
+        $notition->author_id    = $input->user()->id;
         $notition->titel        = $input->titel;
-        $notition->status       = $input->status; 
+        $notition->status       = $input->status;
         $notition->beschrijving = $input->beschrijving;
 
         return $notition;

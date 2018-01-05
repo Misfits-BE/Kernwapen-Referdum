@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Repositories\CityRepository;
+use App\Repositories\NotitionsRepository;
 use App\Repositories\ProvinceRepository;
+use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use App\Traits\ActivityLog;
-use App\City;
-use App\Repositories\NotitionsRepository;
 
 /**
  * StadsMonitor Controller
@@ -37,7 +37,7 @@ class StadsMonitorController extends Controller
     /**
      * @var NotitionsRepository $notitionRepository
      */
-    private $notitionRepository; 
+    private $notitionRepository;
 
     /**
      * StadsMonitorConstructor
@@ -97,16 +97,16 @@ class StadsMonitorController extends Controller
     }
 
     /**
-     * Wijzig een stad in de databank in de databank. 
-     * 
+     * Wijzig een stad in de databank in de databank.
+     *
      * @todo Registratie routering
-     * @todo Registratie phpunit test 
+     * @todo Registratie phpunit test
      * @todo Implementatie activity logger.
-     * 
-     * @param  City $city   De databank entiteit van de stad. 
+     *
+     * @param  City $city   De databank entiteit van de stad.
      * @return RedirectResponse
      */
-    public function update(City $city): RedirectResponse 
+    public function update(City $city): RedirectResponse
     {
         if ($city->update($input->all())) {
             flash()->success("{$city->name} is aangepast in het systeem.");

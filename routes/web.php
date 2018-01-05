@@ -51,7 +51,7 @@ Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->n
 Route::get('/admin/ondersteuning/verwijder/{id}', 'Backend\SupportController@destroy')->name('admin.support.delete');
 Route::post('/admin/ondersteuning/opslaan', 'Backend\SupportController@store')->name('admin.support.store');
 
-// Notition routes 
+// Notition routes
 Route::get('/admin/notities/nieuw/{city}', 'Backend\NotitionController@create')->name('admin.notition.create');
 Route::get('/admin/notities/verwijder/{notition}/{city}', 'Backend\NotitionController@destroy')->name('admin.notition.delete');
 Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store')->name('admin.notition.store');
