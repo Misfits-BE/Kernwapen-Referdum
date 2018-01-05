@@ -10,6 +10,7 @@
         "activismebe/laravel-form-helpers": "^1.2",
         "chencha/share": "^5.2",
         "cybercog/laravel-ban": "^3.0",
+        "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~3.3",
         "knplabs/github-api": "^2.7",
         "laracasts/flash": "^3.0",

@@ -27,8 +27,8 @@ class City extends Model
     }
 
     /**
-     * Data relatie voor de notities van de gegeven stad. 
-     * 
+     * Data relatie voor de notities van de gegeven stad.
+     *
      * @return HasMany
      */
     public function notitions(): HasMany

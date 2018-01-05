@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ActivityRepository;
 use App\Repositories\UserRepository;
 use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
