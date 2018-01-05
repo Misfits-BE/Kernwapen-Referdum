@@ -60,8 +60,7 @@ class StadsMonitorController extends Controller
     /**
      * Cockpit voor de stads monitor.
      *
-     * @todo aanmaken view.
-     * @todo phpunit
+     * @todo Toevoegen van de paginatie section. (View)
      *
      * @return View
      */
@@ -77,7 +76,6 @@ class StadsMonitorController extends Controller
      * Wijzig een stad zijn status in de databank.
      *
      * @todo implementatie phpunit
-     * @todo implementatie activiteits logger.
      *
      * @param  int  $city   De databank entiteit van de stad
      * @param  bool $status De door de gebruiker gegeven invoer.
