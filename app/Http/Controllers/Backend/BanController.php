@@ -42,8 +42,6 @@ class BanController extends Controller
     /**
      * Blokkeer een login in het systeem.
      *
-     * @todo Implementeer phpunit test
-     *
      * @param  int $user De gegeven gebruiker in de databank.
      * @return RedirectResponse
      */
@@ -64,8 +62,6 @@ class BanController extends Controller
 
     /**
      * Activeer een gebruiker in het systeem.
-     *
-     * @todo Implementeer phpunit test
      *
      * @param  int $user De gegeven gebruiker in de databank.
      * @return RedirectResponse
