@@ -6,6 +6,7 @@
 /.idea
 /.vagrant
 /.php_cs.cache
+/issues
 /Vagrantfile 
 /after.sh 
 /aliases
