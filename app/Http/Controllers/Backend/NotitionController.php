@@ -66,8 +66,6 @@ class NotitionController extends Controller
     /**
      * Slaag een notitie op Op basis van de gegeven stad.
      *
-     * @todo Implementatie phpunit test
-     *
      * @param  NotitionValidator $input De gegeven gebruikers invoer data. (Gevalideerd)
      * @param  int               $city  De gegeven databank entiteit van de stad.
      * @return RedirectResponse

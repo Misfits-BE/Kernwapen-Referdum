@@ -50,4 +50,76 @@ class NotitionBackendTest extends TestCase
             ->get(route('admin.notition.create', ['id' => 1000]))
             ->assertStatus(404);
     }
+
+    /** 
+     * @test 
+     * @testox Test of een niet aangemelde gebruiker een notitie kan aanmaken. 
+     */
+    public function opslagNotitieNoAuth() 
+    {
+        $this->post(route('admin.notition.store', factory(City::class)->create()), [])
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
+
+    /**
+     * @test 
+     * @testdox Test de response wanneer met success een test word aangemaakt in het systeem.
+     */
+    public function opslagNotitieSuccess() 
+    {
+        $city  = factory(City::class)->create(); 
+        $user  = factory(User::class)->create();
+        $input = ['titel' => 'Ik ben een titel', 'status' => 1, 'beschrijving' => 'Ik ben een beschrijving'];
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->post(route('admin.notition.store', $city), $input)
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.stadsmonitor.show', $city))
+            ->assertSessionHas([
+                $this->flashSession . '.message' => "De notitie voor de stad '{$city->name}' is toegevoegd.",
+                $this->flashSession . '.level'   => 'success',
+            ]);
+
+        $this->assertDatabaseHas('notitions', $input); 
+        $this->assertDatabaseHas('activity_log', [
+            'subject_id' => $user->id, 'description' => "heeft een notitie toegevoegd voor de stad {$city->name}"
+        ]);
+    }
+
+    /**
+     * @test 
+     * @testdox Test de response wanneer we een notitie proberen op te slaan onder een niet bestaande stad. 
+     */
+    public function opslagNotitieWrongId() 
+    {
+        $user  = factory(User::class)->create();
+        $input = ['titel' => 'Ik ben een titel', 'status' => 1, 'beschrijving' => 'Ik ben een beschrijving'];
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->post(route('admin.notition.store', ['id' => 1000]), $input)
+            ->assertStatus(404);
+    }
+
+    /**
+     * @test 
+     * @testdox Test of er fouten terug komen als men het notitie formulier incorrect heeft ingevuld. 
+     */
+    public function opslagNotitieValidatieFouten() 
+    {
+        $user = factory(User::class)->create();  
+        $city = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->post(route('admin.notition.store', $city), [])
+            ->assertStatus(302)
+            ->assertSessionHasErrors()
+            ->assertSessionMissing([
+                $this->flashSession . '.message' => "De notitie voor de stad '{$city->name}' is toegevoegd.",
+                $this->flashSession . '.level'   => 'success',
+            ]);
+    }
 }
