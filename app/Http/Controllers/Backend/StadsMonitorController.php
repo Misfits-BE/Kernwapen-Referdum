@@ -116,8 +116,6 @@ class StadsMonitorController extends Controller
     /**
      * Geef een specifieke stad weer in de applicatie.
      *
-     * @todo Implementeer phpunit test
-     *
      * @param  int $city De datacel van de stad in de databank.
      * @return View
      */
