@@ -22,8 +22,6 @@ class GithubController extends Controller
     /**
      * GithubController constructor
      *
-     * @todo     schrijf het config variable bij in het blad voor platform configuratie.
-     *
      * @param  Client $github De GitHub api client wrapper.
      * @return void
      */
@@ -66,7 +64,7 @@ class GithubController extends Controller
      * we willen geen repo vol met fake isses.
      *
      * @param  BugValidator $input de gegeven gebruikers invoer. (Gevalideerd.)
-     * @return RedirectReponse
+     * @return RedirectResponse
      */
     public function store(BugValidator $input): RedirectResponse
     {

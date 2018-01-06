@@ -63,8 +63,6 @@ class UsersController extends Controller
     /**
      * De creatie weergave voor een nieuwe gebruiker.
      *
-     * @todo opbouwen van weergave
-     *
      * @return View
      */
     public function create(): View
@@ -109,8 +107,6 @@ class UsersController extends Controller
 
     /**
      * Verwijder een gebruiker uit het systeem.
-     *
-     * @todo implementatie activiteiten logger
      *
      * @param  int $user De gegeven gebruiker in het systeem.
      * @return RedirectResponse

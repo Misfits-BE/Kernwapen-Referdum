@@ -82,8 +82,6 @@ class SupportController extends Controller
     /**
      * Verwijder een ondersteunende organisatie uit het systeem.
      *
-     * @todo implementatie activity logger. 
-     *
      * @param  int $organisation De unieke waarde van de organisatie in de databank.
      * @return RedirectResponse
      */
