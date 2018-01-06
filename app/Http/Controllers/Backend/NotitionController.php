@@ -95,6 +95,9 @@ class NotitionController extends Controller
      *
      * @param  Notitions $notition De databank entiteit van de notitie.
      * @param  City      $city     De databank entiteit van de stad.
+     *
+     * @throws \Exception
+     *
      * @return RedirectResponse
      */
     public function destroy(Notitions $notition, City $city): RedirectResponse
