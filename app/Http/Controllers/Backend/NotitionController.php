@@ -53,8 +53,6 @@ class NotitionController extends Controller
     /**
      * Het creatie formulier voor een notitie.
      *
-     * @todo implementatie phpunit test
-     *
      * @param  int $city De unieke waarde van de stad in de databank.
      * @return View
      */
