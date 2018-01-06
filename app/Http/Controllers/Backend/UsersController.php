@@ -110,7 +110,6 @@ class UsersController extends Controller
     /**
      * Verwijder een gebruiker uit het systeem.
      *
-     * @todo creatie phpunit test
      * @todo implementatie activiteiten logger
      *
      * @param  int $user De gegeven gebruiker in het systeem.

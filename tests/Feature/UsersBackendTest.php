@@ -67,7 +67,11 @@ class UsersBackendTest extends TestCase
      */
     public function verwijderNoAuth() 
     {
+        $user = factory(User::class)->create();
 
+        $this->get(route('admin.users.delete', $user))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     } 
 
     /**
@@ -76,7 +80,16 @@ class UsersBackendTest extends TestCase
      */
     public function verwijderWrongId() 
     {
+        $user = factory(User::class)->create();
 
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->get(route('admin.users.delete', ['id' => 1234]))
+            ->assertStatus(302)
+            ->assertSessionMissing([
+                $this->flashSession . '.message' => 'De gebruiker is verwijderd uit het systeem.',
+                $this->flashSession . '.level'   => 'success'
+            ]);
     }
 
     /**
@@ -85,6 +98,17 @@ class UsersBackendTest extends TestCase
      */
     public function verwijderSuccess() 
     {
+        $user = factory(User::class, 2)->create();
 
+        $this->actingAs($user[0])
+            ->assertAuthenticatedAs($user[0])
+            ->get(route('admin.users.delete', $user[1]))
+            ->assertStatus(302)
+            ->assertSessionHas([
+                $this->flashSession . '.message' => 'De gebruiker is verwijderd uit het systeem.',
+                $this->flashSession . '.level'   => 'success'
+            ]);
+
+        $this->assertDatabaseMissing('users', ['id' => $user[1]->id]);
     }
 }
