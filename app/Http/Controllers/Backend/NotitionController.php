@@ -87,8 +87,6 @@ class NotitionController extends Controller
     /**
      * Verwijder een notitie van een stad uit de databank.
      *
-     * @todo implementatie phpunit test
-     *
      * @param  Notitions $notition De databank entiteit van de notitie.
      * @param  City      $city     De databank entiteit van de stad.
      *

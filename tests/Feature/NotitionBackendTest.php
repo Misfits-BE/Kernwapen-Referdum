@@ -7,6 +7,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\City;
+use App\Notitions;
 
 class NotitionBackendTest extends TestCase
 {
@@ -121,5 +122,60 @@ class NotitionBackendTest extends TestCase
                 $this->flashSession . '.message' => "De notitie voor de stad '{$city->name}' is toegevoegd.",
                 $this->flashSession . '.level'   => 'success',
             ]);
+    }
+
+    /**
+     * @test 
+     * @testdox Test of een niet aangemelde gebruiker geen notitie kan verwijderen. 
+     */
+    public function notitieDeleteNoAuth() 
+    {
+        $notitie = factory(Notitions::class)->create(); 
+        $city    = factory(City::class)->create(); 
+
+        $this->get(route('admin.notition.delete', ['notition' => $notitie->id, 'city' => $city->id]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
+
+    /**
+     * @test 
+     * @textdox Test de error response wanneer men een notitie verwijderd met de verkeerde id. 
+     */
+    public function notitieDeleteWrongId() 
+    {
+        $user = factory(User::class)->create();
+        $city = factory(City::class)->create(); 
+    
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->get(route('admin.notition.delete', ['notition' => 100, 'city' => $city->id]))
+            ->assertStatus(404);
+    }
+
+    /**
+     * @test 
+     * @testdox Test of een login een notitie kan verwijderen zonder fouten. 
+     */
+    public function notitieDeleteSuccess() 
+    {
+        $user       = factory(user::class)->create();
+        $city       = factory(City::class)->create();
+        $notition   = factory(Notitions::class)->create();
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->get(route('admin.notition.delete', ['notition' => $notition->id, 'city' => $city->id]))
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.stadsmonitor.show', $city))
+            ->assertSessionHas([
+                $this->flashSession . '.message' => "De notitie is verwijderd.", 
+                $this->flashSession . '.level'   => 'success'
+            ]);
+
+        $this->assertDatabaseMissing('notitions', ['id' => $notition->id]);
+        $this->assertDatabaseHas('activity_log', [
+            'description' => "Heeft een notitie verwijderd voor de stad {$city->name}"
+        ]);
     }
 }
