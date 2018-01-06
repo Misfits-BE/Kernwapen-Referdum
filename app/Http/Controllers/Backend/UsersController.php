@@ -51,8 +51,6 @@ class UsersController extends Controller
     /**
      * De beheers console voor de gebruikers.
      *
-     * @todo write phpunit test.
-     *
      * @return View
      */
     public function index(): View
@@ -65,9 +63,7 @@ class UsersController extends Controller
     /**
      * De creatie weergave voor een nieuwe gebruiker.
      *
-     * @todo write phpunit test
      * @todo opbouwen van weergave
-     * @todo registratie routering.
      *
      * @return View
      */
