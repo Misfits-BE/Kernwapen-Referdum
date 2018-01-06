@@ -51,7 +51,7 @@ class UsersBackendTest extends TestCase
      * @test 
      * @testdox Test of een aangemelde gebruiker zonder fouten de user management console kan zien. 
      */
-    public function createWeergaveSuccess() 
+    public function createWeergaveSuccess()
     {
         $user = factory(User::class)->create(); 
 
@@ -59,5 +59,32 @@ class UsersBackendTest extends TestCase
             ->assertAuthenticatedAs($user)
             ->get(route('admin.users.index'))
             ->assertStatus(200);
+    }
+
+    /**
+     * @test 
+     * @testdox Test of een niet aangemelde gebruiker bhij een delete operatie word doorverwezen naar login pagina. 
+     */
+    public function verwijderNoAuth() 
+    {
+
+    } 
+
+    /**
+     * @test 
+     * @testdox Test de response wanneer een gebruiker met ongeldige id word verwijderd. 
+     */
+    public function verwijderWrongId() 
+    {
+
+    }
+
+    /**
+     * @test 
+     * @testdox Test of een gebruiker successvol een aangemelde gebruiker kan verwijderen. 
+     */
+    public function verwijderSuccess() 
+    {
+
     }
 }

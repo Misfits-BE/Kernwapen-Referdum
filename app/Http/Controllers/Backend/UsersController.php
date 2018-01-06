@@ -101,7 +101,7 @@ class UsersController extends Controller
     public function update(User $user, UserValidator $input): RedirectResponse
     {
         if ($user->update($input->all())) {
-            flash("{$user->name} is aangep-ast in het systeem.")->success();
+            flash("{$user->name} is aangepast in het systeem.")->success();
         }
 
         return redirect()->route('admin.users.index');
