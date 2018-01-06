@@ -75,8 +75,6 @@ class StadsMonitorController extends Controller
     /**
      * Wijzig een stad zijn status in de databank.
      *
-     * @todo implementatie phpunit
-     *
      * @param  int  $city   De databank entiteit van de stad
      * @param  bool $status De door de gebruiker gegeven invoer.
      * @return RedirectResponse
