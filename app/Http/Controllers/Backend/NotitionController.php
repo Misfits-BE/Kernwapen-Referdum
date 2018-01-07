@@ -53,8 +53,6 @@ class NotitionController extends Controller
     /**
      * Het creatie formulier voor een notitie.
      *
-     * @todo implementatie phpunit test
-     *
      * @param  int $city De unieke waarde van de stad in de databank.
      * @return View
      */
@@ -67,8 +65,6 @@ class NotitionController extends Controller
 
     /**
      * Slaag een notitie op Op basis van de gegeven stad.
-     *
-     * @todo Implementatie phpunit test
      *
      * @param  NotitionValidator $input De gegeven gebruikers invoer data. (Gevalideerd)
      * @param  int               $city  De gegeven databank entiteit van de stad.
@@ -91,10 +87,11 @@ class NotitionController extends Controller
     /**
      * Verwijder een notitie van een stad uit de databank.
      *
-     * @todo implementatie phpunit test
-     *
      * @param  Notitions $notition De databank entiteit van de notitie.
      * @param  City      $city     De databank entiteit van de stad.
+     *
+     * @throws \Exception
+     *
      * @return RedirectResponse
      */
     public function destroy(Notitions $notition, City $city): RedirectResponse

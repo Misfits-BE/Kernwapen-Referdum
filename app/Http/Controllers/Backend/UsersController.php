@@ -51,8 +51,6 @@ class UsersController extends Controller
     /**
      * De beheers console voor de gebruikers.
      *
-     * @todo write phpunit test.
-     *
      * @return View
      */
     public function index(): View
@@ -64,10 +62,6 @@ class UsersController extends Controller
 
     /**
      * De creatie weergave voor een nieuwe gebruiker.
-     *
-     * @todo write phpunit test
-     * @todo opbouwen van weergave
-     * @todo registratie routering.
      *
      * @return View
      */
@@ -105,7 +99,7 @@ class UsersController extends Controller
     public function update(User $user, UserValidator $input): RedirectResponse
     {
         if ($user->update($input->all())) {
-            flash("{$user->name} is aangep-ast in het systeem.")->success();
+            flash("{$user->name} is aangepast in het systeem.")->success();
         }
 
         return redirect()->route('admin.users.index');
@@ -113,9 +107,6 @@ class UsersController extends Controller
 
     /**
      * Verwijder een gebruiker uit het systeem.
-     *
-     * @todo creatie phpunit test
-     * @todo implementatie activiteiten logger
      *
      * @param  int $user De gegeven gebruiker in het systeem.
      * @return RedirectResponse

@@ -35,8 +35,6 @@ class SignatureController extends Controller
     /**
      * Slaag een handtekening op in het systeem.
      *
-     * @todo uitwerken van een phpunit test.
-     *
      * @param  SignatureValidator $input De gegeven gebruiker invoer. (Gevalideerd)
      * @return RedirectResponse
      */

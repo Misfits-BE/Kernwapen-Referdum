@@ -34,8 +34,6 @@ class SupportController extends Controller
     /**
      * De front-end index controller voor de ondersteunende organisatie(s).
      *
-     * @todo Uitwerken van een phpunit test.
-     *
      * @return View
      */
     public function index(): View
