@@ -62,9 +62,7 @@ class SupportController extends Controller
     /**
      * Sla de ondersteunende organisatie op in de databanK.
      *
-     * @todo implementatie routering
-     * @todo uitschrijven phpunit test.
-     * @todo Trnaslatie flash message
+     * @todo Translatie flash message
      * @todo Implement activity logger.
      *
      * @param  OrganizationValidator $input De door de gebruiker gegeven invoer (Gevalideerd).

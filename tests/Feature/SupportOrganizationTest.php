@@ -108,4 +108,64 @@ class SupportOrganizationTest extends TestCase
 
         $this->assertDatabaseMissing('supports', ['id' => $organisation->id]);
     }
+
+    /**
+     * @test
+     * @testdox Test of een gast gebruiker een organisatie niet kan invoegen in het systeem. 
+     */
+    public function organisatieOpslaanNoAuth()
+    {
+        $input = [
+            'name' => 'Misfits', 'link' => 'https://www.example.tld', 'telefoon_nr' => '0000/00 00 000',
+            'verantwoordelijke_email' => 'name@domain.tld', 'verantwoordelijke_naam' => 'John Doe'
+        ];
+
+        $this->post(route('admin.support.store'), $input)
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+    }
+
+    /**
+     * @test 
+     * @testdox Test of er validatie errors worden gesmeten als een gebruiker het formulier incorrect invult.
+     */
+    public function organisatieOpslaanValidationErrors() 
+    {
+        $user = factory(User::class)->create(); 
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->post(route('admin.support.store'), [])
+            ->assertStatus(302)
+            ->assertSessionHasErrors()
+            ->assertSessionMissing([
+                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.', 
+                $this->flashSession . '.level'   => 'success'
+            ]);
+    }
+
+    /**
+     * @test 
+     * @testdox Check of een gebruiker een ondersteundende organisatie kan toevoegen zonder problemen. 
+     */
+    public function organisatieOpslaanSuccess() 
+    {
+        $user  = factory(User::class)->create();
+        $input = [
+            'name' => 'Misfits', 'link' => 'https://www.example.tld', 'telefoon_nr' => '0000/00 00 000',
+            'verantwoordelijke_email' => 'name@domain.tld', 'verantwoordelijke_naam' => 'John Doe'
+        ];
+
+        $this->actingAs($user)
+            ->assertAuthenticatedAs($user)
+            ->post(route('admin.support.store'), $input)
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.support.index'))
+            ->assertSessionHas([
+                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.', 
+                $this->flashSession . '.level'   => 'success'
+            ]);
+
+        $this->assertDatabaseHas('supports', $input);
+    }
 }
