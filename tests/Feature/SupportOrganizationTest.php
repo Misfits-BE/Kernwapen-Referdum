@@ -14,6 +14,16 @@ class SupportOrganizationTest extends TestCase
 
     /**
      * @test 
+     * @testdox Test of een gast de ondersteunings pagina zonder problemen kan bekijken.
+     */
+    public function testFrontEndPagina()
+    {
+        factory(Support::class, 5)->create(); 
+        $this->get(route('support.index'))->assertStatus(200);
+    }
+
+    /**
+     * @test 
      * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina.
      */
     public function indexWeergaveNoAuth() 
