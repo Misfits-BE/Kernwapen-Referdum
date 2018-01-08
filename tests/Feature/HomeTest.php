@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class HomeTest extends TestCase
 {
@@ -16,18 +14,18 @@ class HomeTest extends TestCase
      * @test
      * @testdox Test of de frontend index pagina succesvol kan renderen.
      */
-    public function frontendIndex()
+    public function frontendIndex(): void
     {
         $this->get(route('frontend.index'))->assertStatus(200);
     }
 
     /**
-     * @test 
-     * @testdox Test of de backend index page successvol kan renderen 
+     * @test
+     * @testdox Test of de backend index page successvol kan renderen
      */
-    public function backendIndex() 
+    public function backendIndex(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
         
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)

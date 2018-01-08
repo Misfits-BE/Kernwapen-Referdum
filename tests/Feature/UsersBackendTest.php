@@ -3,19 +3,18 @@
 namespace Tests\Feature;
 
 use App\User;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UsersBackendTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
 
     /**
-     * @test 
-     * @testdox Test de error code als een niet ingelogde gebruiker d users cockpit probeerd te benaderen. 
+     * @test
+     * @testdox Test de error code als een niet ingelogde gebruiker d users cockpit probeerd te benaderen.
      */
-    public function indexNoAuth() 
+    public function indexNoAuth(): void
     {
         $this->get(route('admin.users.index'))
             ->assertStatus(302)
@@ -23,12 +22,12 @@ class UsersBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een aangemelde gebruiker de cockpit zonder fouten kan zien. 
+     * @test
+     * @testdox Test of een aangemelde gebruiker de cockpit zonder fouten kan zien.
      */
-    public function indexSuccess() 
+    public function indexSuccess(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -37,10 +36,10 @@ class UsersBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een niet aangemelde gebruiker de creatie user weergave niet kan zien. 
+     * @test
+     * @testdox Test of een niet aangemelde gebruiker de creatie user weergave niet kan zien.
      */
-    public function createWeergaveNoAUth() 
+    public function createWeergaveNoAUth(): void
     {
         $this->get(route('admin.users.create'))
             ->assertStatus(302)
@@ -48,12 +47,12 @@ class UsersBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een aangemelde gebruiker zonder fouten de user management console kan zien. 
+     * @test
+     * @testdox Test of een aangemelde gebruiker zonder fouten de user management console kan zien.
      */
-    public function createWeergaveSuccess()
+    public function createWeergaveSuccess(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -62,23 +61,23 @@ class UsersBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een niet aangemelde gebruiker bhij een delete operatie word doorverwezen naar login pagina. 
+     * @test
+     * @testdox Test of een niet aangemelde gebruiker bhij een delete operatie word doorverwezen naar login pagina.
      */
-    public function verwijderNoAuth() 
+    public function verwijderNoAuth(): void
     {
         $user = factory(User::class)->create();
 
         $this->get(route('admin.users.delete', $user))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
-    } 
+    }
 
     /**
-     * @test 
-     * @testdox Test de response wanneer een gebruiker met ongeldige id word verwijderd. 
+     * @test
+     * @testdox Test de response wanneer een gebruiker met ongeldige id word verwijderd.
      */
-    public function verwijderWrongId() 
+    public function verwijderWrongId(): void
     {
         $user = factory(User::class)->create();
 
@@ -93,10 +92,10 @@ class UsersBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een gebruiker successvol een aangemelde gebruiker kan verwijderen. 
+     * @test
+     * @testdox Test of een gebruiker successvol een aangemelde gebruiker kan verwijderen.
      */
-    public function verwijderSuccess() 
+    public function verwijderSuccess(): void
     {
         $user = factory(User::class, 2)->create();
 

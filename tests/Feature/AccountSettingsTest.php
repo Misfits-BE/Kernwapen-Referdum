@@ -14,7 +14,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test als een niet ngelogde gesbruiker de account instellingen kan benaderen.
      */
-    public function accountInstellingenNietAangemeld()
+    public function accountInstellingenNietAangemeld(): void
     {
         $this->get(route('account.settings', ['type' => 'informatie']))
             ->assertStatus(302)
@@ -25,7 +25,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een aangemelde gebruiker geen errors krijgt op de account instellingen pagina.
      */
-    public function accountInstellingenAangemeld()
+    public function accountInstellingenAangemeld(): void
     {
         $user = factory(User::class)->create();
 
@@ -39,7 +39,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een niet aangemelde gebruiker geen account info kan aanpassen.
      */
-    public function updateInfoGeenAuthencatie()
+    public function updateInfoGeenAuthencatie(): void
     {
         $input = ['name' => 'test gebruiker', 'email' => 'test@doemin.tld'];
 
@@ -52,7 +52,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test als een aangemelde gebruiker zijn informatie niet kan aanpassen met validatie fouten.
      */
-    public function updateInfoAuthencatieValidatieFouten()
+    public function updateInfoAuthencatieValidatieFouten(): void
     {
         $user = factory(User::class)->create();
 
@@ -72,7 +72,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een aangemelde gebruiker zijn account informatie kan aanpassen.
      */
-    public function updateInfoAuthencatieMetSuccess()
+    public function updateInfoAuthencatieMetSuccess(): void
     {
         $user  = factory(User::class)->create();
         $input = ['name' => 'test gebruiker', 'email' => 'test@domain.tld'];
@@ -94,7 +94,7 @@ class AccountSettingsTest extends TestCase
      * @test
      * @testdox Test dat een niet aangemelde een login zijn beveiliging niet kan aanpassen.
      */
-    public function updateBeveiligingGeenAuthencatie()
+    public function updateBeveiligingGeenAuthencatie(): void
     {
         $input = ['password' => '123456789!', 'password_confirmation' => '123456789!'];
 
@@ -106,7 +106,7 @@ class AccountSettingsTest extends TestCase
     /**
      * @test
      */
-    public function updateBeveilingValidatieFouten()
+    public function updateBeveilingValidatieFouten(): void
     {
         $user = factory(User::class)->create();
 
@@ -125,7 +125,7 @@ class AccountSettingsTest extends TestCase
     /**
      * @test
      */
-    public function updateBeveiligingMetSuccess()
+    public function updateBeveiligingMetSuccess(): void
     {
         $user  = factory(User::class)->create();
         $input = ['password' => '123456789!', 'password_confirmation' => '123456789!'];

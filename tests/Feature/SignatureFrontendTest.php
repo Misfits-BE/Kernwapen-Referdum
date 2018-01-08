@@ -2,23 +2,22 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SignatureFrontendTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
     
     /**
-     * @test 
+     * @test
      * @testdox Test of een gast zonder fouten kan intekenen op de petitie.
      */
-    public function handtekeningOpslagSuccess() 
+    public function handtekeningOpslagSuccess(): void
     {
         $input = [
-            'voornaam' => 'John', 'achternaam' => 'Doe', 'geboortedatum'    => '1995-10-10', 
-            'postcode' => '0000', 'straatnaam' => 'Hacker Way', 'stadsnaam' => 'Nashville', 
+            'voornaam' => 'John', 'achternaam' => 'Doe', 'geboortedatum'    => '1995-10-10',
+            'postcode' => '0000', 'straatnaam' => 'Hacker Way', 'stadsnaam' => 'Nashville',
             'huis_nr'  => 1
         ];
 
@@ -41,7 +40,7 @@ class SignatureFrontendTest extends TestCase
      * @test
      * @testdox Test of de validatie errors worden gezet in de return bij foutieve invulling v/h formulier.
      */
-    public function handTekeningOpslagValidatieFouten() 
+    public function handTekeningOpslagValidatieFouten(): void
     {
         $input = ['voornaam' => 'John', 'achternaam' => 'Doe'];
 

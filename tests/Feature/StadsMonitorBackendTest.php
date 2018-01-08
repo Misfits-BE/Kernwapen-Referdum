@@ -2,22 +2,20 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use App\Province;
 use App\City;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class StadsMonitorBackendTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
 
     /**
-     * @test 
-     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina. 
+     * @test
+     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina.
      */
-    public function stadsMonitorIndexNoAuth()
+    public function stadsMonitorIndexNoAuth(): void
     {
         $this->get(route('admin.stadsmonitor.index'))
             ->assertStatus(302)
@@ -25,12 +23,12 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test dat een aangemelde gebruiker de backend index van de stadsmonitor kan zien zonder errors
      */
-    public function stadsMonitorIndexSuccess()
+    public function stadsMonitorIndexSuccess(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -39,12 +37,12 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of de aangemelde gebruiker een specifieke stad kan zien zonder errors 
+     * @test
+     * @testdox Test of de aangemelde gebruiker een specifieke stad kan zien zonder errors
      */
-    public function specifiekeStadWeergaveNoAuth() 
+    public function specifiekeStadWeergaveNoAuth(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
         $city = factory(City::class)->create();
 
         $this->get(route('admin.stadsmonitor.show', $city))
@@ -53,12 +51,12 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test de error output wanneer een foutieve ID word gegeven. 
+     * @test
+     * @testdox Test de error output wanneer een foutieve ID word gegeven.
      */
-    public function specifiekeStadWeergavWrongId() 
+    public function specifiekeStadWeergavWrongId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -67,13 +65,13 @@ class StadsMonitorBackendTest extends TestCase
     }
     
     /**
-     * @test 
+     * @test
      * @testdox Test dat een aangemelde gebruiker een specifieke stads kan zien.
      */
-    public function specifiekeStadWeergaveSuccess()
+    public function specifiekeStadWeergaveSuccess(): void
     {
-        $user = factory(User::class)->create(); 
-        $city = factory(City::class)->create(); 
+        $user = factory(User::class)->create();
+        $city = factory(City::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -82,12 +80,12 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test dat de error response indien met een gemeente met verkeerde id wilt veranderen. 
+     * @test
+     * @testdox Test dat de error response indien met een gemeente met verkeerde id wilt veranderen.
      */
-    public function kernVrijWrongId() 
+    public function kernVrijWrongId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -96,12 +94,12 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of men de status van een stad kan veranderen waaneer men niet aangemeld is. 
+     * @test
+     * @testdox Test of men de status van een stad kan veranderen waaneer men niet aangemeld is.
      */
-    public function kernVrijNoAUth() 
+    public function kernVrijNoAUth(): void
     {
-        $city = factory(City::class)->create(['kernwapen_vrij' => 0]); 
+        $city = factory(City::class)->create(['kernwapen_vrij' => 0]);
 
         $this->get(route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 1]))
             ->assertStatus(302)
@@ -109,35 +107,35 @@ class StadsMonitorBackendTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test dat men een stad kernvrij kan maken. 
+     * @test
+     * @testdox Test dat men een stad kernvrij kan maken.
      */
-    public function kernVrijSuccess() 
+    public function kernVrijSuccess(): void
     {
-        $user = factory(User::class)->create(); 
-        $city = factory(City::class)->create(['kernwapen_vrij' => 0]); 
+        $user = factory(User::class)->create();
+        $city = factory(City::class)->create(['kernwapen_vrij' => 0]);
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
             ->get(route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 1]))
             ->assertStatus(302)
             ->assertSessionHas([
-                $this->flashSession . '.message' => "{$city->name} heeft zich kernwapen vrij verklaard.", 
+                $this->flashSession . '.message' => "{$city->name} heeft zich kernwapen vrij verklaard.",
                 $this->flashSession . '.level'   => 'info'
             ]);
 
-            $this->assertDatabaseHas('cities', ['id' => $city->id, 'kernwapen_vrij' => 1]); 
-            $this->assertDatabaseMissing('cities', ['id' => $city->id, 'kernwapen_vrij' => '0']);
+        $this->assertDatabaseHas('cities', ['id' => $city->id, 'kernwapen_vrij' => 1]);
+        $this->assertDatabaseMissing('cities', ['id' => $city->id, 'kernwapen_vrij' => '0']);
     }
 
     /**
-     * @test 
-     * @testdox Test dat men een gemeente niet kern vrij kan laten verklaren. 
+     * @test
+     * @testdox Test dat men een gemeente niet kern vrij kan laten verklaren.
      */
-    public function nietKernVrijSuccess() 
+    public function nietKernVrijSuccess(): void
     {
-        $user = factory(User::class)->create(); 
-        $city = factory(City::class)->create(['kernwapen_vrij' => 1]); 
+        $user = factory(User::class)->create();
+        $city = factory(City::class)->create(['kernwapen_vrij' => 1]);
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -148,7 +146,7 @@ class StadsMonitorBackendTest extends TestCase
                 $this->flashSession . '.level'   => 'info'
             ]);
 
-        $this->assertDatabaseHas('cities', ['id' => $city->id, 'kernwapen_vrij' => 0]); 
+        $this->assertDatabaseHas('cities', ['id' => $city->id, 'kernwapen_vrij' => 0]);
         $this->assertDatabaseMissing('cities', ['id' => $city->id, 'kernwapen_vrij' => '1']);
     }
 }
