@@ -3,21 +3,20 @@
 namespace Tests\Feature;
 
 use App\User;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class BanTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
 
     /**
-     * @test 
-     * @testdox Test de response wanneer we gebruiker die al geband is proberen te bannen. 
+     * @test
+     * @testdox Test de response wanneer we gebruiker die al geband is proberen te bannen.
      */
-    public function banAlreadyBanned() 
+    public function banAlreadyBanned(): void
     {
-        $users    = factory(User::class, 2)->create(); 
+        $users    = factory(User::class, 2)->create();
         $username = $users[1]->name;
 
         User::find($users[1]->id)->ban();
@@ -33,13 +32,13 @@ class BanTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of we zonder fouten een gebruiker kunnen blokkeren. 
+     * @test
+     * @testdox Test of we zonder fouten een gebruiker kunnen blokkeren.
      */
-    public function banSuccess() 
+    public function banSuccess(): void
     {
         $user = factory(User::class, 2)->create();
-        $username = $user[1]->name; 
+        $username = $user[1]->name;
 
         $this->actingAs($user[0])
             ->assertAuthenticatedAs($user[0])
@@ -52,28 +51,28 @@ class BanTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @test Test de response wanneer we een gebruiker die al actief is nog is proberen te activeren.
      */
-    public function unbanAlreadyUnbanned() 
+    public function unbanAlreadyUnbanned(): void
     {
-        $users = factory(User::class, 2)->create(); 
+        $users = factory(User::class, 2)->create();
 
         $this->actingAs($users[0])
             ->assertAuthenticatedAs($users[0])
             ->get(route('admin.users.active', $users[1]))
             ->assertStatus(302)
             ->assertSessionHas([
-                $this->flashSession . '.message' => "Helaas! Er is iets misgelopen. :(", 
+                $this->flashSession . '.message' => "Helaas! Er is iets misgelopen. :(",
                 $this->flashSession . '.level'   => 'warning'
             ]);
     }
 
     /**
-     * @test 
-     * @testdox Test de response wanneer we succesvol een gebruiker hebben geactiveerd. 
+     * @test
+     * @testdox Test de response wanneer we succesvol een gebruiker hebben geactiveerd.
      */
-    public function unbanSuccess() 
+    public function unbanSuccess(): void
     {
         $users    = factory(User::class, 2)->create();
         $username = $users[1]->name;
@@ -85,18 +84,18 @@ class BanTest extends TestCase
             ->get(route('admin.users.active', $users[1]))
             ->assertStatus(302)
             ->assertSessionHas([
-                $this->flashSession . '.message' => "{$username} is terug actief in het systeem.", 
+                $this->flashSession . '.message' => "{$username} is terug actief in het systeem.",
                 $this->flashSession . '.level'   => 'success'
             ]);
     }
 
     /**
-     * @test 
-     * @testdox Test de error respons wanneer een gebruiker met niet bestaande id bannen. 
+     * @test
+     * @testdox Test de error respons wanneer een gebruiker met niet bestaande id bannen.
      */
-    public function banWrongId() 
+    public function banWrongId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -105,10 +104,10 @@ class BanTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test o)f een niet aangemelde gebruiker een andere gebruiker kan blokkeren
      */
-    public function banNoAuth() 
+    public function banNoAuth(): void
     {
         $user = factory(User::class)->create();
 
@@ -118,12 +117,12 @@ class BanTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test de response wanneer een gebruiker met verkeerde id proberen te activeren. 
+     * @test
+     * @testdox Test de response wanneer een gebruiker met verkeerde id proberen te activeren.
      */
-    public function unbanWrongId() 
+    public function unbanWrongId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -132,10 +131,10 @@ class BanTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test of een niet aangemelde gebruiker een andere gebruiker kan activeren.
      */
-    public function unbanNoAuth() 
+    public function unbanNoAuth(): void
     {
         $user = factory(User::class)->create()->ban();
 

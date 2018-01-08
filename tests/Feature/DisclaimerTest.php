@@ -13,7 +13,7 @@ class DisclaimerTest extends TestCase
      * @test
      * @testdox Disclaimer page kan successvol renderen.
      */
-    public function disclaimerPage()
+    public function disclaimerPage(): void
     {
         $this->get(route('disclaimer.index'))->assertStatus(200);
     }

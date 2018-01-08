@@ -2,31 +2,30 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
 use App\Support;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SupportOrganizationTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * @test 
+     * @test
      * @testdox Test of een gast de ondersteunings pagina zonder problemen kan bekijken.
      */
-    public function testFrontEndPagina()
+    public function testFrontEndPagina(): void
     {
-        factory(Support::class, 5)->create(); 
+        factory(Support::class, 5)->create();
         $this->get(route('support.index'))->assertStatus(200);
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina.
      */
-    public function indexWeergaveNoAuth() 
+    public function indexWeergaveNoAuth(): void
     {
         $this->get(route('admin.support.index'))
             ->assertStatus(302)
@@ -34,10 +33,10 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test dat een aangemelde gebruiker de index pagina kan bekijken zonder fouten.
      */
-    public function indexWeergaveSuccess() 
+    public function indexWeergaveSuccess(): void
     {
         $user = factory(User::class)->create();
 
@@ -48,10 +47,10 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina. 
+     * @test
+     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina.
      */
-    public function createWeergaveNoAuth() 
+    public function createWeergaveNoAuth(): void
     {
         $this->get(route('admin.support.create'))
             ->assertStatus(302)
@@ -59,12 +58,12 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test dat een aangemelde gebruiker de organisatie creatie pagina kan bekijken zonder fouten. 
+     * @test
+     * @testdox Test dat een aangemelde gebruiker de organisatie creatie pagina kan bekijken zonder fouten.
      */
-    public function createWeergaveSuccess()
+    public function createWeergaveSuccess(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -73,12 +72,12 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina. 
+     * @test
+     * @testdox Test dat een niet aangemelde gebruiker word omgeleid naar de login pagina.
      */
-    public function organisatieVerwijderNoAuth() 
+    public function organisatieVerwijderNoAuth(): void
     {
-        $organisation = factory(Support::class)->create(); 
+        $organisation = factory(Support::class)->create();
 
         $this->get(route('admin.support.delete', $organisation))
             ->assertStatus(302)
@@ -86,12 +85,12 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test de error response wanneer een foutieve id word gegeven (organisatie verwijder)
      */
-    public function organisatieVerwijderWrongId() 
+    public function organisatieVerwijderWrongId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -100,10 +99,10 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of een aangemelde gebruiker effectief een ondersteunende organisatie kan verwijderen. 
+     * @test
+     * @testdox Test of een aangemelde gebruiker effectief een ondersteunende organisatie kan verwijderen.
      */
-    public function organisatieVerwijderSuccess() 
+    public function organisatieVerwijderSuccess(): void
     {
         $user         = factory(User::class)->create();
         $organisation = factory(Support::class)->create();
@@ -121,9 +120,9 @@ class SupportOrganizationTest extends TestCase
 
     /**
      * @test
-     * @testdox Test of een gast gebruiker een organisatie niet kan invoegen in het systeem. 
+     * @testdox Test of een gast gebruiker een organisatie niet kan invoegen in het systeem.
      */
-    public function organisatieOpslaanNoAuth()
+    public function organisatieOpslaanNoAuth(): void
     {
         $input = [
             'name' => 'Misfits', 'link' => 'https://www.example.tld', 'telefoon_nr' => '0000/00 00 000',
@@ -136,12 +135,12 @@ class SupportOrganizationTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test of er validatie errors worden gesmeten als een gebruiker het formulier incorrect invult.
      */
-    public function organisatieOpslaanValidationErrors() 
+    public function organisatieOpslaanValidationErrors(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -149,16 +148,16 @@ class SupportOrganizationTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHasErrors()
             ->assertSessionMissing([
-                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.', 
+                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.',
                 $this->flashSession . '.level'   => 'success'
             ]);
     }
 
     /**
-     * @test 
-     * @testdox Check of een gebruiker een ondersteundende organisatie kan toevoegen zonder problemen. 
+     * @test
+     * @testdox Check of een gebruiker een ondersteundende organisatie kan toevoegen zonder problemen.
      */
-    public function organisatieOpslaanSuccess() 
+    public function organisatieOpslaanSuccess(): void
     {
         $user  = factory(User::class)->create();
         $input = [
@@ -172,7 +171,7 @@ class SupportOrganizationTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.support.index'))
             ->assertSessionHas([
-                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.', 
+                $this->flashSession . '.message' => 'De ondersteunende organisatie is toegevoegd aan het systeem.',
                 $this->flashSession . '.level'   => 'success'
             ]);
 
