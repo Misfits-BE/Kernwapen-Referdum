@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Repositories\CityRepository;
 use Illuminate\Http\Request;
@@ -38,15 +39,13 @@ class StadsMonitorController extends Controller
     /**
      * De index pagina voor de stadsmonitor weergave.
      *
-     * @todo Uitwerken phpunit test
-     *
      * @return View
      */
     public function index(): View
     {
         return view('frontend.stadsmonitor.index', [
             'cities'  => $this->cityRepository->listCities(20),
-            'counter' => $this->cityRepository->countKernVrij()
+            'counter' => $this->cityRepository->count('kernwapen_vrij', true)
         ]);
     }
 
@@ -61,8 +60,15 @@ class StadsMonitorController extends Controller
         $input->validate(['term' => 'required']);
 
         $cities  = $this->cityRepository->searchCities($input->term, 20);
-        $counter = $this->cityRepository->countKernVrij();
+        $counter = $this->cityRepository->count('kernwapen_vrij', true);
 
         return view('frontend.stadsmonitor.index', compact('counter', 'cities'));
+    }
+
+    public function show(string $city): View
+    {
+        return view('frontend.stadsmonitor.show', [
+            'city' => $this->cityRepository->findCity($city),
+        ]);
     }
 }

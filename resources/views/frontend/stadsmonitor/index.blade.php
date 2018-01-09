@@ -30,7 +30,7 @@
                                     <td>{{ $city->province->name }}</td>
                                     <td>{{ $city->name }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-xs btn-default">
+                                        <a href="{{ route('stadsmonitor.show', ['name' => $city->name]) }}" class="btn btn-xs btn-default">
                                             <i class="fa fa-fw fa-info-circle"></i> Info
                                         </a>
                                     </td>
@@ -39,11 +39,11 @@
                         @endif
                     </tbody>
                 </table>
-
-                @if (count($cities) > 0) {{-- Terminate if the pagination view instance is needed --}}
-                    {{ $cities->render('vendor.pagination.simple-default') }}
-                @endif
             </div>
+
+            @if (count($cities) > 0) {{-- Terminate if the pagination view instance is needed --}}
+                {{ $cities->render('vendor.pagination.simple-default') }}
+            @endif
         </div> {{-- /Stads inhoud --}}
 
         <div class="col-md-3"> {{-- Side content --}}
