@@ -74,4 +74,14 @@ class CityRepository extends Repository
     {
         return $this->entity()->where($column, $value)->count();
     }
+
+    /**
+     * Tel alle kern vrij gemeentes in de databank op.
+     *
+     * @return int
+     */
+    public function countKernVrij(): int
+    {
+        return $this->entity()->where('kernwapen_vrij', true)->count();
+    }
 }

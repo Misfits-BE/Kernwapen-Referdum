@@ -41,8 +41,8 @@
                             </a>
                         </li>
 
-                        <li role="presentation">
-                            <a href="">
+                        <li role="presentation" @if (request()->is('stadsmonitor*')) class="active" @endif>
+                            <a href="{{ route('stadsmonitor.index') }}">
                                 Stadsmonitor
                             </a>
                         </li>
