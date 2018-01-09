@@ -76,7 +76,7 @@ class CityRepository extends Repository
     }
 
     /**
-     * Tel alle kern vrij gemeentes in de databank op.
+     * Tel alle kernvrije gemeentes in de databank op.
      *
      * @return int
      */

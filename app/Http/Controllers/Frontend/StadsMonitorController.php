@@ -18,6 +18,9 @@ use Illuminate\View\View;
  */
 class StadsMonitorController extends Controller
 {
+    /**
+     * @var CityRepository $cityRepository
+     */
     private $cityRepository;
 
     /**
