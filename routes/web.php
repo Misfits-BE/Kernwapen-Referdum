@@ -24,6 +24,10 @@ Route::patch('/admin/account/instellingen/beveiliging', 'Auth\AccountSettingsCon
 Route::get('/admin/meld-een-probleem', 'Backend\GithubController@create')->name('bug.create');
 Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name('bug.store');
 
+// Contact route
+Route::get('/contact', 'Frontend\ContactController@index')->name('contact.index');
+Route::post('/contact/verzend', 'Frontend\ContactController@send')->name('contact.send');
+
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 
