@@ -47,6 +47,16 @@ return [
         'password'     => env('GITHUB_PASSWORD', 'password'),
         'organization' => 'Misfits-BE',
         'repo-name'    => 'Kernwapen-Referendum',
-    ]
+    ],
+
+    /**
+     * ---------------------------------------------------------------------------
+     * Contact information.
+     * ---------------------------------------------------------------------------
+     *
+     * De nodige configuratie voor het verzenden van het contact formulier.
+     *
+     */
+    'contact_email' => 'tom@activisme.be',
 
 ];

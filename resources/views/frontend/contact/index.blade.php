@@ -18,15 +18,15 @@
         </span>
     </div>
 
-    <form class="tw-mt-8" method="POST">
+    <form class="tw-mt-8" action="{{ route('contact.send') }}" method="POST">
         {{ csrf_field() }}
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group @error('name', 'has-error')">
+                <div class="form-group @error('naam', 'has-error')">
                     <label for="name">Naam: <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" placeholder="Uw naam" @input('name')/>
-                    @error('name')
+                    <input type="text" class="form-control" id="name" placeholder="Uw naam" @input('naam')/>
+                    @error('naam')
                 </div>
                 
                 <div class="form-group @error('onderwerp', 'has-error')">
@@ -44,10 +44,10 @@
             </div>
 
             <div class="col-md-6">
-                <div class="form-group @error('message', 'has-error')">
+                <div class="form-group @error('bericht', 'has-error')">
                     <label for="name">Bericht: <span class="text-danger">*</span></label>
-                    <textarea @input('message') id="Uw bericht" class="form-control" rows="9" cols="25" placeholder="Message"></textarea>
-                    @error('message')
+                    <textarea @input('bericht') id="Uw bericht" class="form-control" rows="9" cols="25" placeholder="Bericht"></textarea>
+                    @error('bericht')
                 </div>
             </div>
             <div class="col-md-12">

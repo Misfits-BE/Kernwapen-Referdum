@@ -26,6 +26,7 @@ Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name(
 
 // Contact route
 Route::get('/contact', 'Frontend\ContactController@index')->name('contact.index');
+Route::post('/contact/verzend', 'Frontend\ContactController@send')->name('contact.send');
 
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');

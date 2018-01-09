@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ContactValidator;
+use App\Mail\contactForm;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 /**
@@ -24,5 +26,22 @@ class ContactController extends Controller
     public function index(): View
     {
         return view('frontend.contact.index');
+    }
+
+    /**
+     * Stuur het contact formulier naar de oragnisatie verantwoordelijke.
+     *
+     * @todo validation fails test
+     * @todo validation success test
+     *
+     * @param  ContactValidator $input De gegeven gebruikers invoer (Gevalideerd)
+     * @return RedirectResponse
+     */
+    public function send(ContactValidator $input): RedirectResponse
+    {
+        Mail::to(config('platform.contact_email'))->send(new contactForm($input->all()));
+        flash('We hebben je email verzonden, en nemen spoedig contact met je op.')->success();
+
+        return redirect()->route('contact.index');
     }
 }
