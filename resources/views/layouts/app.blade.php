@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li role="presentation" @if (Request::is('contact')) class="active" @endif>
-                            <a href="">
+                            <a href="{{ route('contact.index') }}">
                                 Contact
                             </a>
                         </li>
