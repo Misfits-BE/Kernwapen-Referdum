@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CityRepository;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
@@ -47,5 +48,21 @@ class StadsMonitorController extends Controller
             'cities'  => $this->cityRepository->listCities(20),
             'counter' => $this->cityRepository->countKernVrij()
         ]);
+    }
+
+    /**
+     * Zoek voor een specifieke stad in het systeem.
+     *
+     * @param  Request $input
+     * @return View
+     */
+    public function search(Request $input): View
+    {
+        $input->validate(['term' => 'required']);
+
+        $cities  = $this->cityRepository->searchCities($input->term, 20);
+        $counter = $this->cityRepository->countKernVrij();
+
+        return view('frontend.stadsmonitor.index', compact('counter', 'cities'));
     }
 }

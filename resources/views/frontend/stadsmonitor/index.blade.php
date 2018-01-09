@@ -48,9 +48,7 @@
 
         <div class="col-md-3"> {{-- Side content --}}
             <div class="well well-sm" style="margin-bottom: 0"> {{-- Search form --}}
-                <form method="POST" action="">
-                    {{ csrf_field() }} {{-- Form field protection --}}
-
+                <form method="GET" action="{{ route('stadsmonitor.search') }}">
                     <div class="input-group">
                         <input type="text" name="term" class="form-control" placeholder="Zoek een stad">
                         <span class="input-group-btn">

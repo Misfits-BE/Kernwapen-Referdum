@@ -41,6 +41,7 @@ Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')-
 
 // Stads monitor routes (Frontend)
 Route::get('/stadsmonitor', 'Frontend\StadsMonitorController@index')->name('stadsmonitor.index');
+Route::get('/stadsmonitor/zoek', 'Frontend\StadsMonitorController@search')->name('stadsmonitor.search');
 
 // User management routes
 Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');

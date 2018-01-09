@@ -84,4 +84,18 @@ class CityRepository extends Repository
     {
         return $this->entity()->where('kernwapen_vrij', true)->count();
     }
+
+    /**
+     * Doorzoek De databank tabel voor een specifieke stad. Gebaseerd op naam of postcode.
+     *
+     * @param  string $term    De opgegeven zoek term.
+     * @param  int    $perPage De aantal steden die u wilt laten zien per pagina.
+     * @return Paginator
+     */
+    public function searchCities(string $term, int $perPage): Paginator
+    {
+        return $this->entity()->where('postal', 'LIKE', "%{$term}%")
+            ->orWhere('name', 'LIKE', "%{$term}%")
+            ->simplePaginate($perPage);
+    }
 }
