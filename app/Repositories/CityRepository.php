@@ -76,16 +76,6 @@ class CityRepository extends Repository
     }
 
     /**
-     * Tel alle kernvrije gemeentes in de databank op.
-     *
-     * @return int
-     */
-    public function countKernVrij(): int
-    {
-        return $this->entity()->where('kernwapen_vrij', true)->count();
-    }
-
-    /**
      * Doorzoek De databank tabel voor een specifieke stad. Gebaseerd op naam of postcode.
      *
      * @param  string $term    De opgegeven zoek term.
@@ -97,5 +87,16 @@ class CityRepository extends Repository
         return $this->entity()->where('postal', 'LIKE', "%{$term}%")
             ->orWhere('name', 'LIKE', "%{$term}%")
             ->simplePaginate($perPage);
+    }
+
+    /**
+     * Haal een specifieke stad op in het systeem.
+     *
+     * @param  string $city De opgegeven stadsnaam.
+     * @return City
+     */
+    public function findCity(string $city): City
+    {
+        return $this->entity()->where('name', $city)->firstOrFail();
     }
 }
