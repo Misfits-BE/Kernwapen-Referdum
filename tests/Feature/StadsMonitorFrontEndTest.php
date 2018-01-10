@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\City;
 
 class StadsMonitorFrontEndTest extends TestCase
 {
@@ -39,13 +40,19 @@ class StadsMonitorFrontEndTest extends TestCase
             ->assertStatus(200);
     }
 
+    /**
+     * @test 
+     * @test Test of de gebruiker een juiste stad kan bekijken zonder fouten. 
+     */
     public function showViewValidName(): void 
     {
-
+        $this->get(route('stadsmonitor.show', ['name' => factory(City::class)->create()->name]))
+            ->assertStatus(200);
     }
 
     /**
      * @test 
+     * @testdox Test de error response wanneer een een gebruiker een foutieve stad wilt bekijken. 
      */
     public function showViewInValidId(): void 
     {
