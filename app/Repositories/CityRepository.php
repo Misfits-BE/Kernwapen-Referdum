@@ -74,4 +74,29 @@ class CityRepository extends Repository
     {
         return $this->entity()->where($column, $value)->count();
     }
+
+    /**
+     * Doorzoek De databank tabel voor een specifieke stad. Gebaseerd op naam of postcode.
+     *
+     * @param  string $term    De opgegeven zoek term.
+     * @param  int    $perPage De aantal steden die u wilt laten zien per pagina.
+     * @return Paginator
+     */
+    public function searchCities(string $term, int $perPage): Paginator
+    {
+        return $this->entity()->where('postal', 'LIKE', "%{$term}%")
+            ->orWhere('name', 'LIKE', "%{$term}%")
+            ->simplePaginate($perPage);
+    }
+
+    /**
+     * Haal een specifieke stad op in het systeem.
+     *
+     * @param  string $city De opgegeven stadsnaam.
+     * @return City
+     */
+    public function findCity(string $city): City
+    {
+        return $this->entity()->where('name', $city)->firstOrFail();
+    }
 }
