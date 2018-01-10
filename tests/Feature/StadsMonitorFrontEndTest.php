@@ -38,4 +38,18 @@ class StadsMonitorFrontEndTest extends TestCase
         $this->call('GET', route('stadsmonitor.search'), ['term' => 'wtf'])
             ->assertStatus(200);
     }
+
+    public function showViewValidName(): void 
+    {
+
+    }
+
+    /**
+     * @test 
+     */
+    public function showViewInValidId(): void 
+    {
+        $this->get(route('stadsmonitor.show', ['name' => 'Dwarventow']))
+            ->assertStatus(404);
+    }
 }

@@ -8,7 +8,7 @@ $factory->define(App\City::class, function (Faker $faker) {
         'province_id' => function () {
             return factory(Province::class)->create()->id;
         },
-        'postal' => $faker->postcode,
+        'postal' =>$faker->numberBetween(0, 1000),
         'name' => $faker->city,
         'lat' => $faker->latitude,
         'lng' => $faker->longitude,
