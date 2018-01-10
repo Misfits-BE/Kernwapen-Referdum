@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Pagination\Paginator;
 
 /**
  * ActivityLog
@@ -27,5 +28,14 @@ trait ActivityLog
             ->performedOn($model)
             ->causedBy(auth()->user())
             ->log($message);
+    }
+
+    public function getLogs(string $type = 'default', int $perPage): Paginator 
+    {
+        switch ($type) {
+            case 'simple':  return Activity::simplePaginate($perPage);
+            case 'default': return Activity::paginate($perPage);
+            default:        return Activity::paginate($perPage);   
+        }
     }
 }

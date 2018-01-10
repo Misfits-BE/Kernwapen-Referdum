@@ -34,6 +34,9 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
 
+// Backend activity console routes 
+Route::get('/admin/logs', 'Backend\ActivityController@index')->name('admin.logs.index');
+
 // Stads monitor routes (Backend)
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');
 Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@kernwapenVrij')->name('admin.stadsmonitor.status');
