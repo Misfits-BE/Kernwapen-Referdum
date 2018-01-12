@@ -43,6 +43,8 @@ class ActivityController extends Controller
     /**
      * Zoek een specifiek activeits log in de databank opslag.
      * 
+     * @todo Implement phpunit (auth, no auth)
+     * 
      * @param  ActivitySearchValidator $input De gegeven gebruiker invoer. (Gevalideerd)
      * @return \Illuminate\View\View
      */
