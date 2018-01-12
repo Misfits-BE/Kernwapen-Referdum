@@ -32,7 +32,7 @@ class ActivityController extends Controller
     /**
      * Methode voor de oplijsting van alle activiteit die gelogd is in de applicatie. 
      * 
-     * @todo Implementatie test (auth en noAuth)
+     * @todo Implementatie test (auth, forbid-banned-user)
      * 
      * @return \Illuminate\View\View
      */
