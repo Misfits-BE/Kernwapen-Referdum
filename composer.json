@@ -56,7 +56,9 @@
         "check-security": [
             "vendor/bin/security-checker security:check"
         ],
-        
+        "fix-cs": [
+            "vendor/bin/php-cs-fixer fix"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
