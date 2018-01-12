@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Traits\ActivityLog;
 use Illuminate\View\View;
 use App\Http\Requests\Backend\ActivitySearchValidator;
 
@@ -18,8 +17,6 @@ use App\Http\Requests\Backend\ActivitySearchValidator;
  */
 class ActivityController extends Controller
 {
-    use ActivityLog; 
-
     /**
      * ActivityController Constructor 
      * 

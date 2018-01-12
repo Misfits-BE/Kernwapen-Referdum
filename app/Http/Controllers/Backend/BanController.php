@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
-use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 
 /**
@@ -18,8 +17,6 @@ use Illuminate\Http\RedirectResponse;
  */
 class BanController extends Controller
 {
-    use ActivityLog;
-
     /**
      * @var UserRepository $userRepository
      */
