@@ -56,6 +56,12 @@ trait ActivityLog
      */
     public function searchogs(string $term, string $type, int $perPage): Paginator
     {
-        // TODO: Implementatie zoàek query
+        $query = $this->entity()->where('description', 'LIKE', "%{$term}%");
+
+        switch ($type) {
+            case 'simple':  return $query->simplePaginate($perPage);
+            case 'default': return $query->paginate($perPage); 
+            default:        return $query->paginate($perPage);
+        }
     }
 }
