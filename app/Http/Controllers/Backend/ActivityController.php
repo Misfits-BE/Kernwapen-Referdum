@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ActivityLog;
 use Illuminate\View\View;
+use App\Http\Requests\Backend\ActivitySearchValidator;
 
 /**
  * Class ActivityController 
@@ -32,12 +33,21 @@ class ActivityController extends Controller
     /**
      * Methode voor de oplijsting van alle activiteit die gelogd is in de applicatie. 
      * 
-     * @todo Implementatie test (auth, forbid-banned-user)
-     * 
      * @return \Illuminate\View\View
      */
     public function index(): View
     {
         return view('backend.activity.index', ['activities' => $this->getLogs('simple', 20)]); 
+    }
+
+    /**
+     * Zoek een specifiek activeits log in de databank opslag.
+     * 
+     * @param  ActivitySearchValidator $input De gegeven gebruiker invoer. (Gevalideerd)
+     * @return \Illuminate\View\View
+     */
+    public function search(ActivitySearchValidator $input): View  
+    {
+
     }
 }

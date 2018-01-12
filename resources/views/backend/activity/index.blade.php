@@ -16,7 +16,7 @@
                             <table class="table table-condensed table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Gebruiker:</th>
+                                        <th class="col-md-3">Gebruiker:</th>
                                         <th colspan="2">Bericht:</th> {{-- Nodig voor de datum --}}
                                     </tr>
                                 </thead>
@@ -30,7 +30,7 @@
                                             <tr>
                                                 <td>{{ $activity->causer->name }}</td>
                                                 <td>{{ $activity->description }}</td>
-                                                <td>{{ $activity->created_at->format('d/m/Y H:i:s') }}</td>
+                                                <td class="text-center">{{ $activity->created_at->format('d/m/Y H:i:s') }}</td>
                                             </tr>
                                         @endforeach {{-- END loop --}}
                                     @endif
@@ -42,6 +42,21 @@
                     </div>
                 </div>
             </div> {{-- /Content --}}
+
+            <div class="col-md-3"> {{-- Sidenav --}}
+                <div class="well well-sm" style="margin-bottom: 0px;"> {{-- Search --}}
+                    <form method="GET" action="">
+                        <div class="input-group">
+                            <input type="text" name="term" placeholder="Zoek een stad" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success">
+                                    <i aria-hidden="true" class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div> {{-- /// Search --}}
+            </div> {{-- /// Sidenav --}}
         </div>
     </div>
 @endsection
