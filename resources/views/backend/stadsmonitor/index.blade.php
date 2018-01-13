@@ -64,6 +64,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        {{ $cities->render() }}
                     </div>
                 </div>
             </div>
