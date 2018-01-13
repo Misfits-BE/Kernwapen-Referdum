@@ -43,16 +43,16 @@
                                                 <td>{{ $city->province->name }}</td>
                                                 
                                                 <td class="text-center"> {{-- Options --}}
-                                                    <a href="{{ route('admin.stadsmonitor.show', $city) }}" class="text-muted">
+                                                    <a href="{{ route('admin.stadsmonitor.show', $city) }}" class="text-muted" data-toggle="tooltip" data-placement="bottom" title="Informatie">
                                                         <i class="fa fa-fw fa-info-circle"></i>
                                                     </a>
 
                                                     @if ($city->kernwapen_vrij)
-                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 0]) }}">
+                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 0]) }}" data-toggle="tooltip" data-placement="bottom" title="Niet kernwapen vrij">
                                                             <i class="fa fa-fw fa-undo text-warning"></i>
                                                         </a>
                                                     @else
-                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 1]) }}">
+                                                        <a href="{{ route('admin.stadsmonitor.status', ['city' => $city->id, 'status' => 1]) }}" data-toggle="tooltip" data-placement="bottom" title="Kernwapen vrij">
                                                             <i class="fa fa-fw fa-check text-success"></i>
                                                         </a>
                                                     @endif
