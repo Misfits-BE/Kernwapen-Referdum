@@ -42,8 +42,9 @@ class StadsMonitorController extends Controller
     /**
      * StadsMonitorConstructor
      *
-     * @param  ProvinceRepository   $provinceRepository Abstractie laag tussen controller, logica en database
-     * @param  CityRepository       $cityRepository     ABstractie laag tussen controller, logica en database
+     * @param  ProvinceRepository   $provinceRepository     Abstractie laag tussen controller, logica en database
+     * @param  CityRepository       $cityRepository         Abstractie laag tussen controller, logica en database
+     * @param  NotititionsRepoitory $NotitionsRepository    Abstractie laag tussen controller, logica en database
      * @return void
      */
     public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository, NotitionsRepository $notitionRepository)

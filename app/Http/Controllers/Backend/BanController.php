@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Notifications\ActiveUserNotification;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\Traits\ActivityLog;
@@ -36,7 +37,7 @@ class BanController extends Controller
         parent::__construct();
 
         $this->middleware(['auth', 'forbid-banned-user']);
-        $this->userRepository     = $userRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -74,8 +75,13 @@ class BanController extends Controller
             // 2de statement in de IF activeerd de gebruiker terug.
             flash("{$user->name} is terug actief in het systeem.")->success();
 
+            $when = now()->addMinutes(1);
+            $user->notify((new ActiveUserNotification())->delay($when));
+
             $this->userRepository->activateUser($user);
             $this->addActivity($user, "Heeft {$user->name} teruig geactiveerd het systeem.");
+
+
         } else { // De gebruiker is nog actief.
             flash("Helaas! Er is iets misgelopen. :(")->warning();
         }

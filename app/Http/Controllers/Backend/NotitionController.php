@@ -37,7 +37,8 @@ class NotitionController extends Controller
     /**
      * NotitionController constructor
      *
-     * @param  CityRepository $cityRepository The abstractie laag tussen logica, databank en controller.
+     * @param  CityRepository       $cityRepository         Abstractie laag tussen logica, databank en controller.
+     * @param  NotitionsRepository  $NotitionsRepository    Abstractie laag tussen logica, databank en controller.
      * @return void
      */
     public function __construct(CityRepository $cityRepository, NotitionsRepository $notitionRepository)
