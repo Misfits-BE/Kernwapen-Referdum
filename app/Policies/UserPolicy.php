@@ -5,54 +5,26 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Permissie checks voor gebruiker gerelateerde zaken. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     \App\Policies
+ */ 
 class UserPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the model.
+     * Policy om na te kijken of de aangemelde gebruiker niet dezelfde is dan gegeven gebruiker. 
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
+     * @param  \App\User  $user     De gebruikers entiteit vanuit de session.
+     * @param  \App\User  $model    De gebruikers entiteit vanuit de databank. 
+     * @return bool
      */
-    public function view(User $user, User $model)
+    public function sameUser(User $user, User $model): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function update(User $user, User $model)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function delete(User $user, User $model)
-    {
-        //
+        return $user->id === $$model->id;
     }
 }
