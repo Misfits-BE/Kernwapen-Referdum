@@ -44,7 +44,7 @@ class BanController extends Controller
      * Blokkeer een login in het systeem.
      *
      * @param  int $user De gegeven gebruiker in de databank.
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function lock(int $user): RedirectResponse
     {
@@ -63,9 +63,14 @@ class BanController extends Controller
 
     /**
      * Activeer een gebruiker in het systeem.
+     * -------------------------------------------------------------------------
+     * INFO: Het is niet nodig om hier te checken of de gebruiker in kwestie 
+     *       Dezelfde is dan de aangemelde gebruiker. Want de routering is 
+     *       Onbereikbaar voor geblokkeerde gebruikers.
+     * -------------------------------------------------------------------------
      *
      * @param  int $user De gegeven gebruiker in de databank.
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $user): RedirectResponse
     {
