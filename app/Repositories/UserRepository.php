@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\User;
+use App\Notifications\BlockedUserNotification;
 use Cog\Contracts\Ban\Ban;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
@@ -53,7 +54,7 @@ class UserRepository extends Repository
      */
     public function getUser(): User
     {
-        return $this->find(auth()->user()->id, ['name', 'email']);
+        return $this->find(auth()->user()->id);
     }
 
     /**
@@ -104,11 +105,14 @@ class UserRepository extends Repository
      */
     public function lockUser(User $user): Ban
     {
-        $authUser = $this->getUser()->name;
+        $when     = now()->addMinutes(1);
+        $authUser = $this->getUser();
+
+        $user->notify((new BlockedUserNotification($authUser))->delay($when));
 
         return $user->ban([
             'expired_at' => '+2 weeks',
-            'comments'   => "{$user->name} geblokkeerd door {$authUser}"
+            'comments'   => "{$user->name} geblokkeerd door {$authUser->name}"
         ]);
     }
 

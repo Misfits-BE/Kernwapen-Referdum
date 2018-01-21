@@ -36,7 +36,7 @@ class BanController extends Controller
         parent::__construct();
 
         $this->middleware(['auth', 'forbid-banned-user']);
-        $this->userRepository     = $userRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
