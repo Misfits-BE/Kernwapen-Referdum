@@ -59,15 +59,17 @@
                                                             <i class="fa fa-fw fa-cogs"></i>
                                                         </a>
 
-                                                        @if ($user->isNotBanned())
-                                                            <a href="{{ route('admin.users.lock', $user) }}" class="text-danger">
-                                                                <i class="fa fa-fw fa-lock"></i>
-                                                            </a>
-                                                        @elseif ($user->isBanned())
-                                                            <a href="{{ route('admin.users.active', $user) }}" class="text-success">
-                                                                <i class="fa fa-fw fa-unlock"></i>
-                                                            </a>
-                                                        @endif
+                                                        @can('ban', $user)
+                                                            @if ($user->isNotBanned())
+                                                                <a href="{{ route('admin.users.lock', $user) }}" class="text-danger">
+                                                                    <i class="fa fa-fw fa-lock"></i>
+                                                                </a>
+                                                            @elseif ($user->isBanned())
+                                                                <a href="{{ route('admin.users.active', $user) }}" class="text-success">
+                                                                    <i class="fa fa-fw fa-unlock"></i>
+                                                                </a>
+                                                            @endif
+                                                        @endcan
 
                                                         <a href="{{ route('admin.users.delete', $user) }}" class="text-danger">
                                                             <i class="fa fa-fw fa-close"></i>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Gate;
 use App\Notifications\ActiveUserNotification;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
@@ -48,12 +49,16 @@ class BanController extends Controller
     {
         $user = $this->userRepository->findOrFail($user);
 
-        if ($user->isNotBanned() && $this->userRepository->lockUser($user)) {
-            // 2de statement in de IF blokkeerd de gebruiker.
-            flash("{$user->name} is geblokkeerd in the systeem.")->error();
-            $this->addActivity($user, "Heeft {$user->name} geblokkeerd in het systeem");
-        } else { // De gebruiker is al geblokkeerd in het systeem.
-            flash("Helaas! Er is iets misgelopen. :(")->warning();
+        if (Gate::allows('ban', $user)) { // De aangemelde gebruiker is niet dezelfde als de gegevn gebruiker.
+            if ($user->isNotBanned() && $this->userRepository->lockUser($user)) {
+                // 2de statement in de IF blokkeerd de gebruiker.
+                flash("{$user->name} is geblokkeerd in the systeem.")->error();
+                $this->addActivity($user, "Heeft {$user->name} geblokkeerd in het systeem");
+            } else { // De gebruiker is al geblokkeerd in het systeem.
+                flash("Helaas! Er is iets misgelopen. :(")->warning();
+            }
+        } else { // Aangemelde gebruiker is de zelfde als de gegeven gebruuiker. 
+            flash('Er is iets misgelopen! Je kan namelijk jezelf niet blokkeren.')->warning()->important();
         }
 
         return redirect()->route('admin.users.index');
