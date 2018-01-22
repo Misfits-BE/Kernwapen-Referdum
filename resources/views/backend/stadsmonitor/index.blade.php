@@ -72,7 +72,16 @@
 
             <div class="col-md-3">
                 <div class="well well-sm"> {{-- Search function --}}
-                    Zoek functie
+                    <form method="GET" action="">
+                        <div class="input-group">
+                            <input type="text" name="term" class="form-control" placeholder="Zoek een stad">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div> {{-- /Search function --}}
 
                 <div class="panel panel-success"> {{-- Teller voor kernvrije gemeentes --}}
