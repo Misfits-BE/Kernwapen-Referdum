@@ -66,11 +66,11 @@
                                                 <td>{{ $notition->created_at->format('d/m/Y') }}</td>
 
                                                 <td class="text-center"> {{-- Opties --}}
-                                                    <a href="" class="text-muted">
-                                                        <i class="fa fa-fw fa-info-circle"></i>
+                                                    <a href="" class="text-muted" data-toggle="tooltip" data-placement="bottom" title="Wijzig notitie">
+                                                        <i class="fa fa-fw fa-pencil"></i>
                                                     </a> 
 
-                                                    <a href="{{ route('admin.notition.delete', ['notition' => $notition, 'city' => $city]) }}" class="text-danger">
+                                                    <a data-toggle="tooltip" data-placement="bottom" title="Verwijder notitie" href="{{ route('admin.notition.delete', ['notition' => $notition, 'city' => $city]) }}" class="text-danger">
                                                         <i class="fa fa-close fa-fw"></i>
                                                     </a>
                                                 </td> {{-- /EINDE opties --}}
