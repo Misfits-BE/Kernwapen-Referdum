@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group @error('email', 'has-error')">
-                                <label for="email" class="form-control col-md-3">
+                                <label for="email" class="control-label col-md-3">
                                     E-mail adres: <span class="text-danger">*</span>
                                 </label>
 
