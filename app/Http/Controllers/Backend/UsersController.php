@@ -73,6 +73,19 @@ class UsersController extends Controller
     }
 
     /**
+     * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer. 
+     * 
+     * @todo implementatie phpuni)t test (foàrbid-banned-user, 'auth', 'no auth')
+     * 
+     * @param  UserValidator $input De gegeven gebruikers invoer (Gevalideerd).
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(UserValidator $input): RedirectResponse 
+    {
+        //
+    }
+
+    /**
      * Weergave formulier om een gebruiker te wijzigen.
      *
      * @todo implementatie phpunit test
