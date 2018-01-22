@@ -54,9 +54,8 @@ return [
      * Contact information.
      * ---------------------------------------------------------------------------
      *
-     * De nodige configuratie voor het verzenden van het contact formulier.
+     * ['contact_email'] = De nodige configuratie voor het verzenden van het contact formulier.
      *
      */
-    'contact_email' => 'tom@activisme.be',
-
+    'contact_email' => 'info@activisme.be',
 ];
