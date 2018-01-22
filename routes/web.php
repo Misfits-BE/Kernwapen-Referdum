@@ -38,7 +38,7 @@ Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaim
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');
 Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@kernwapenVrij')->name('admin.stadsmonitor.status');
 Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')->name('admin.stadsmonitor.show');
-
+Route::get('/admin/zoek/stad', 'Backend\StadsMonitorController@search')->name('admin.stadsmonitor.search');
 // Stads monitor routes (Frontend)
 Route::get('/stadsmonitor', 'Frontend\StadsMonitorController@index')->name('stadsmonitor.index');
 Route::get('/stadsmonitor/zoek', 'Frontend\StadsMonitorController@search')->name('stadsmonitor.search');

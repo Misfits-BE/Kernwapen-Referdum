@@ -60,6 +60,11 @@
                                             </tr>
                                         @endforeach
                                     @else 
+                                        <tr>
+                                            <td colspan="5">
+                                                <span class="text-muted"><i>(Er zijn geen steden in de stadsmonitor gevonden.)</i></td>
+                                            </td>
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -72,7 +77,7 @@
 
             <div class="col-md-3">
                 <div class="well well-sm"> {{-- Search function --}}
-                    <form method="GET" action="">
+                    <form method="GET" action="{{ route('admin.stadsmonitor.search') }}">
                         <div class="input-group">
                             <input type="text" name="term" class="form-control" placeholder="Zoek een stad">
                             <span class="input-group-btn">

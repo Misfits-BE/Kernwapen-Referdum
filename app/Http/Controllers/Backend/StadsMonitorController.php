@@ -10,6 +10,7 @@ use App\Repositories\ProvinceRepository;
 use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 /**
  * StadsMonitor Controller
@@ -71,6 +72,22 @@ class StadsMonitorController extends Controller
             'cities'             => $this->cityRepository->listCities(15),
             'kernvrijeGemeentes' => $this->cityRepository->count('kernwapen_vrij', 1)
         ]);
+    }
+
+    /**
+     * Zoek een specifieke stad bij naam of postcode in het systeem.
+     * 
+     * @param  Request $input De ruwe invoer van de gebruiker.
+     * @return \Illuminate\View 
+     */
+    public function search(Request $input) 
+    {
+        $input->validate(['term' => 'required']);
+
+        $cities             = $this->cityRepository->searchCities($input->term, 20);
+        $kernvrijeGemeentes = $this->cityRepository->count('kernwapen_vrij', true);
+
+        return view('backend.stadsmonitor.index', compact('cities', 'kernvrijeGemeentes'));
     }
 
     /**
