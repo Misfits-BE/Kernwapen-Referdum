@@ -13,10 +13,10 @@
                     </div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.users.store') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="alert alert-warning alert-important" role="alert">
                                         <strong><i class="fa fa-warning"></i> Info:</strong>
@@ -45,6 +45,10 @@
                                     <input type="email" class="form-control" placeholder="Het E-mail adres van de gebruiker" @input('email')>
                                     @error('email')
                                 </div>
+                            </div>
+
+                            <div class="form-group @error('role')">
+
                             </div>
 
                             <div class="form-group">

@@ -86,7 +86,7 @@ class UsersController extends Controller
         $password = str_random(16);
         $input->merge(['password' => bcrypt($password)]);
 
-        if ($user = $this->userRepository->createUser($input->except('_token'))) {
+        if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
             flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
         }
 

@@ -134,12 +134,14 @@ class UserRepository extends Repository
     /**
      * Slaag een gebruiker op in het systeem. En stuur een email notificatie.
      *
-     * @param  array $input De door de gebruiker gegeven invoer.
+     * @param  array  $input    De door de gebruiker gegeven invoer.
+     * @param  string $role     De naam van de gebruikers rol in de applicatie
      * @return \APp\User
      */
-    public function createUser(array $input): User
+    public function createUser(array $input, string $role): User
     {
         $user = $this->create($input);
+        $user->assignRole($role);
 
         return $user;
     }
