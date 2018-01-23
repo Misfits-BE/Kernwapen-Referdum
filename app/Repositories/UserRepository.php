@@ -136,13 +136,10 @@ class UserRepository extends Repository
      *
      * @param  array  $input    De door de gebruiker gegeven invoer.
      * @param  string $role     De naam van de gebruikers rol in de applicatie
-     * @return \APp\User
+     * @return \Aap\User
      */
     public function createUser(array $input, string $role): User
     {
-        $user = $this->create($input);
-        $user->assignRole($role);
-
-        return $user;
+        return $this->create($input)->assignRole($role);
     }
 }

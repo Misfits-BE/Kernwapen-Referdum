@@ -76,6 +76,8 @@ class UsersController extends Controller
      * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer. 
      * 
      * @todo registratie routering
+     * @todo Implementatie activiteiten logger
+     * @todo Implementatie mail notificatie
      * @todo implementatie phpunit test (forbid-banned-user, 'auth', 'no auth')
      * 
      * @param  UserValidator $input De gegeven gebruikers invoer (Gevalideerd).
@@ -87,6 +89,7 @@ class UsersController extends Controller
         $input->merge(['password' => bcrypt($password)]);
 
         if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
+            
             flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
         }
 

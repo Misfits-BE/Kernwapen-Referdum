@@ -47,8 +47,22 @@
                                 </div>
                             </div>
 
-                            <div class="form-group @error('role')">
+                            <div class="form-group @error('role', 'has-error')">
+                                <label class="control-label col-md-3">
+                                    Gebruikersrol: <span class="text-danger">*</span>
+                                </label>
 
+                                <div class="col-md-9">
+                                    <select @input('role') class="form-control">
+                                        @foreach ($roles as $role) {{-- Loop door de gebruikers rollen --}}
+                                            <option value="{{ $role->id }}" @if ($role->name === old('role')) selected @endif>
+                                                {{ $role->name}}
+                                            </option>
+                                        @endforeach {{-- /// Role --}}
+                                    </select>
+
+                                    @error('role') {{-- Role validation error message --}}
+                                </div>
                             </div>
 
                             <div class="form-group">
