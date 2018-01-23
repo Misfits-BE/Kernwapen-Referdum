@@ -25,7 +25,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" @error('name', 'has-error')>
+                            <div class="form-group @error('name', 'has-error')">
                                 <label for="username" class="control-label col-md-3">
                                     Gebruikersnaam: <span class="text-danger">*</span>
                                 </label>
