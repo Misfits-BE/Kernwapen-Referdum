@@ -126,8 +126,13 @@ class UserRepository extends Repository
     {
         if ($user->unban()) {
             return true;
-        };
+        }
 
         return false;
+    }
+
+    public function createUser(array $input): User
+    {
+        //
     }
 }
