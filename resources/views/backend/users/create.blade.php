@@ -55,8 +55,8 @@
                                 <div class="col-md-9">
                                     <select @input('role') class="form-control">
                                         @foreach ($roles as $role) {{-- Loop door de gebruikers rollen --}}
-                                            <option value="{{ $role->id }}" @if ($role->name === old('role')) selected @endif>
-                                                {{ $role->name}}
+                                            <option value="{{ $role->name }}" @if ($role->name === old('role')) selected @endif>
+                                                {{ ucfirst($role->name) }}
                                             </option>
                                         @endforeach {{-- /// Role --}}
                                     </select>
