@@ -83,7 +83,15 @@ class UsersController extends Controller
      */
     public function store(UserValidator $input): RedirectResponse 
     {
-        //
+        $password = str_random(16);
+        $input->merge(['password' => bcrypt($password)]);
+
+        // TODO: Create repository function ->createUser(<array input>);
+        if ($user = $this->userRepository->createUser($input->except('_token'))) {
+            flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
+        }
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
