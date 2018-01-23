@@ -131,8 +131,16 @@ class UserRepository extends Repository
         return false;
     }
 
+    /**
+     * Slaag een gebruiker op in het systeem. En stuur een email notificatie.
+     *
+     * @param  array $input De door de gebruiker gegeven invoer.
+     * @return \APp\User
+     */
     public function createUser(array $input): User
     {
-        //
+        $user = $this->create($input);
+
+        return $user;
     }
 }

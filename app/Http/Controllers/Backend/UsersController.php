@@ -76,7 +76,7 @@ class UsersController extends Controller
      * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer. 
      * 
      * @todo registratie routering
-     * @todo implementatie phpuni)t test (foàrbid-banned-user, 'auth', 'no auth')
+     * @todo implementatie phpunit test (forbid-banned-user, 'auth', 'no auth')
      * 
      * @param  UserValidator $input De gegeven gebruikers invoer (Gevalideerd).
      * @return \Illuminate\Http\RedirectResponse
@@ -86,7 +86,6 @@ class UsersController extends Controller
         $password = str_random(16);
         $input->merge(['password' => bcrypt($password)]);
 
-        // TODO: Create repository function ->createUser(<array input>);
         if ($user = $this->userRepository->createUser($input->except('_token'))) {
             flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
         }
