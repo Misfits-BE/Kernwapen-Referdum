@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Pagination\Paginator;
 
 /**
  * ActivityLog
@@ -27,5 +28,40 @@ trait ActivityLog
             ->performedOn($model)
             ->causedBy(auth()->user())
             ->log($message);
+    }
+
+    /**
+     * Haal alle gelogde activiteiten in het systeem uit de databank. 
+     * 
+     * @param  string   $type       Het type van de paginatie instantie. 
+     * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina. 
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public function getLogs(string $type, int $perPage): Paginator 
+    {
+        switch ($type) {
+            case 'simple':  return Activity::simplePaginate($perPage);
+            case 'default': return Activity::paginate($perPage);
+            default:        return Activity::paginate($perPage);   
+        }
+    }
+
+    /**
+     * Zoek een specifieke gebruikers log in de databank. 
+     * 
+     * @param  string   $term       De door de gebruiker gegeven term waarop gezocht word.
+     * @param  string   $type       Het type van de paginatie instantie. 
+     * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina.
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public function searchogs(string $term, string $type, int $perPage): Paginator
+    {
+        $query = $this->entity()->where('description', 'LIKE', "%{$term}%");
+
+        switch ($type) {
+            case 'simple':  return $query->simplePaginate($perPage);
+            case 'default': return $query->paginate($perPage); 
+            default:        return $query->paginate($perPage);
+        }
     }
 }

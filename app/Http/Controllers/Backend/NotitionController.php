@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\NotitionValidator;
 use App\Notitions;
 use App\Repositories\CityRepository;
 use App\Repositories\NotitionsRepository;
-use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -22,8 +21,6 @@ use Illuminate\View\View;
  */
 class NotitionController extends Controller
 {
-    use ActivityLog;
-
     /**
      * @var CityRepository $cityRepository
      */

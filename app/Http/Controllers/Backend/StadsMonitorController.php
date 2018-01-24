@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CityRepository;
 use App\Repositories\NotitionsRepository;
 use App\Repositories\ProvinceRepository;
-use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -23,8 +22,6 @@ use Illuminate\Http\Request;
  */
 class StadsMonitorController extends Controller
 {
-    use ActivityLog;
-
     /**
      * @var ProvinceRepository $provinceRepository
      */

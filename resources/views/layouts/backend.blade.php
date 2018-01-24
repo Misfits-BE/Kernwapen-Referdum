@@ -53,6 +53,12 @@
                             <i class="fa fa-list"></i> Organisaties
                         </a>
                     </li>
+
+                    <li @if (request()->is('admin/logs')) class="active" @endif>
+                        <a href="{{ route('admin.logs.index') }}">
+                            <i class="fa fa-list"></i> Logs
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

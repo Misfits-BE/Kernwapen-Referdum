@@ -6,7 +6,6 @@ use Gate;
 use App\Notifications\ActiveUserNotification;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
-use App\Traits\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 
 /**
