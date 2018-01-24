@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\UserValidator;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
+use App\Notifications\CredentialsNotification;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -86,10 +87,13 @@ class UsersController extends Controller
     public function store(UserValidator $input): RedirectResponse 
     {
         $password = str_random(16);
+        $sendAt   = now()->addMinute();
+
         $input->merge(['password' => bcrypt($password)]);
 
         if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
-            
+            $user->notify((new CredentialsNotification($user, $password))->delay($sendAt));
+
             flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
         }
 
