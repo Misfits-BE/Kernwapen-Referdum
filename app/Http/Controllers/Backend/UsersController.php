@@ -10,6 +10,7 @@ use App\Notifications\CredentialsNotification;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Traits\ActivityLog;
 
 /**
  * UsersController
@@ -22,6 +23,8 @@ use Illuminate\View\View;
  */
 class UsersController extends Controller
 {
+    use ActivityLog;
+
     /**
      * @var UserRepository $userRepository
      */
@@ -76,9 +79,6 @@ class UsersController extends Controller
     /**
      * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer. 
      * 
-     * @todo registratie routering
-     * @todo Implementatie activiteiten logger
-     * @todo Implementatie mail notificatie
      * @todo implementatie phpunit test (forbid-banned-user, 'auth', 'no auth')
      * 
      * @param  UserValidator $input De gegeven gebruikers invoer (Gevalideerd).
@@ -93,6 +93,7 @@ class UsersController extends Controller
 
         if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
             $user->notify((new CredentialsNotification($user, $password))->delay($sendAt));
+            $this->addActivity($user, 'Heeft een login aangemaakt in het systeem.');
 
             flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
         }
