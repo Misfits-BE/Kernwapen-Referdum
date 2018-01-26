@@ -5,6 +5,11 @@
 /vendor
 /.idea
 /.vagrant
+/.php_cs.cache
+/issues
+/Vagrantfile 
+/after.sh 
+/aliases
 Homestead.json
 Homestead.yaml
 npm-debug.log

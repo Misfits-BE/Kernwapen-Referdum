@@ -5,16 +5,32 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.2.0",
+        "activismebe/database-layering": "^0.29.0",
+        "activismebe/laravel-form-helpers": "^1.2",
+        "chencha/share": "^5.2",
+        "cybercog/laravel-ban": "^3.0",
+        "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~3.3",
+        "knplabs/github-api": "^2.7",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "league/csv": "^9.1",
+        "php-http/guzzle6-adapter": "^1.1",
+        "spatie/laravel-activitylog": "^2.3",
+        "spatie/laravel-backup": "^5.1",
+        "spatie/laravel-permission": "^2.7",
+        "spatie/laravel-robots-middleware": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
+        "friendsofphp/php-cs-fixer": "^2.9",
         "fzaninotto/faker": "~1.4",
+        "laravel/homestead": "^7.0",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0",
+        "sensiolabs/security-checker": "^4.1"
     },
     "autoload": {
         "classmap": [
@@ -37,6 +53,15 @@
         }
     },
     "scripts": {
+        "check-security": [
+            "vendor/bin/security-checker security:check"
+        ],
+        "fix-cs": [
+            "vendor/bin/php-cs-fixer fix"
+        ],
+        "phpunit": [
+            "vendor/bin/phpunit"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
