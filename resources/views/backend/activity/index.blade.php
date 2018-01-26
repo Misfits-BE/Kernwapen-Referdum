@@ -45,7 +45,7 @@
 
             <div class="col-md-3"> {{-- Sidenav --}}
                 <div class="well well-sm" style="margin-bottom: 0px;"> {{-- Search --}}
-                    <form method="GET" action="">
+                    <form method="GET" action="{{ route('admin.logs.search') }}">
                         <div class="input-group">
                             <input type="text" name="term" placeholder="Zoek een stad" class="form-control">
                             <span class="input-group-btn">

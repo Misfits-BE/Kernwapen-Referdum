@@ -54,9 +54,9 @@ trait ActivityLog
      * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina.
      * @return \Illuminate\Pagination\Paginator
      */
-    public function searchogs(string $term, string $type, int $perPage): Paginator
+    public function searchLogs(string $term, string $type, int $perPage): Paginator
     {
-        $query = $this->entity()->where('description', 'LIKE', "%{$term}%");
+        $query = Activity::where('description', 'LIKE', "%{$term}%");
 
         switch ($type) {
             case 'simple':  return $query->simplePaginate($perPage);

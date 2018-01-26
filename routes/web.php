@@ -36,6 +36,7 @@ Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaim
 
 // Backend activity console routes 
 Route::get('/admin/logs', 'Backend\ActivityController@index')->name('admin.logs.index');
+Route::get('/admin/logs/zoek', 'Backend\ActivityController@search')->name('admin.logs.search');
 
 // Stads monitor routes (Backend)
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');

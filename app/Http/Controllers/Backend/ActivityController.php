@@ -48,7 +48,7 @@ class ActivityController extends Controller
     public function search(ActivitySearchValidator $input): View  
     {
         return view('backend.activity.index', [
-            'activities' => $this->searchLogs($term, 'simple', 20)
+            'activities' => $this->searchLogs($input->term, 'simple', 20)
         ]);
     }
 }
