@@ -142,7 +142,10 @@ class UsersController extends Controller
      */
     public function destroy(int $user): RedirectResponse
     {
-        if ($this->userRepository->deleteUser($user)) {
+        $user = $this->userRepository->findOrFail($user);
+
+        if ($user->delete()) {
+            $this->addActivity($user, 'Heeft een gebruiker verwijderd uit het systeem.');
             flash("De gebruiker is verwijderd uit het systeem.")->success();
         }
 
