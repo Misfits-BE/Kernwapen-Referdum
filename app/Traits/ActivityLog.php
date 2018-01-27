@@ -12,6 +12,7 @@ use Illuminate\Pagination\Paginator;
  *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
+ * @package     \App\Traits
  */
 trait ActivityLog
 {
