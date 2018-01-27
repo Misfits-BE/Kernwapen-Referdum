@@ -39,10 +39,14 @@ trait ActivityLog
      */
     public function getLogs(string $type, int $perPage): Paginator 
     {
+        $activity = Activity::with(['causer' => function($query) {
+            $query->withTrashed();
+        }]);
+
         switch ($type) {
-            case 'simple':  return Activity::simplePaginate($perPage);
-            case 'default': return Activity::paginate($perPage);
-            default:        return Activity::paginate($perPage);   
+            case 'simple':  return $activity->simplePaginate($perPage);
+            case 'default': return $activity->paginate($perPage);
+            default:        return $activity->paginate($perPage);   
         }
     }
 
@@ -56,7 +60,9 @@ trait ActivityLog
      */
     public function searchLogs(string $term, string $type, int $perPage): Paginator
     {
-        $query = Activity::where('description', 'LIKE', "%{$term}%");
+        $query = Activity::with(['causer' => function($query) {
+            $query->withTrashed();
+        }])->where('description', 'LIKE', "%{$term}%");
 
         switch ($type) {
             case 'simple':  return $query->simplePaginate($perPage);
