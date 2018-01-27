@@ -85,7 +85,10 @@ class SupportController extends Controller
      */
     public function destroy(int $organisation): RedirectResponse
     {
-        if ($this->supportRepository->deleteOrganisation($organisation)) {
+        $organisation = $this->supportRepository->findOrFail($organisation);
+
+        if ($organisation->delete()) {
+            $this->addActivity($organisation, 'Heeft een ondersteunende organisatie verwijderd');
             flash('De ondersteunende organisatie is verwijder.')->success();
         }
 
