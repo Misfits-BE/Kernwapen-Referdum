@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\OrganizationValidator;
+use App\Http\Requests\Backend\OrganizationUpdateValidator;
 use App\Repositories\SupportRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -75,6 +76,42 @@ class SupportController extends Controller
         if ($organisation) {
             $this->addActivity($organisation, 'Heeft een ondersteunende organisatie toegevoegd.');
             flash('De ondersteunende organisatie is toegevoegd aan het systeem.')->success();
+        }
+
+        return redirect()->route('admin.support.index');
+    }
+
+    /**
+     * Weergave voor het wijzigen van een ondersteundende organisatie in het systeem. 
+     * 
+     * @todo implementatie phpunit test 
+     * 
+     * @param   int $organisation   The unieke identificatie van de organisatie in het systeem.
+     * @return \Illuminate\View\View
+     */
+    public function edit(int $organisation): View 
+    {
+        return view('backend.support.edit', [
+            'organisation' => $this->supportRepository->findOrFail($organisation)
+        ]);
+    }
+
+    /**
+     * Update de ondersteunende organisatie in de databank. 
+     * 
+     * @todo Implementatie phpunit test 
+     * 
+     * @param  OrganizationUpdateValidator $input           De gegeven gebruikers invoer (gevalideerd). 
+     * @param  int                         $organisation    De unieke identificatie van de organisatie
+     * @return \Illuminate\Http\RedirectResponse 
+     */
+    public function update(OrganizationUpdateValidator $input, int $organisation): RedirectResponse
+    {
+        $organisation = $this->supportRepository->findOrFail($organisation);
+
+        if ($organisation->update($input->except('_token', '_method'))) {
+            $this->addActivity($organisation, 'Heeft een ondersteunende organisatie gewijzigd.');
+            flash('De ondersteunende organisatie is gewijzigd in het systeem.')->success();
         }
 
         return redirect()->route('admin.support.index');

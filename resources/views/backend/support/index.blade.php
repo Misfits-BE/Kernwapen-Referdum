@@ -50,6 +50,10 @@
 
                                             <td> {{-- Options --}}
                                                 <span class="pull-right">
+                                                    <a href="{{ route('admin.support.edit', $organisation) }}" class="text-warning">
+                                                        <i class="fa fa-fw fa-pencil"></i>
+                                                    </a>
+
                                                     <a href="{{ route('admin.support.delete', $organisation) }}" class="text-danger">
                                                         <i class="fa fa-fw fa-close"></i>
                                                     </a>
