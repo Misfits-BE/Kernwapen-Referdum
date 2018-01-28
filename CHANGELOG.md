@@ -11,6 +11,7 @@ All notable changes to `mis` will be documented in this file
 - Fix #71 | Implementatie package attribute
 - Fix #67 | Paginatie instantie translaties. 
 - Fix #65 | Implementatie changelog
+- Fix #69 | Support organisatie -> activiteiten logger store
 - Fix #75 | Button attribute moet vervangen worden door een submit. 
 - Fix #72 | Implementatie class docblocks -> seeders
 
