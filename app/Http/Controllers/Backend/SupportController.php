@@ -70,7 +70,10 @@ class SupportController extends Controller
      */
     public function store(OrganizationValidator $input): RedirectResponse
     {
-        if ($this->supportRepository->createOrganization($input->all())) {
+        $organisation = $this->supportRepository->createOrganization($input->all());
+
+        if ($organisation) {
+            $this->addActivity($organisation, 'Heeft een ondersteunende organisatie toegevoegd.');
             flash('De ondersteunende organisatie is toegevoegd aan het systeem.')->success();
         }
 
