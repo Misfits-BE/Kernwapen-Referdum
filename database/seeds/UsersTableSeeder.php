@@ -5,6 +5,12 @@ use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Database\Seeder;
 
+/**
+ * Database seeder voor de dummy gebruikers en applicatie permissies. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten 
+ */
 class UsersTableSeeder extends Seeder
 {
     /**

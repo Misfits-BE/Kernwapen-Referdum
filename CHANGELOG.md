@@ -12,6 +12,7 @@ All notable changes to `mis` will be documented in this file
 - Fix #67 | Paginatie instantie translaties. 
 - Fix #65 | Implementatie changelog
 - Fix #75 | Button attribute moet vervangen worden door een submit. 
+- Fix #72 | Implementatie class docblocks -> seeders
 
 ## 1.0.0-RC1 - 26-01-2018
 
