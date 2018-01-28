@@ -81,7 +81,7 @@
                         <div class="input-group">
                             <input type="text" name="term" class="form-control" placeholder="Zoek een stad">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button">
+                                <button class="btn btn-success" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
                             </span>
