@@ -17,6 +17,7 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Fix #74 | Implementatie class docs -> requests 
 - Fix #72 | Implementatie class docblocks -> seeders
 - Fix #77 | Methode voor het zoeken van een ondersteunende organisatie.
+- Fix #79 | Fix errors in Continous Integration Tests
 - Fix #80 | Implementatie PurgeCSS
 
 ## 1.0.0-RC1 - 26-01-2018
