@@ -13,7 +13,8 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Fix #65 | Implementatie changelog
 - Fix #69 | Support organisatie -> activiteiten logger store
 - Fix #70 | Systeem on een ondersteunende organisatie te wijzigen.
-- Fix #75 | Button attribute moet vervangen worden door een submit. 
+- Fix #75 | Button attribute moet vervangen worden door een submit.
+- Fix #74 | Implementatie class docs -> requests 
 - Fix #72 | Implementatie class docblocks -> seeders
 
 ## 1.0.0-RC1 - 26-01-2018
