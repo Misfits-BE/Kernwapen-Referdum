@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `mis` will be documented in this file
+All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in this file
 
 ## 1.0.0-RC2 - 29-01-2018
 
