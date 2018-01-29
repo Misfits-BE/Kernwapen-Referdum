@@ -50,6 +50,11 @@ class SupportController extends Controller
         ]);
     }
 
+    public function search() 
+    {
+        
+    }
+
     /**
      * Creatie weergave voor een nieuwe organisatie.
      *
