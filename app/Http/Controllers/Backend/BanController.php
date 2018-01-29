@@ -19,7 +19,6 @@ use Illuminate\Http\RedirectResponse;
  */
 class BanController extends Controller
 {
-    use ActivityLog;
 
     /** @var \App\Repositories\UserRepository $userRepository */
     private $userRepository;

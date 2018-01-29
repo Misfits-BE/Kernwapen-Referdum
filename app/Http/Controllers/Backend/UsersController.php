@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\UserValidator;
 use App\Repositories\RoleRepository;
@@ -89,10 +90,9 @@ class UsersController extends Controller
         $password = str_random(16);
         $sendAt   = now()->addMinute();
 
-        $input->merge(['password' => bcrypt($password)]);
+        $input->merge(['password' => $password]);
 
-        if ($user = $this->userRepository->create($input->all())) {
-            $user->assignRole($input->role);
+        if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
             $user->notify((new CredentialsNotification($user, $password))->delay($sendAt));
             $this->addActivity($user, 'Heeft een login aangemaakt in het systeem.');
 
