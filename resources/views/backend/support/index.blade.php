@@ -12,10 +12,10 @@
                         <i class="fa fa-list"></i> Ondersteunende organisaties
 
                         <div class="pull-right">
-                            @if (count($organizations) > 0)
-                                <a href="#" class="btn btn-link btn-xs">
+                            @if (count($organizations) > 10)
+                                <button type="button" data-toggle="modal" data-target="#searchOrganisation" class="btn btn-link btn-xs">
                                     <i class="fa fa-search"></i> Organisatie zoeken
-                                </a>
+                                </button>
                             @endif
 
                             <a href="{{ route('admin.support.create') }}" class="btn btn-link btn-xs">
@@ -78,4 +78,6 @@
             </div>
         </div>
     </div>
+
+    @include('backend.support.search')
 @endsection

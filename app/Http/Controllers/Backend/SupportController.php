@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\OrganizationValidator;
 use App\Http\Requests\Backend\OrganizationUpdateValidator;
+use App\Http\Requests\Backend\SearchValidator;
 use App\Repositories\SupportRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -50,9 +51,20 @@ class SupportController extends Controller
         ]);
     }
 
-    public function search() 
+    /**
+     * Zoek voor een speicifieke ondersteunende organisatie. 
+     * 
+     * @todo Implementatie IF/ELSE wanneer er meer dan 12 organisaties zijn. (view) 
+     * @todo Implement phpunit test (auth, no auth, forbid-banned-user)
+     * 
+     * @param  SearchValidator $input De gegeven gebruikersinvoer (Gevalideerd)
+     * @return \Illuminate\View\View
+     */
+    public function search(SearchValidator $input): View 
     {
-        
+        return view('backend.support.index', [
+            'organizations' => $this->supportRepository->searchOrganization($input->term, 15)
+        ]);
     }
 
     /**
