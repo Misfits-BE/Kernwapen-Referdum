@@ -16,10 +16,10 @@ use Illuminate\Http\RedirectResponse;
  *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
+ * @package     \App\Http\Controllers\Backend
  */
 class BanController extends Controller
 {
-    use ActivityLog;
 
     /** @var \App\Repositories\UserRepository $userRepository */
     private $userRepository;
