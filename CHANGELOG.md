@@ -18,6 +18,7 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Fix #72 | Implementatie class docblocks -> seeders
 - Fix #77 | Methode voor het zoeken van een ondersteunende organisatie.
 - Fix #80 | Implementatie PurgeCSS
+- Fix #82 | Bug in zoek formulier v/d activiteiten logger.
 
 ## 1.0.0-RC1 - 26-01-2018
 
