@@ -42,6 +42,9 @@ class ActivityController extends Controller
      * 
      * @todo Implement phpunit (auth, no auth)
      * 
+     * @todo Refactor ActivitySearchValidator to the Search validator.
+     *       Because multiple system have a search and te term is always called 'term'. 
+     * 
      * @param  ActivitySearchValidator $input De gegeven gebruiker invoer. (Gevalideerd)
      * @return \Illuminate\View\View
      */

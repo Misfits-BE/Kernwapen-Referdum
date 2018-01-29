@@ -4,6 +4,13 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * AccountInfoValidator 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten 
+ * @package     App\Http\Requests\Auth
+ */
 class AccountInfoValidator extends FormRequest
 {
     /**
@@ -16,7 +23,7 @@ class AccountInfoValidator extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check();
     }
@@ -26,7 +33,7 @@ class AccountInfoValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name'  => 'required|string|max:255',

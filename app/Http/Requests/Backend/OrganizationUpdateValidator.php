@@ -5,20 +5,20 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * BugValidator 
+ * Backend validator class voor het updaten van een ondersteunende organisatie. 
  * 
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     \App\Http\Requests\Backend
  */
-class BugValidator extends FormRequest
+class OrganizationUpdateValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check();
     }
@@ -28,12 +28,14 @@ class BugValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'titel'         => 'required|max:100',
-            'label'         => 'required|max:60',
-            'beschrijving'  => 'required',
+            'link'                      => 'required|max:255',
+            'name'                      => 'required|max:255',
+            'verantwoordelijke_naam'    => 'required|max:255',
+            'verantwoordelijke_email'   => 'required|email',
+            'telefoon_nr'               => 'required|max:255',
         ];
     }
 }

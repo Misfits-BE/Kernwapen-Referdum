@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRoles, Bannable;
+    use Notifiable, HasRoles, Bannable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

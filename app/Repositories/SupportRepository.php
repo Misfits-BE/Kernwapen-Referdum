@@ -40,7 +40,7 @@ class SupportRepository extends Repository
      *
      * @param  int      $perPage    Het aantal resultaten per pagina.
      * @param  string   $type       Het type van de paginatie die nodig is.
-     * @return Paginator
+     * @return \Illuminate\Pagination\Paginator
      */
     public function paginateOrgs(int $perPage, string $type): Paginator
     {
@@ -73,5 +73,17 @@ class SupportRepository extends Repository
     public function deleteOrganisation(int $organisatie): bool
     {
         return $this->delete($organisatie);
+    }
+
+    /**
+     * Zoek voor een specifieke ondersteunende organisatie in de databank. 
+     * 
+     * @param  string   $term       De gegeven zoek term door de gebruiker
+     * @param  int      $perPage    Het aantal resultaten per pagina.
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public function searchOrganization(string $term, int $perPage): Paginator
+    {
+        return $this->entity()->where('name', 'LIKE', "%{$term}%")->simplePaginate(15);
     }
 }

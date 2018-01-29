@@ -5,20 +5,20 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * BugValidator 
+ * Validatie voor de zoek opdrachten in de databank. 
  * 
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten
+ * @copyright   2018 TIm Joosten
  * @package     \App\Http\Requests\Backend
  */
-class BugValidator extends FormRequest
+class SearchValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check();
     }
@@ -28,12 +28,8 @@ class BugValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            'titel'         => 'required|max:100',
-            'label'         => 'required|max:60',
-            'beschrijving'  => 'required',
-        ];
+        return ['term' => 'max:120|required'];
     }
 }

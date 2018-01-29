@@ -65,8 +65,11 @@ Route::get('/ondersteuning', 'Frontend\SupportController@index')->name('support.
 // Support routes (backend)
 Route::get('/admin/ondersteuning', 'Backend\SupportController@index')->name('admin.support.index');
 Route::get('/admin/ondersteuning/create', 'Backend\SupportController@create')->name('admin.support.create');
+Route::get('/admin/ondersteuning/wijzig/{id}', 'Backend\SupportController@edit')->name('admin.support.edit');
 Route::get('/admin/ondersteuning/verwijder/{id}', 'Backend\SupportController@destroy')->name('admin.support.delete');
+Route::get('/admin/ondersteuning/zoek', 'Backend\SupportController@search')->name('admin.support.search');
 Route::post('/admin/ondersteuning/opslaan', 'Backend\SupportController@store')->name('admin.support.store');
+Route::patch('/admin/ondersteuning/wijzig/{id}', 'Backend\SupportController@update')->name('admin.support.update');
 
 // Notition routes
 Route::get('/admin/notities/nieuw/{city}', 'Backend\NotitionController@create')->name('admin.notition.create');

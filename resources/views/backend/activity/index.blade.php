@@ -47,9 +47,9 @@
                 <div class="well well-sm" style="margin-bottom: 0px;"> {{-- Search --}}
                     <form method="GET" action="{{ route('admin.logs.search') }}">
                         <div class="input-group">
-                            <input type="text" name="term" placeholder="Zoek een stad" class="form-control">
+                            <input type="text" @input('term') placeholder="Zoek een stad" class="form-control">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-success">
+                                <button type="submit" class="btn btn-success">
                                     <i aria-hidden="true" class="fa fa-search"></i>
                                 </button>
                             </span>
