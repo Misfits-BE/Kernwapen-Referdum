@@ -91,7 +91,8 @@ class UsersController extends Controller
 
         $input->merge(['password' => bcrypt($password)]);
 
-        if ($user = $this->userRepository->createUser($input->except('_token', 'role'), $input->role)) {
+        if ($user = $this->userRepository->create($input->all())) {
+            $user->assignRole($input->role);
             $user->notify((new CredentialsNotification($user, $password))->delay($sendAt));
             $this->addActivity($user, 'Heeft een login aangemaakt in het systeem.');
 
