@@ -50,11 +50,19 @@
 
                                             <td> {{-- Options --}}
                                                 <span class="pull-right">
+<<<<<<< HEAD
                                                     <a href="{{ route('admin.support.edit', $organisation) }}" class="text-warning">
                                                         <i class="fa fa-fw fa-pencil"></i>
                                                     </a>
 
                                                     <a href="{{ route('admin.support.delete', $organisation) }}" class="text-danger">
+=======
+                                                    <a href="{{ route('admin.support.edit', $organisation) }}" class="text-warning" data-toggle="tooltip" data-placement="bottom" title="Wijzig">
+                                                        <i class="fa fa-fw fa-pencil"></i>
+                                                    </a>
+
+                                                    <a href="{{ route('admin.support.delete', $organisation) }}" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
+>>>>>>> 1.0.0-RC3
                                                         <i class="fa fa-fw fa-close"></i>
                                                     </a>
                                                 </span>
