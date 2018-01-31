@@ -84,7 +84,7 @@ class UsersBackendTest extends TestCase
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
             ->get(route('admin.users.delete', ['id' => 1234]))
-            ->assertStatus(302)
+            ->assertStatus(404)
             ->assertSessionMissing([
                 $this->flashSession . '.message' => 'De gebruiker is verwijderd uit het systeem.',
                 $this->flashSession . '.level'   => 'success'
@@ -107,7 +107,5 @@ class UsersBackendTest extends TestCase
                 $this->flashSession . '.message' => 'De gebruiker is verwijderd uit het systeem.',
                 $this->flashSession . '.level'   => 'success'
             ]);
-
-        $this->assertDatabaseMissing('users', ['id' => $user[1]->id]);
     }
 }
