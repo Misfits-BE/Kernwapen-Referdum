@@ -2,6 +2,10 @@
 
 All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in this file
 
+## 1.0.0-RC3 - 12-01-2018
+
+- Fix bug in password key generation. (accidently double hashing)
+
 ## 1.0.0-RC2 - 29-01-2018
 
 - Fix key length bug in oudere MySQL versies. 
