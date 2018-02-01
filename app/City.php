@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Steden model voor de databank. 
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     \App
+ */
 class City extends Model
 {
     /**

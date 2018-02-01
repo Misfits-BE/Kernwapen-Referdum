@@ -4,6 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Databank model voor de handtekeningen in het systeem. 
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten 
+ * @package     \App 
+ */
 class Signature extends Model
 {
     /**

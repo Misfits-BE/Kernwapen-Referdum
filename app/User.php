@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Databank model voor de logins in de applicatie. 
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten 
+ * @package     \App 
+ */
 class User extends Authenticatable implements BannableContract
 {
     use Notifiable, HasRoles, Bannable, SoftDeletes;
