@@ -9,6 +9,7 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Bij het intrekken van de detaun omtrent kernwapen vrije gemeente wordt er een notitie aangemaakt.
 - Implementatie missende docblock. (Stadsmonitor front-end show).
 - Refactoring RunTimeException naar een default paginatie. 
+- Fix #73 | Global auth user variable.
 - Fix #90 | Implementatie class doc blocks -> models
 - Fix #95 | Implementatie nunomaduro/collision package.
 
