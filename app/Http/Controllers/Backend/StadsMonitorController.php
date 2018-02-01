@@ -100,6 +100,7 @@ class StadsMonitorController extends Controller
 
         if ($city->update(['kernwapen_vrij' => $status])) {
             $this->addActivity($city, 'Heeft de stad ' . $city->name . ' zijn status gewijzigd.');
+            $this->notitionRepository->notitionKernvrij($status, $city->id);
 
             flash($this->cityRepository->determineFlashSession($status, $city))->info();
         }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\Notitions;
+use App\City;
 
 /**
  * Class NotitionsRepository
@@ -37,5 +38,31 @@ class NotitionsRepository extends Repository
         $notition->beschrijving = $input->beschrijving;
 
         return $notition;
+    }
+
+    /**
+     * Implementatie van een notitie wanneer een gemeente kernwapen vrij of niet word verklaard. 
+     * 
+     * @param  bool $kernwapenVrij  De status indicator. TRUE = kernwapen vrij, FALSE = niet kpernwapen vrij
+     * @param  int  $city           De unieke identificatie waarde van de stad in de databank. 
+     * @return void 
+     */
+    public function notitionKernvrij(bool $kernwapenVrij, int $city): void
+    {
+        $city     = City::findOrFail($city);
+
+        $notition            = new Notitions;  
+        $notition->author_id = auth()->user()->id; 
+        $notition->status    = 0; // Indicator voor een publieke notitie. 
+
+        if ($kernwapenVrij) { 
+            $notition->titel        = 'Heeft zich kernwapen vrij verklaard. ';
+            $notition->beschrijving = $city . ' heeft zich kernwapen vrij verklaard.';
+        } else {
+            $notition->titel        = 'Heeft zijn steun als kernwapen vrije gemeente ingetrokken.';
+            $notition->beschrijving = $city . ' heeft zijn steun als kernwapen vrije gemeente ingetrokken.';
+        }   
+
+        $city->notitions()->save($notition);
     }
 }

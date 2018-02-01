@@ -5,6 +5,8 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 ## 1.0.0-RC3 - 12-01-2018
 
 - Fix bug in password key generation. (accidently double hashing)
+- Bij het verklaren van een kernwapen vrije gemeente word er nu ook een notitie aangemaakt.
+- Bij het intrekken van de detaun omtrent kernwapen vrije gemeente wordt er een notitie aangemaakt.
 
 ## 1.0.0-RC2 - 29-01-2018
 
