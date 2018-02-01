@@ -65,6 +65,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (! auth()->guest())
+                        <li>
+                            <a href="">
+                                <span class="fa fa-bell-o"></span>
+                            </a>
+                        </li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-user"></i> {{ auth()->user()->name }} <span class="caret"></span>
