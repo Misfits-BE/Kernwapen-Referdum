@@ -5,6 +5,7 @@ namespace App\Repositories;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\City;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class CityRepository
@@ -99,4 +100,27 @@ class CityRepository extends Repository
     {
         return $this->entity()->where('name', $city)->firstOrFail();
     }
+
+    /**
+     * Check of een gegeven stad genoeg handtekeningen heeft voor spreek recht.
+     * 
+     * @param  int $postal De postcode van de gegeven stad
+     * @return bool 
+     */
+    public function hasSpreakRight(int $postal): bool 
+    {
+        try {
+            $city = City::where('postal', $postal)->firstOrFail(); 
+
+            if ($city->signatures()->count() === config('platform.amount_speakRight')) {
+                return true; // TRUE omdat een stad de nodige handtekeningen heeft voor het spreekrecht. 
+            }
+
+            // FALSE omdat de gegeven gemeente al het aantal heeft bereikt 
+            // of nog geen nodige handtekeningen heeft.
+            return false;
+        } catch (ModelNotFoundException $exception) {
+            return false; // FALSE wegens ongeldige postcode
+        }
+    } 
 }

@@ -26,6 +26,17 @@ class CreateCitiesTable extends Migration
             // Foreign keys 
             $table->foreign('province_id')->references('id')->on('provinces');
         });
+
+        Schema::create('city_signature', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('city_id')->unsigned(); 
+            $table->integer('signature_id')->unsigned();
+            $table->timestamps(); 
+
+            // Foreign keys
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('signature_id')->references('id')->on('signatures')->onDelete('cascade');
+        });
     }
 
     /**
@@ -35,6 +46,9 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cities');
+        Schema::dropIfExists('city_signature');
+        Schema::enableForeignKeyConstraints();
     }
 }
