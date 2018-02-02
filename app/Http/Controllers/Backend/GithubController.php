@@ -57,7 +57,7 @@ class GithubController extends Controller
     }
 
     /**
-     * Opslag van het formulie in de GitHub Issue tracker.
+     * Opslag van het formulier in de GitHub Issue tracker.
      *
      * NOTE: Hier voorde functie is geen test nodig. WOrd al in de package gedaan.
      * We testen niet met de volgende redenen. Credentails komen openbaar in CI en

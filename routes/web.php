@@ -28,6 +28,11 @@ Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name(
 Route::get('/contact', 'Frontend\ContactController@index')->name('contact.index');
 Route::post('/contact/verzend', 'Frontend\ContactController@send')->name('contact.send');
 
+// Notification routes 
+Route::get('/admin/notificaties', 'Backend\NotificationController@index')->name('notifications.index');
+Route::get('/admin/notificaties/alles-gelezen', 'Backend\NotificationController@markAll')->name('notifications.markall');
+Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@markOne')->name('notifications.markOne');
+
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 

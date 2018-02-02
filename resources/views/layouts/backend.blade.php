@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -38,7 +39,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li @if (Request::is('admin/stadsmonitor*')) class="active" @endif>
+                    <li @if (request()->is('admin/stadsmonitor*')) class="active" @endif>
                         <a href="{{ route('admin.stadsmonitor.index') }}">
                             <i class="fa fa-home"></i> Stadsmonitor
                         </a>
@@ -66,14 +67,20 @@
                     <!-- Authentication Links -->
                     @if (! auth()->guest())
                         <li>
-                            <a href="">
+                            <a href="{{ route('notifications.index') }}">
                                 <span class="fa fa-bell-o"></span>
+                        
+                                @if ($user->unreadNotifications->count() > 0) {{-- Er is meer dan een notificatie in het systeem. --}} 
+                                    <span class="label label-info">
+                                        {{ $user->unreadNotifications()->count() }}
+                                    </span>
+                                @endif
                             </a>
                         </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-user"></i> {{ auth()->user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user"></i> {{ $user->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -89,9 +96,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fa fa-fw fa-power-off text-danger"></i> Afmelden
                                     </a>
 

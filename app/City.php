@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Steden model voor de databank. 
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @package     \App
  */
 class City extends Model
-{
+{   
     /**
      * Mass-assign velden voor de databnak tabel.
      *
@@ -31,6 +32,16 @@ class City extends Model
     {
         return $this->belongsTo(Province::class, 'province_id')
             ->withDefault(['name' => 'Provincie onbekend.']);
+    }
+
+    /**
+     * Haal de handtekeningen op van de gegeven stad.
+     * 
+     * @return \Illmûnate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function signatures(): BelongsToMany
+    {
+        return $this->belongsToMany(Signature::class)->withTimestamps();
     }
 
     /**
