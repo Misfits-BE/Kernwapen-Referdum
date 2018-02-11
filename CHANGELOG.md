@@ -13,6 +13,7 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Fix #73 | Global auth user variable.
 - Fix #90 | Implementatie class doc blocks -> models
 - Fix #95 | Implementatie nunomaduro/collision package.
+- Fix #37 | Implement google analytics
 
 ## 1.0.0-RC2 - 29-01-2018
 
