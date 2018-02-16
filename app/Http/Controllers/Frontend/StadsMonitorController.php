@@ -65,9 +65,9 @@ class StadsMonitorController extends Controller
         return view('frontend.stadsmonitor.index', compact('counter', 'cities'));
     }
 
-    /** 
-     * Displsay een specifiekoe stad inj de stads monitor. 
-     * 
+    /**
+     * Displsay een specifiekoe stad inj de stads monitor.
+     *
      * @return View
      */
     public function show(string $city): View

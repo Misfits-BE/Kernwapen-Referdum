@@ -4,18 +4,18 @@ namespace App;
 
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Databank model voor de logins in de applicatie. 
- * 
+ * Databank model voor de logins in de applicatie.
+ *
  * @author      Tim Joosten <tim@ctivisme.be>
- * @copyright   2018 Tim Joosten 
- * @package     \App 
+ * @copyright   2018 Tim Joosten
+ * @package     \App
  */
 class User extends Authenticatable implements BannableContract
 {

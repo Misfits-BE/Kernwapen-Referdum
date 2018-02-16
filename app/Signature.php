@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Databank model voor de handtekeningen in het systeem. 
- * 
+ * Databank model voor de handtekeningen in het systeem.
+ *
  * @author      Tim Joosten <tim@ctivisme.be>
- * @copyright   2018 Tim Joosten 
- * @package     \App 
+ * @copyright   2018 Tim Joosten
+ * @package     \App
  */
 class Signature extends Model
 {
@@ -29,8 +29,8 @@ class Signature extends Model
     protected $dates = ['geboortedatum', 'created_at', 'updated_at'];
 
     /**
-     * Data relatie voor het koppelen van de handtekening aan de stad. 
-     * 
+     * Data relatie voor het koppelen van de handtekening aan de stad.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function city(): BelongsToMany

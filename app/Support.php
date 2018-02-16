@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Databank model voor de ondersteunende organisaties. 
- * 
+ * Databank model voor de ondersteunende organisaties.
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
- * @package     \App 
+ * @copyright   2018 Tim Joosten
+ * @package     \App
  */
 class Support extends Model
 {

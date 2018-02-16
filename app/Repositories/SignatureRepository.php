@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Signature;
-use App\City;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
+use App\City;
+use App\Signature;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -36,11 +36,12 @@ class SignatureRepository extends Repository
             try { // Om de postcode te vinden in de databank.
                 $city = City::where('postal', $input['postcode'])->firstOrFail();
                 $signature->city()->attach($city->id);
-            } 
+            }
             
             // lege exception omdat we niet hoeven te doen wanneer de postcode niet word gevonden.
-            catch (ModelNotFoundException $exception) { } 
-        }  
+            catch (ModelNotFoundException $exception) {
+            }
+        }
 
         return $signature;
     }

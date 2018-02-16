@@ -6,10 +6,10 @@ use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
- * Authorzitie checkvooor gebruikers handelingen in de applicatie. 
- * 
+ * Authorzitie checkvooor gebruikers handelingen in de applicatie.
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright    Tim Joo sten 
+ * @copyright    Tim Joo sten
  * @package      App\Policies
  */
 class UserPolicy
@@ -19,8 +19,8 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\User  $user     De authenticatie entiteit van de aangemelde gebruiker. 
-     * @param  \App\User  $model    De databank entiteit van de gegeven gebruiker. 
+     * @param  \App\User  $user     De authenticatie entiteit van de aangemelde gebruiker.
+     * @param  \App\User  $model    De databank entiteit van de gegeven gebruiker.
      * @return bool
      */
     public function ban(User $user, User $model): bool

@@ -3,10 +3,10 @@
 use Illuminate\Database\Seeder;
 
 /**
- * De hoofd class voor de database seeds. 
- * 
+ * De hoofd class voor de database seeds.
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  */
 class DatabaseSeeder extends Seeder
 {

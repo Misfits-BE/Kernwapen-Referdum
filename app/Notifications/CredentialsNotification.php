@@ -3,13 +3,13 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 /**
  * Notificatie voor het gegenereerde wachtwoord bij de gebruiker in kwestie te krijgen
- * 
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     \App\Notifications
@@ -19,15 +19,15 @@ class CredentialsNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Het gegenereerde wachtwoord voor de gebruiker. 
-     * 
+     * Het gegenereerde wachtwoord voor de gebruiker.
+     *
      * @var string
      */
-    public $user; 
+    public $user;
 
     /**
-     * De databank entiteit van de aangemaakte gebruiker. 
-     * 
+     * De databank entiteit van de aangemaakte gebruiker.
+     *
      * @return \App\User
      */
     public $password;

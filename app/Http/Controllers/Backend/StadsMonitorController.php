@@ -8,8 +8,8 @@ use App\Repositories\CityRepository;
 use App\Repositories\NotitionsRepository;
 use App\Repositories\ProvinceRepository;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 /**
  * StadsMonitor Controller
@@ -73,11 +73,11 @@ class StadsMonitorController extends Controller
 
     /**
      * Zoek een specifieke stad bij naam of postcode in het systeem.
-     * 
+     *
      * @param  Request $input De ruwe invoer van de gebruiker.
-     * @return \Illuminate\View 
+     * @return \Illuminate\View
      */
-    public function search(Request $input) 
+    public function search(Request $input)
     {
         $input->validate(['term' => 'required']);
 
@@ -121,7 +121,7 @@ class StadsMonitorController extends Controller
     public function update(City $city): RedirectResponse
     {
         if ($city->update($input->all())) {
-            flash()->success("{$city->name} is aangepast in het systeem.");
+            flash()->success(trans('flash.city-monitor.update', ['name' => $city->name]));
         }
 
         return redirect()->route('admin->stadsmonitor.index');

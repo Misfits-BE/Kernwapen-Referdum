@@ -5,10 +5,10 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * NotitionValidator 
- * 
+ * NotitionValidator
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  * @package     \App\Http\Requests\Backend
  */
 class NotitionValidator extends FormRequest
