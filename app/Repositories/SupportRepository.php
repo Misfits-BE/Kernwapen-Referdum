@@ -74,8 +74,8 @@ class SupportRepository extends Repository
     }
 
     /**
-     * Zoek voor een specifieke ondersteunende organisatie in de databank. 
-     * 
+     * Zoek voor een specifieke ondersteunende organisatie in de databank.
+     *
      * @param  string   $term       De gegeven zoek term door de gebruiker
      * @param  int      $perPage    Het aantal resultaten per pagina.
      * @return \Illuminate\Pagination\Paginator

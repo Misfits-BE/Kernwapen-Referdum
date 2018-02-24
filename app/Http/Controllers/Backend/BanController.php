@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Gate;
-use App\Notifications\ActiveUserNotification;
 use App\Http\Controllers\Controller;
+use App\Notifications\ActiveUserNotification;
 use App\Repositories\UserRepository;
+use Gate;
 use Illuminate\Http\RedirectResponse;
 
 /**
@@ -50,13 +50,13 @@ class BanController extends Controller
         if (Gate::allows('ban', $user)) { // De aangemelde gebruiker is niet dezelfde als de gegevn gebruiker.
             if ($user->isNotBanned() && $this->userRepository->lockUser($user)) {
                 // 2de statement in de IF blokkeerd de gebruiker.
-                flash("{$user->name} is geblokkeerd in the systeem.")->error();
+                flash(trans('flash.ban.user-blocked', ['name' => $user->name]))->error();
                 $this->addActivity($user, "Heeft {$user->name} geblokkeerd in het systeem");
             } else { // De gebruiker is al geblokkeerd in het systeem.
-                flash("Helaas! Er is iets misgelopen. :(")->warning();
+                flash(trans('flash.ban.error'))->warning();
             }
-        } else { // Aangemelde gebruiker is de zelfde als de gegeven gebruuiker. 
-            flash('Er is iets misgelopen! Je kan namelijk jezelf niet blokkeren.')->warning()->important();
+        } else { // Aangemelde gebruiker is de zelfde als de gegeven gebruuiker.
+            flash(trans('flash.ban.block-yourself'))->warning()->important();
         }
 
         return redirect()->route('admin.users.index');
@@ -65,8 +65,8 @@ class BanController extends Controller
     /**
      * Activeer een gebruiker in het systeem.
      * -------------------------------------------------------------------------
-     * INFO: Het is niet nodig om hier te checken of de gebruiker in kwestie 
-     *       Dezelfde is dan de aangemelde gebruiker. Want de routering is 
+     * INFO: Het is niet nodig om hier te checken of de gebruiker in kwestie
+     *       Dezelfde is dan de aangemelde gebruiker. Want de routering is
      *       Onbereikbaar voor geblokkeerde gebruikers.
      * -------------------------------------------------------------------------
      *
@@ -79,17 +79,15 @@ class BanController extends Controller
 
         if ($user->isBanned()) {
             // 2de statement in de IF activeerd de gebruiker terug.
-            flash("{$user->name} is terug actief in het systeem.")->success();
+            flash(trans('flash.ban.user-unban', ['name' => $user->name]))->success();
 
             $when = now()->addMinutes(1);
             $user->notify((new ActiveUserNotification())->delay($when));
 
             $this->userRepository->activateUser($user);
             $this->addActivity($user, "Heeft {$user->name} teruig geactiveerd het systeem.");
-
-
         } else { // De gebruiker is nog actief.
-            flash("Helaas! Er is iets misgelopen. :(")->warning();
+            flash(trans('flash.ban.error'))->warning();
         }
 
         return redirect()->route('admin.users.index');

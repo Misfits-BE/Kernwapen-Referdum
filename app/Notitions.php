@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Notitie model voor de steden in de databank. 
- * 
+ * Notitie model voor de steden in de databank.
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
- * @package     \App  
+ * @copyright   2018 Tim Joosten
+ * @package     \App
  */
 class Notitions extends Model
 {

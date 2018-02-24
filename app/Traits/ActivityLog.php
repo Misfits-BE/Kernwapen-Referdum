@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use Spatie\Activitylog\Models\Activity;
 use Illuminate\Pagination\Paginator;
+use Spatie\Activitylog\Models\Activity;
 
 /**
  * ActivityLog
@@ -32,42 +32,42 @@ trait ActivityLog
     }
 
     /**
-     * Haal alle gelogde activiteiten in het systeem uit de databank. 
-     * 
-     * @param  string   $type       Het type van de paginatie instantie. 
-     * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina. 
+     * Haal alle gelogde activiteiten in het systeem uit de databank.
+     *
+     * @param  string   $type       Het type van de paginatie instantie.
+     * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina.
      * @return \Illuminate\Pagination\Paginator
      */
-    public function getLogs(string $type, int $perPage): Paginator 
+    public function getLogs(string $type, int $perPage): Paginator
     {
-        $activity = Activity::with(['causer' => function($query) {
+        $activity = Activity::with(['causer' => function ($query) {
             $query->withTrashed();
         }]);
 
         switch ($type) {
             case 'simple':  return $activity->simplePaginate($perPage);
             case 'default': return $activity->paginate($perPage);
-            default:        return $activity->paginate($perPage);   
+            default:        return $activity->paginate($perPage);
         }
     }
 
     /**
-     * Zoek een specifieke gebruikers log in de databank. 
-     * 
+     * Zoek een specifieke gebruikers log in de databank.
+     *
      * @param  string   $term       De door de gebruiker gegeven term waarop gezocht word.
-     * @param  string   $type       Het type van de paginatie instantie. 
+     * @param  string   $type       Het type van de paginatie instantie.
      * @param  int      $perPage    Het aantal logs dat men wilt weergeven per pagina.
      * @return \Illuminate\Pagination\Paginator
      */
     public function searchLogs(string $term, string $type, int $perPage): Paginator
     {
-        $query = Activity::with(['causer' => function($query) {
+        $query = Activity::with(['causer' => function ($query) {
             $query->withTrashed();
         }])->where('description', 'LIKE', "%{$term}%");
 
         switch ($type) {
             case 'simple':  return $query->simplePaginate($perPage);
-            case 'default': return $query->paginate($perPage); 
+            case 'default': return $query->paginate($perPage);
             default:        return $query->paginate($perPage);
         }
     }

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shared\SignatureValidator;
+use App\Repositories\CityRepository;
+use App\Repositories\NotificationRepository;
 use App\Repositories\SignatureRepository;
 use Illuminate\Http\RedirectResponse;
-use App\Repositories\NotificationRepository;
-use App\Repositories\CityRepository;
 
 /**
  * SignatureController
@@ -17,20 +17,20 @@ use App\Repositories\CityRepository;
  */
 class SignatureController extends Controller
 {
-    /** @var \App\Repositories\SignatureRepository $signatureRepository */ 
+    /** @var \App\Repositories\SignatureRepository $signatureRepository */
     private $signatureRepository;
 
     /** @var \App\Repositories\NotificationRepository $notificationRepository */
-    private $notificationRepository; 
+    private $notificationRepository;
 
     /** @var \App\Repositories\CityRepository $cityRepository */
     private $cityRepository;
 
     /**
      * SignatureController constructor.
-     * 
-     * @param  NotificationRepository   $notitionsRepository Abstractie laag tussen controller en model. 
-     * @param  CityRepository           $cityRepository      Abstractie laag tussen controller en model. 
+     *
+     * @param  NotificationRepository   $notitionsRepository Abstractie laag tussen controller en model.
+     * @param  CityRepository           $cityRepository      Abstractie laag tussen controller en model.
      * @param  SignatureRepository      $signatureRepository Abstractie laag tussen controller en model.
      * @return void
      */
@@ -39,16 +39,16 @@ class SignatureController extends Controller
         parent::__construct();
 
         $this->signatureRepository    = $signatureRepository;
-        $this->notificationRepository = $notificationRepository; 
-        $this->cityRepository         = $cityRepository; 
+        $this->notificationRepository = $notificationRepository;
+        $this->cityRepository         = $cityRepository;
     }
 
     /**
      * Slaag een handtekening op in het systeem.
      *
-     * @todo Implementatie notificatie wanneer een stad de limiet voor spreekrecht bereikt. 
+     * @todo Implementatie notificatie wanneer een stad de limiet voor spreekrecht bereikt.
      * @todo Als gemeeente het aantal voor spreekrecht bereikt moet er een notificatie gestuurd worden.
-     * 
+     *
      * @param  SignatureValidator $input De gegeven gebruiker invoer. (Gevalideerd)
      * @return \Illuminate\Http\RedirectResponse
      */

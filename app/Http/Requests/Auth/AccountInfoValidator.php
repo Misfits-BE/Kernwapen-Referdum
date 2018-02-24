@@ -5,10 +5,10 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * AccountInfoValidator 
- * 
+ * AccountInfoValidator
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  * @package     App\Http\Requests\Auth
  */
 class AccountInfoValidator extends FormRequest

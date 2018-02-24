@@ -22,7 +22,7 @@ class CreateNotitionsTable extends Migration
             $table->text('beschrijving');
             $table->timestamps();
 
-            // Foreign keys 
+            // Foreign keys
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('city_id') ->references('id')->on('cities') ->onDelete('cascade');
         });

@@ -3,17 +3,16 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class SpeakRightNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
-     * Database instance from the city. 
-     * 
+     * Database instance from the city.
+     *
      * @var \App\City $city
      */
     public $city;
@@ -21,7 +20,7 @@ class SpeakRightNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @param  \App\City $city De instantie variable voor de stad. 
+     * @param  \App\City $city De instantie variable voor de stad.
      * @return void
      */
     public function __construct($city)
@@ -44,15 +43,15 @@ class SpeakRightNotification extends Notification implements ShouldQueue
      * Get the array representation of the notification.
      *
      * @todo Fill in the notification
-     * 
+     *
      * @param  mixed  $notifiable
      * @return array
      */
     public function toDatabase($notifiable): array
     {
         return [
-            'message' => 'De gemeente ' . $this->city->name . ' heeft genoeg handtekeningen verzameld.', 
-            'url'     => route('admin.stadsmonitor.show', ['city' => $this->city->id])            
+            'message' => 'De gemeente ' . $this->city->name . ' heeft genoeg handtekeningen verzameld.',
+            'url'     => route('admin.stadsmonitor.show', ['city' => $this->city->id])
         ];
     }
 }

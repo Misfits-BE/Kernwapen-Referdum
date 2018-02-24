@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
-use App\User;
 use App\Notifications\BlockedUserNotification;
+use App\User;
 use Cog\Contracts\Ban\Ban;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;

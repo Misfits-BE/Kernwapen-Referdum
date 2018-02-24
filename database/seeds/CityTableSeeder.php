@@ -8,9 +8,9 @@ use League\Csv\Statement;
 
 /**
  * Database seeder voor de gemeentes in belgie
- * 
+ *
  * @author      Tim Joosteb <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  */
 class CityTableSeeder extends Seeder
 {
