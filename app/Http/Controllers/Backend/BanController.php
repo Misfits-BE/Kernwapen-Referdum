@@ -85,7 +85,7 @@ class BanController extends Controller
             $user->notify((new ActiveUserNotification())->delay($when));
 
             $this->userRepository->activateUser($user);
-            $this->addActivity($user, "Heeft {$user->name} teruig geactiveerd het systeem.");
+            $this->addActivity($user, "Heeft {$user->name} terug geactiveerd het systeem.");
         } else { // De gebruiker is nog actief.
             flash(trans('flash.ban.error'))->warning();
         }

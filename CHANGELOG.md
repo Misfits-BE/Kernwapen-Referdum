@@ -16,6 +16,7 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 - Fix #37 | Implement google analytics
 - Fix #91 | Translate controller flash messages.
 - Fix #97 | Inweven van de handtekeningen per stad. In de stadsmonitor. 
+- Fix #99 | Fix typo in the activity log 
 
 ## 1.0.0-RC2 - 29-01-2018
 
