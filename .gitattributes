@@ -6,3 +6,4 @@
 codecov.yml
 CHANGELOG.md        export-ignore
 CONTRIBUTING.md     export-ignore
+.editorconfig       export-ignore
