@@ -77,6 +77,8 @@ class BanTest extends TestCase
      */
     public function unbanSuccess(): void
     {
+        Mail::fake();
+
         $users    = factory(User::class, 2)->create();
         $username = $users[1]->name;
 
