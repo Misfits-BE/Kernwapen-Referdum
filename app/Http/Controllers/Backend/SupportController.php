@@ -81,7 +81,6 @@ class SupportController extends Controller
      * Sla de ondersteunende organisatie op in de databanK.
      *
      * @todo Translatie flash message
-     * @todo Implement activity logger.
      *
      * @param  OrganizationValidator $input De door de gebruiker gegeven invoer (Gevalideerd).
      * @return RedirectResponse
