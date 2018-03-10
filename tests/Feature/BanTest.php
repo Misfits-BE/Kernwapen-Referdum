@@ -45,7 +45,7 @@ class BanTest extends TestCase
             ->get(route('admin.users.lock', $user[1]))
             ->assertStatus(302)
             ->assertSessionHas([
-                $this->flashSession . '.message' => "{$username} is geblokkeerd in the systeem.",
+                $this->flashSession . '.message' => trans('flash.ban.user-blocked', ['name' => $user[1]->name]),
                 $this->flashSession . '.level'   => 'danger'
             ]);
     }
