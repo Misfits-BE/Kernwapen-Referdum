@@ -78,7 +78,7 @@ class NotitionBackendTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.stadsmonitor.show', $city))
             ->assertSessionHas([
-                $this->flashSession . '.message' => "De notitie voor de stad '{$city->name}' is toegevoegd.",
+                $this->flashSession . '.message' => trans('flash.notitons.store', ['name' => $city->name]),
                 $this->flashSession . '.level'   => 'success',
             ]);
 
@@ -168,7 +168,7 @@ class NotitionBackendTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.stadsmonitor.show', $city))
             ->assertSessionHas([
-                $this->flashSession . '.message' => "De notitie is verwijderd.",
+                $this->flashSession . '.message' => trans('flash.notition.delete'),
                 $this->flashSession . '.level'   => 'success'
             ]);
 

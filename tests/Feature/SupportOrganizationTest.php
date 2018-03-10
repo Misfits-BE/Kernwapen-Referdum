@@ -111,7 +111,7 @@ class SupportOrganizationTest extends TestCase
             ->assertAuthenticatedAs($user)
             ->get(route('admin.support.delete', $organisation))
             ->assertSessionHas([
-                $this->flashSession . '.message' => 'De ondersteunende organisatie is verwijder.',
+                $this->flashSession . '.message' => trans('flash.support.delete'),
                 $this->flashSession . '.level'   => 'success'
             ]);
 

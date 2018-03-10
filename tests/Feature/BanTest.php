@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -37,6 +38,8 @@ class BanTest extends TestCase
      */
     public function banSuccess(): void
     {
+        Mail::fake(); 
+
         $user = factory(User::class, 2)->create();
         $username = $user[1]->name;
 
@@ -45,7 +48,7 @@ class BanTest extends TestCase
             ->get(route('admin.users.lock', $user[1]))
             ->assertStatus(302)
             ->assertSessionHas([
-                $this->flashSession . '.message' => "{$username} is geblokkeerd in the systeem.",
+                $this->flashSession . '.message' => trans('flash.ban.user-blocked', ['name' => $user[1]->name]),
                 $this->flashSession . '.level'   => 'danger'
             ]);
     }
@@ -74,6 +77,8 @@ class BanTest extends TestCase
      */
     public function unbanSuccess(): void
     {
+        Mail::fake();
+
         $users    = factory(User::class, 2)->create();
         $username = $users[1]->name;
 
