@@ -6,6 +6,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class Ban Test
+ * ----
+ * Testsuite for banning user and revoke the bans. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be> 
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class BanTest extends TestCase
 {
     use RefreshDatabase;

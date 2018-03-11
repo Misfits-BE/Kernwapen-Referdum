@@ -7,6 +7,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class SupportOrganizationTest
+ * ---- 
+ * Tests for the organization support system in the application. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class SupportOrganizationTest extends TestCase
 {
     use RefreshDatabase;

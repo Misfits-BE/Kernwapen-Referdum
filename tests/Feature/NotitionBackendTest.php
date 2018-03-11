@@ -8,6 +8,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class NotitionBackendTest 
+ * ---- 
+ * Test the notitions for the city monitor in the application 
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class NotitionBackendTest extends TestCase
 {
     use RefreshDatabase;

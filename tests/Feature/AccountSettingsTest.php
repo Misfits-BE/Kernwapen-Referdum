@@ -6,6 +6,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class AccountSettingsTests 
+ * ---- 
+ * Testsuite for the account settings. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class AccountSettingsTest extends TestCase
 {
     use RefreshDatabase;
