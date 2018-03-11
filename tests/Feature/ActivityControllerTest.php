@@ -30,6 +30,10 @@ class ActivityControllerTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
+    /**
+     * @test 
+     * @testdox Test if a uauthenticated user can view the log page without problems.
+     */
     public function indexSuccess()
     {
         $user = factory(User::class)->create();
