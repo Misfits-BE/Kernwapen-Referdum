@@ -87,6 +87,7 @@ return [
     'unique'               => ':attribute is al in gebruik.',
     'uploaded'             => 'Het uploaden van :attribute is mislukt.',
     'url'                  => ':attribute is geen geldige URL.',
+    'pwned'                => 'Je wachtwoord is een combinatie dat te vaak voorkomt in datalekken.',
 
     /*
     |--------------------------------------------------------------------------

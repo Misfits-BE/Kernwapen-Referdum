@@ -128,7 +128,7 @@ class AccountSettingsTest extends TestCase
     public function updateBeveiligingMetSuccess(): void
     {
         $user  = factory(User::class)->create();
-        $input = ['password' => '123456789!', 'password_confirmation' => '123456789!'];
+        $input = ['password' => 'iMaPassword1224!', 'password_confirmation' => 'iMaPassword1224!'];
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
@@ -138,5 +138,19 @@ class AccountSettingsTest extends TestCase
                 $this->flashSession . '.message' => trans('user.flash-update-security'),
                 $this->flashSession . '.level'   => 'success'
             ]);
+    }
+
+    /**
+     * @test
+     * @testdox Test de validatie regel die de HIBP database nakijkt op de combinatie.
+     */
+    public function haveIBeenPwnedValidation(): void 
+    {
+        $user  = factory(User::class)->create(); 
+        $input = ['password' => 'root1234', 'password_confirmation' => 'root1234']; 
+
+        $this->actingAs($user)
+            ->patch(route('account.settings.security'), $input)
+            ->assertSessionHasErrors(['password' => trans('validation.pwned')]);
     }
 }
