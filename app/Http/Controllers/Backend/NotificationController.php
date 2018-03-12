@@ -51,7 +51,7 @@ class NotificationController extends Controller
     public function markAll(): RedirectResponse
     {
         $this->notifications->markAllAsRead();
-        flash(flash('flash.notifications.mark-all'))->success()->important();
+        flash(trans('flash.notifications.mark-all'))->success()->important();
 
         return redirect()->route('notifications.index');
     }
