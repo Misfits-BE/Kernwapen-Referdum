@@ -48,13 +48,13 @@
                             <tr>
                                 <td><strong>{{ $apikey->service }}</strong></td>
                                 <td><code>{{ $apikey->key }}</code></td>
-                                <td>{{ $apikey->last_used_at }}</td>
+                                <td>{{ readableDifference($apikey->last_used_at) }}</td>
 
                                 <td> {{-- Options --}}
                                     {{-- //TODO: Implement tooltips --}}
                                     <span class="pull-right">
                                         <a class="text-muted">
-                                            <i class="fa fa-fw fa-refresh"></i>
+                                            <i class="fa fa-fw fa-refresh"></i> 
                                         </a>
 
                                         <a class="text-danger" href="">
