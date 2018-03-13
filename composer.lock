@@ -2037,16 +2037,16 @@
         },
         {
             "name": "misfits/api-guard",
-            "version": "4.3.2",
+            "version": "4.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Misfits-BE/api-guard.git",
-                "reference": "a79fe57aed5574cddd29d61b51dd0ca2cba85074"
+                "reference": "c92907205688b710d6dc54d0aab22f99acc5a8cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Misfits-BE/api-guard/zipball/a79fe57aed5574cddd29d61b51dd0ca2cba85074",
-                "reference": "a79fe57aed5574cddd29d61b51dd0ca2cba85074",
+                "url": "https://api.github.com/repos/Misfits-BE/api-guard/zipball/c92907205688b710d6dc54d0aab22f99acc5a8cc",
+                "reference": "c92907205688b710d6dc54d0aab22f99acc5a8cc",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2096,7 @@
                 "laravel",
                 "rest"
             ],
-            "time": "2018-03-13 14:40:23"
+            "time": "2018-03-13 16:11:29"
         },
         {
             "name": "monolog/monolog",

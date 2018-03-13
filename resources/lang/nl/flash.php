@@ -52,5 +52,9 @@ return [
 
     'contact' => [
         'send' => 'We hebben je email verzonden, en nemen spoedig contact met je op.',
-    ]
+    ],
+
+    'apikeys' => [
+        'store' => 'De API token voor de service :service is opgeslagen in het systeem.'
+    ],
 ];

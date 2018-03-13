@@ -31,7 +31,7 @@
                         @include('auth.settings.account-security')
                     </div>
 
-                    <div class="tab-pane fade in @if (Request::is('admin/account/instelllingen/tokens')) active @endif" id="tokens" role="tabpanel">
+                    <div class="tab-pane fade in @if (Request::is('admin/account/instellingen/tokens')) active @endif" id="tokens" role="tabpanel">
                         @include('auth.settings.account-tokens')
                     </div>
                 </div>
