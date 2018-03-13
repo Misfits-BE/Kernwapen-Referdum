@@ -51,13 +51,12 @@
                                 <td>{{ readableDifference($apikey->last_used_at) }}</td>
 
                                 <td> {{-- Options --}}
-                                    {{-- //TODO: Implement tooltips --}}
                                     <span class="pull-right">
-                                        <a class="text-muted">
+                                        <a class="text-muted" href="" data-toggle="tooltip" data-placement="bottom" title="Ververs">
                                             <i class="fa fa-fw fa-refresh"></i> 
                                         </a>
 
-                                        <a class="text-danger" href="">
+                                        <a class="text-danger" href="" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
                                             <i class="fa fa-fw fa-trash"></i>
                                         </a>
                                     </span>
