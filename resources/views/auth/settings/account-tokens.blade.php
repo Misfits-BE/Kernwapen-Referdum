@@ -56,7 +56,7 @@
                                             <i class="fa fa-fw fa-refresh"></i> 
                                         </a>
 
-                                        <a class="text-danger" href="" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
+                                        <a class="text-danger" href="{{ route('admin.apikey.delete', $apikey) }}" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
                                             <i class="fa fa-fw fa-trash"></i>
                                         </a>
                                     </span>

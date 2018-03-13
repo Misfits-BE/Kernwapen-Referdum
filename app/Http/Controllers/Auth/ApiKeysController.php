@@ -40,7 +40,6 @@ class ApiKeysController extends Controller
      * Opslag an een nieuwe apikey in de database. 
      * 
      * @todo Implementatie phpunit tests
-     * @todo Implementatie flash message.
      * 
      * @param  ApiKeyValidator  $input  The validatie class voor de gebruikers gegeven invoer. 
      * @return RedirectResponse
@@ -50,10 +49,45 @@ class ApiKeysController extends Controller
         $savedKey = $this->apikeyRepository->storeKey($input); 
 
         if ($savedKey) {
-            $this->addActivity($savedKey, 'Heeft een API key gegenereerd');
+            $this->addActivity($savedKey, "Heeft een API key gegenereerd voor de service {$savedKey->service}");
             flash(trans('flash.apikeys.store', ['service' => $input->service]))->success()->important();
         }
 
+        return redirect()->route('account.settings', ['type' => 'tokens']);
+    }
+
+    /**
+     * Verwijder een api token uit de databank. 
+     * 
+     * @todo Implementatie phpunit tests
+     * 
+     * @param  int $apiKey De unieke identificatie van de api token 
+     * @return RedirectResponse
+     */
+    public function destroy(int $apiKey): RedirectResponse 
+    {
+        $apiKey = $this->apikeyRepository->findOrFail($apiKey);
+
+        if ($apiKey->delete()) {
+            $this->addActivity($apiKey, "Heeft een API sleutel voor de service {$apiKey->service} verwijderd.");
+            flash(trans('flash.apikeys.delete', ['service' => $apiKey->service]))->info()->important();
+        }
+
+        return redirect()->route('account.settings', ['type' => 'tokens']);
+    }
+
+    /**
+     * Genereer een nieuwe token voor bestaande service. 
+     * 
+     * @param  int $apiKey De unieke identificatie van de api token. 
+     * @return RedirectResponse
+     */
+    public function regenerate(int $apiKey): RedirectResponse 
+    {
+        if () {
+             
+        }
+        
         return redirect()->route('account.settings', ['type' => 'tokens']);
     }
 }
