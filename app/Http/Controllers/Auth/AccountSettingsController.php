@@ -45,7 +45,10 @@ class AccountSettingsController extends Controller
      */
     public function index(): View
     {
-        return view('auth.account-settings', ['user' => $this->userRepository->getUser()]);
+        $user    = $this->userRepository->getUser();
+        $apiKeys = $user->apiKeys()->simplePaginate(10);
+
+        return view('auth.account-settings', compact('user', 'apiKeys'));
     }
 
     /**
