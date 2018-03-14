@@ -10,12 +10,12 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Backend\ApiKeyValidator;
 
 /**
- * Class ApikeysController 
+ * Class ApikeysController
  * ----
- * Controller voor het beheer van API keys in the systeem. 
- * 
+ * Controller voor het beheer van API keys in the systeem.
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  * @package     App\Http\Controllers\Auth
  */
 class ApiKeysController extends Controller
@@ -23,11 +23,11 @@ class ApiKeysController extends Controller
     /**
      * @var ApiKeyRepository $apikeyRepository
      */
-    private $apikeyRepository; 
+    private $apikeyRepository;
 
     /**
-     * ApiKeysController constructor 
-     * 
+     * ApiKeysController constructor
+     *
      * @param  ApiKeyRepository $apikeyRepository DB wrapper voor het beheer van de tokens in de database.
      * @return void
      */
@@ -37,17 +37,17 @@ class ApiKeysController extends Controller
         $this->apikeyRepository = $apikeyRepository;
     }
 
-    /** 
-     * Opslag an een nieuwe apikey in de database. 
-     * 
+    /**
+     * Opslag an een nieuwe apikey in de database.
+     *
      * @todo Implementatie phpunit tests
-     * 
-     * @param  ApiKeyValidator  $input  The validatie class voor de gebruikers gegeven invoer. 
+     *
+     * @param  ApiKeyValidator  $input  The validatie class voor de gebruikers gegeven invoer.
      * @return RedirectResponse
      */
-    public function store(ApiKeyValidator $input): RedirectResponse 
+    public function store(ApiKeyValidator $input): RedirectResponse
     {
-        $savedKey = $this->apikeyRepository->storeKey($input); 
+        $savedKey = $this->apikeyRepository->storeKey($input);
 
         if ($savedKey) {
             $this->addActivity($savedKey, "Heeft een API key gegenereerd voor de service {$savedKey->service}");
@@ -58,15 +58,14 @@ class ApiKeysController extends Controller
     }
 
     /**
-     * Verwijder een api token uit de databank. 
-     * 
-     * @todo Implementatie authorization gates.
+     * Verwijder een api token uit de databank.
+     *
      * @todo Implementatie phpunit tests
-     * 
-     * @param  int $apiKey De unieke identificatie van de api token 
+     *
+     * @param  int $apiKey De unieke identificatie van de api token
      * @return RedirectResponse
      */
-    public function destroy(int $apiKey): RedirectResponse 
+    public function destroy(int $apiKey): RedirectResponse
     {
         $apiKey = $this->apikeyRepository->findOrFail($apiKey);
 
@@ -80,24 +79,24 @@ class ApiKeysController extends Controller
     }
 
     /**
-     * Genereer een nieuwe token voor bestaande service. 
-     * 
-     * @todo Implementatie authorization gates
+     * Genereer een nieuwe token voor bestaande service.
+     *
      * @todo Implementatie phpunit tests
-     * 
-     * @param  int $apiKey De unieke identificatie van de api token. 
+     * @todo Implementatie flash session key.
+     *
+     * @param  int $apiKey De unieke identificatie van de api token.
      * @return RedirectResponse
      */
-    public function regenerate(int $apiKey): RedirectResponse 
+    public function regenerate(int $apiKey): RedirectResponse
     {
         $apiKey   = $this->apikeyRepository->find($apiKey);
         $newToken = $this->apikeyRepository->generateNewToken();
 
-        // TODO: Register authorization
         if (Gate::allows('regenerate-token', $apiKey) && $apiKey->update(['key' => $newToken])) {
+            $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKet->service}")
             flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->success();
         }
-        
+
         return redirect()->route('account.settings', ['type' => 'tokens']);
     }
 }
