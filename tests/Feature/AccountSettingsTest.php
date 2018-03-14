@@ -114,6 +114,7 @@ class AccountSettingsTest extends TestCase
 
     /**
      * @test
+     * @testdox Test de validatie fouten wanneer een gebruiker het formulier foutief invult.
      */
     public function updateBeveilingValidatieFouten(): void
     {
@@ -133,6 +134,7 @@ class AccountSettingsTest extends TestCase
 
     /**
      * @test
+     * @testdox test of de gebruiker zijn account beveiliging kan wijzigen zonder problemen. 
      */
     public function updateBeveiligingMetSuccess(): void
     {
