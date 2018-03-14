@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Gate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ApiKeyRepository;
@@ -59,6 +60,7 @@ class ApiKeysController extends Controller
     /**
      * Verwijder een api token uit de databank. 
      * 
+     * @todo Implementatie authorization gates.
      * @todo Implementatie phpunit tests
      * 
      * @param  int $apiKey De unieke identificatie van de api token 
@@ -68,7 +70,8 @@ class ApiKeysController extends Controller
     {
         $apiKey = $this->apikeyRepository->findOrFail($apiKey);
 
-        if ($apiKey->delete()) {
+        // TODO: Register authorization
+        if (gate::allows('delete-token', $apiKey) && $apiKey->delete()) {
             $this->addActivity($apiKey, "Heeft een API sleutel voor de service {$apiKey->service} verwijderd.");
             flash(trans('flash.apikeys.delete', ['service' => $apiKey->service]))->info()->important();
         }
@@ -79,13 +82,20 @@ class ApiKeysController extends Controller
     /**
      * Genereer een nieuwe token voor bestaande service. 
      * 
+     * @todo Implementatie authorization gates
+     * @todo Implementatie phpunit tests
+     * 
      * @param  int $apiKey De unieke identificatie van de api token. 
      * @return RedirectResponse
      */
     public function regenerate(int $apiKey): RedirectResponse 
     {
-        if () {
-             
+        $apiKey   = $this->apikeyRepository->find($apiKey);
+        $newToken = $this->apikeyRepository->generateNewToken();
+
+        // TODO: Register authorization
+        if (Gate::allows('regenerate-token', $apiKey) && $apiKey->update(['key' => $newToken])) {
+            flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->success();
         }
         
         return redirect()->route('account.settings', ['type' => 'tokens']);
