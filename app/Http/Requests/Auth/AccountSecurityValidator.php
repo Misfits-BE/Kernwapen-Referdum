@@ -35,7 +35,7 @@ class AccountSecurityValidator extends FormRequest
      */
     public function rules(): array
     {
-        return ['password' => 'required|string|min:6|confirmed'];
+        return ['password' => 'required|string|pwned|min:6|confirmed'];
     }
 
     /**
@@ -44,8 +44,7 @@ class AccountSecurityValidator extends FormRequest
     protected function getRedirectUrl()
     {
         return $this->redirector->getUrlgenerator()->route(
-            $this->redirectRoute,
-            ['type' => 'beveiliging']
+            $this->redirectRoute, ['type' => 'beveiliging']
         );
     }
 }
