@@ -104,15 +104,16 @@ class UsersController extends Controller
     /**
      * Weergave formulier om een gebruiker te wijzigen.
      *
-     * @todo implementatie phpunit test
      * @todo uitwerken van een view.
      *
-     * @param  User $user De unieke gebruikers waarde in de databank
+     * @param  int $user De unieke gebruikers waarde in de databank
      * @return View
      */
-    public function edit(User $user): View
+    public function edit(int $user): View
     {
-        return view('', compact('user'));
+        return view('backend.users.edit', [
+            'user' => $this->userRepository->findOrFail($user),
+        ]);
     }
 
     /**
@@ -120,6 +121,7 @@ class UsersController extends Controller
      *
      * @todo Implementatie routering
      * @todo uitwerken phpunit test
+     * @todo Koppelen aan de weergave§
      *
      * @param  User          $user  De gebruiker in de databank.
      * @param  UserValidator $input De door de gebruiker gebruiker gegeven invoer.

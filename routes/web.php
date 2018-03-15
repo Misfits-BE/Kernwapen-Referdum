@@ -56,6 +56,7 @@ Route::get('/stadsmonitor/{name}', 'Frontend\StadsMonitorController@show')->name
 
 // User management routes
 Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');
+Route::get('/admin/wijzig/{id}', 'Backend\UsersController@edit')->name('admin.users.edit');
 Route::get('/admin/gebruikers/nieuw', 'Backend\UsersController@create')->name('admin.users.create');
 Route::get('/admin/gebruikers/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
 Route::post('/admin/gebruikers/creatie', 'Backend\UsersController@store')->name('admin.users.store');
