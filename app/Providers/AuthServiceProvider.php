@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\User;
 use Misfits\ApiGuard\Models\ApiKey;
-use App\Policies\{UserPolicy, ApiKeyPolicy};
+use App\Policies\{UserPolicy, ApiTokenPolicy};
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

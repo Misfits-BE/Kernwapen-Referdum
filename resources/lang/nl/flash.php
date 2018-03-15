@@ -55,7 +55,8 @@ return [
     ],
 
     'apikeys' => [
-        'store'  => 'De API token voor de service :service is opgeslagen in het systeem.',
-        'delete' => 'De API token voor de service :service is verwijderd in het systeem',
+        'store'         => 'De API token voor de service :service is opgeslagen in het systeem.',
+        'delete'        => 'De API token voor de service :service is verwijderd in het systeem',
+        'regenerate'    => 'De API token voor de servive :service is ververst',
     ],
 ];

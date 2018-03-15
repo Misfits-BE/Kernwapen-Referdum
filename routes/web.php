@@ -83,4 +83,5 @@ Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store'
 
 // API key routes 
 Route::post('/admin/api-token-opslaan', 'Auth\ApiKeysController@store')->name('admin.apikey.store');
+Route::get('/admin/api/regenerate/{id}', 'Auth\ApiKeysController@regenerate')->name('admin.apikey.regenerate');
 Route::get('/admin/api/verwijder/{id}', 'Auth\ApiKeysController@destroy')->name('admin.apikey.delete');

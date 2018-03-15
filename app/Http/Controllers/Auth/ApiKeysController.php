@@ -40,8 +40,6 @@ class ApiKeysController extends Controller
     /**
      * Opslag an een nieuwe apikey in de database.
      *
-     * @todo Implementatie phpunit tests
-     *
      * @param  ApiKeyValidator  $input  The validatie class voor de gebruikers gegeven invoer.
      * @return RedirectResponse
      */
@@ -60,8 +58,6 @@ class ApiKeysController extends Controller
     /**
      * Verwijder een api token uit de databank.
      *
-     * @todo Implementatie phpunit tests
-     *
      * @param  int $apiKey De unieke identificatie van de api token
      * @return RedirectResponse
      */
@@ -69,8 +65,7 @@ class ApiKeysController extends Controller
     {
         $apiKey = $this->apikeyRepository->findOrFail($apiKey);
 
-        // TODO: Register authorization
-        if (gate::allows('delete-token', $apiKey) && $apiKey->delete()) {
+        if (Gate::allows('delete-token', $apiKey) && $apiKey->delete()) {
             $this->addActivity($apiKey, "Heeft een API sleutel voor de service {$apiKey->service} verwijderd.");
             flash(trans('flash.apikeys.delete', ['service' => $apiKey->service]))->info()->important();
         }
@@ -81,19 +76,19 @@ class ApiKeysController extends Controller
     /**
      * Genereer een nieuwe token voor bestaande service.
      *
-     * @todo Implementatie phpunit tests
-     * @todo Implementatie flash session key.
+     *!  @todo Implementatie phpunit tests
+     * @todo Connect to view 
      *
      * @param  int $apiKey De unieke identificatie van de api token.
      * @return RedirectResponse
      */
     public function regenerate(int $apiKey): RedirectResponse
     {
-        $apiKey   = $this->apikeyRepository->find($apiKey);
+        $apiKey   = $this->apikeyRepository->findOrFail($apiKey);
         $newToken = $this->apikeyRepository->generateNewToken();
 
         if (Gate::allows('regenerate-token', $apiKey) && $apiKey->update(['key' => $newToken])) {
-            $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKet->service}");
+            $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKey->service}");
             flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->success();
         }
 
