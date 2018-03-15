@@ -104,7 +104,7 @@ class UsersController extends Controller
     /**
      * Weergave formulier om een gebruiker te wijzigen.
      *
-     * @todo uitwerken van een view.
+     * @todo Implementatie phpunit
      *
      * @param  int $user De unieke gebruikers waarde in de databank
      * @return View
@@ -112,7 +112,8 @@ class UsersController extends Controller
     public function edit(int $user): View
     {
         return view('backend.users.edit', [
-            'user' => $this->userRepository->findOrFail($user),
+            'user'  => $this->userRepository->findOrFail($user),
+            'roles' => $this->roleRepository->listRoles(['id', 'name'])
         ]);
     }
 

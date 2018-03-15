@@ -44,6 +44,6 @@ class RoleRepository extends Repository
      */
     public function listRoles(array $fields)
     {
-        return $this->all($fields);
+        return $this->entity()->where('name', '!=', 'api')->get($fields);
     }
 }
