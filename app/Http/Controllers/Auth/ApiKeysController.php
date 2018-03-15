@@ -75,7 +75,6 @@ class ApiKeysController extends Controller
     /**
      * Genereer een nieuwe token voor bestaande service.
      *
-     *!  @todo Implementatie phpunit tests
      * @todo Connect to view
      *
      * @param  int $apiKey De unieke identificatie van de api token.
@@ -88,7 +87,7 @@ class ApiKeysController extends Controller
 
         if (Gate::allows('regenerate-token', $apiKey) && $apiKey->update(['key' => $newToken])) {
             $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKey->service}");
-            flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->success();
+            flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->important();
         }
 
         return redirect()->route('account.settings', ['type' => 'tokens']);

@@ -60,15 +60,19 @@ class ApiKeyTest extends TestCase
             return true;
         });
 
+        $this->assertDatabaseHas('api_keys', ['key' => $token->key]);
+
         $this->actingAs($user)
-            ->get(route('admin.apikey.regenerate', $token->id))
+            ->get(route('admin.apikey.regenerate', $token))
             ->assertStatus(302)
             ->assertRedirect(route('account.settings', ['type' => 'tokens']))
             ->assertSessionHas([
-                $this->flashSession . '.message'   => trans('flash.apikeys.regenerate', ['service' => $input['service']]),
-                $this->flashSession . '.level'     => 'success',
+                $this->flashSession . '.message'   => trans('flash.apikeys.regenerate', ['service' => $token->service]),
+                $this->flashSession . '.level'     => 'info',
                 $this->flashSession . '.important' => true,
             ]);
+
+        $this->assertDatabaseMissing('api_keys', ['key' => $token->key]);
     }
 
     /**

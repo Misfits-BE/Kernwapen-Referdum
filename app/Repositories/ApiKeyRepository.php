@@ -39,4 +39,14 @@ class ApiKeyRepository extends Repository
             return $apiKey;
         }
     }
+
+    /**
+     * Generate a new API token.
+     * 
+     * @return string
+     */
+    public function generateNewToken(): string 
+    {
+        return ApiKey::generateKey();
+    }    
 }
