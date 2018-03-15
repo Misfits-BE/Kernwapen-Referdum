@@ -93,7 +93,7 @@ class ApiKeysController extends Controller
         $newToken = $this->apikeyRepository->generateNewToken();
 
         if (Gate::allows('regenerate-token', $apiKey) && $apiKey->update(['key' => $newToken])) {
-            $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKet->service}")
+            $this->addActivity($apiKey, "Heeft een nieuwe API sleutel gegenereerd voor de service {$apiKet->service}");
             flash(trans('flash.apikeys.regenerate', ['service' => $apiKey->service]))->info()->success();
         }
 
