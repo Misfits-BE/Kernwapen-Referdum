@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Collection;
+use App\User;
 
 /**
  * Class RoleRepository
@@ -40,10 +42,25 @@ class RoleRepository extends Repository
      * Oplijsting voor de systeem rollen;
      *
      * @param  array $fields De array van de nodige database columns.
-     * @return mixed
+     * @return Collection
      */
-    public function listRoles(array $fields)
+    public function listRoles(array $fields): Collection
     {
-        return $this->all($fields);
+        return $this->entity()->where('name', '!=', 'api')->get($fields);
+    }
+
+    /**
+     * Registreet in de ACL api toegang voor een gebruikers account. 
+     * 
+     * @param  string $user         De gebruikers entiteit uit de databank.
+     * @param  string $apiAccess    De chck of een gebruiker al dan wel of niet api toegang moet krijgen.
+     * @return void
+     */
+    public function apiAccess(User $user, string $apiAccess): void 
+    {
+        switch ($apiAccess) {
+            case 'access':    $user->assingRole('api');  
+            case 'no-access': $user->removeRole('api');
+        }
     }
 }
