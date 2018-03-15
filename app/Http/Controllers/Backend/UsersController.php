@@ -129,10 +129,11 @@ class UsersController extends Controller
     public function update(User $user, UserValidator $input): RedirectResponse
     {
         if ($user->update($input->all())) {
-            $this->roleRepository->apiAccess($user, $input->api_access);
-            $this->roleRepository->syncRole($user, $input->roles); // TODO; opbouwen functie
+            $user->syncRoles($input->roles);
 
+            $this->roleRepository->apiAccess($user, $input->api_access);
             $this->addActivity($user, 'Heeft een gebruikers account gewijzigd');
+
             flash(trans('flash.users.update', ['name' => $user->name]))->success();
         }
 

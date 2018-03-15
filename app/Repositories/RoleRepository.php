@@ -50,6 +50,8 @@ class RoleRepository extends Repository
     }
 
     /**
+     * Registreet in de ACL api toegang voor een gebruikers account. 
+     * 
      * @param  string $user         De gebruikers entiteit uit de databank.
      * @param  string $apiAccess    De chck of een gebruiker al dan wel of niet api toegang moet krijgen.
      * @return void
