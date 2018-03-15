@@ -104,8 +104,6 @@ class UsersController extends Controller
     /**
      * Weergave formulier om een gebruiker te wijzigen.
      *
-     *! @todo Implementatie phpunit
-     *
      * @param  int $user De unieke gebruikers waarde in de databank
      * @return View
      */
@@ -122,7 +120,7 @@ class UsersController extends Controller
      *
      * @todo Implementatie routering
      * @todo uitwerken phpunit test
-     * @todo Koppelen aan de weergave§
+     * @todo Koppelen aan de weergave
      *
      * @param  User          $user  De gebruiker in de databank.
      * @param  UserValidator $input De door de gebruiker gebruiker gegeven invoer.
@@ -131,6 +129,10 @@ class UsersController extends Controller
     public function update(User $user, UserValidator $input): RedirectResponse
     {
         if ($user->update($input->all())) {
+            $this->roleRepository->apiAccess($user, $input->api_access);
+            $this->roleRepository->syncRole($user, $input->roles); // TODO; opbouwen functie
+
+            $this->addActivity($user, 'Heeft een gebruikers account gewijzigd');
             flash(trans('flash.users.update', ['name' => $user->name]))->success();
         }
 

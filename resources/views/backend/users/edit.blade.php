@@ -19,7 +19,7 @@
                                 <label class="control-label col-md-3">Gebruikersnaam:</label>
                             
                                 <div class="col-md-9">
-                                    <input type="text" disabled value="{{ $user->name }}" class="form-control">
+                                    <input type="text"value="{{ $user->name }}" class="form-control">
                                 </div>
                             </div>
 
@@ -27,7 +27,7 @@
                                 <label class="control-label col-md-3">E-mail adres:</label>
 
                                 <div class="col-md-9">
-                                    <input type="text" disabled value="{{ $user->email }}" class="form-control">
+                                    <input type="text" value="{{ $user->email }}" class="form-control">
                                 </div>
                             </div>
 
