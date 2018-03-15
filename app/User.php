@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Permission\Traits\HasRoles;
 use Misfits\ApiGuard\Models\Mixins\Apikeyable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Databank model voor de logins in de applicatie.

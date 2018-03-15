@@ -4,7 +4,7 @@ use Jenssegers\Date\Date;
 
 /**
  * @param  string $date De datum instantie dat omgezet moet worden naar een diffForHumans
- * @return string 
+ * @return string
  */
 function readableDifference(string $date): string
 {

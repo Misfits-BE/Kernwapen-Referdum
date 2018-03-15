@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Policies\ApiTokenPolicy;
+use App\Policies\UserPolicy;
 use App\User;
-use Misfits\ApiGuard\Models\ApiKey;
-use App\Policies\{UserPolicy, ApiTokenPolicy};
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Misfits\ApiGuard\Models\ApiKey;
 
 class AuthServiceProvider extends ServiceProvider
 {

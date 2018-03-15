@@ -2,17 +2,17 @@
 
 namespace Tests\Feature;
 
-use Gate;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\{WithFaker, RefreshDatabase};
-use Misfits\ApiGuard\Models\ApiKey;
 use App\User;
+use Gate;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Misfits\ApiGuard\Models\ApiKey;
+use Tests\TestCase;
 
 /**
- * Class ApiKeyTest 
+ * Class ApiKeyTest
  * ----
  * PHPunit testsuite voor het testing van de API token management (opslag, verwijderen, re-generatie)
- * 
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     Tests\Feature
@@ -27,7 +27,7 @@ class ApiKeyTest extends TestCase
      */
     public function apiTokenHergenereerNietAangemeld(): void
     {
-        $token = factory(ApiKey::class)->create(); 
+        $token = factory(ApiKey::class)->create();
 
         $this->get(route('admin.apikey.regenerate', $token->id))
             ->assertStatus(302)
@@ -53,8 +53,8 @@ class ApiKeyTest extends TestCase
      */
     public function apiTokenHergenereerSuccess(): void
     {
-        $user  = factory(User::class)->create(); 
-        $token = factory(ApiKey::class)->create(); 
+        $user  = factory(User::class)->create();
+        $token = factory(ApiKey::class)->create();
         
         Gate::before(function (): bool {
             return true;
@@ -65,14 +65,14 @@ class ApiKeyTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('account.settings', ['type' => 'tokens']))
             ->assertSessionHas([
-                $this->flashSession . '.message'   => trans('flash.apikeys.regenerate', ['service' => $input['service']]), 
-                $this->flashSession . '.level'     => 'success', 
+                $this->flashSession . '.message'   => trans('flash.apikeys.regenerate', ['service' => $input['service']]),
+                $this->flashSession . '.level'     => 'success',
                 $this->flashSession . '.important' => true,
             ]);
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Probeer een api token aan te maken wanneer de gebruiken niet is ingelogd.
      */
     public function apiTokenAanmakenNietAangemeld(): void
@@ -83,12 +83,12 @@ class ApiKeyTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test het aanmaken van een API token wanneer het formulier foutief word ingevult.
      */
     public function apiTokenAanmakenValidatieFoutenVereist(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->post(route('admin.apikey.store'), []) //? Lege array wegen geen invoer (Service naam)
@@ -96,12 +96,12 @@ class ApiKeyTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test de validatie fouten wanneer de service naam een nummerieke waarden is. 
+     * @test
+     * @testdox Test de validatie fouten wanneer de service naam een nummerieke waarden is.
      */
-    public function apiTokenAanmakenValidatieFoutenNumeriekeWaarden(): void 
+    public function apiTokenAanmakenValidatieFoutenNumeriekeWaarden(): void
     {
-        $user  = factory(User::class)->create(); 
+        $user  = factory(User::class)->create();
         $input = ['service' => rand(0, 100000)];
 
         $this->actingAs($user)
@@ -111,7 +111,7 @@ class ApiKeyTest extends TestCase
 
     /**
      * @test
-     * @testdox Test de validatie fouten wanneer de service naam te lang is. 
+     * @testdox Test de validatie fouten wanneer de service naam te lang is.
      */
     public function apiTokenAanmakenValidatieFoutennaamTeLang()
     {
@@ -126,23 +126,23 @@ class ApiKeyTest extends TestCase
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test of een gebruiker zonder problemen een API Token kan aanmaken.
      */
     public function apiTokenAanmakenSucces(): void
     {
         $user  = factory(User::class)->create();
-        $input = ['service' => 'phpunit service']; 
+        $input = ['service' => 'phpunit service'];
 
-        $this->assertDatabaseMissing('api_keys', $input); 
+        $this->assertDatabaseMissing('api_keys', $input);
 
         $this->actingAs($user)
             ->post(route('admin.apikey.store'), $input)
             ->assertStatus(302)
             ->assertRedirect(route('account.settings', ['type' => 'tokens']))
             ->assertSessionHas([
-                $this->flashSession . '.message'   => trans('flash.apikeys.store', ['service' => $input['service']]), 
-                $this->flashSession . '.level'     => 'success', 
+                $this->flashSession . '.message'   => trans('flash.apikeys.store', ['service' => $input['service']]),
+                $this->flashSession . '.level'     => 'success',
                 $this->flashSession . '.important' => true,
             ]);
 
@@ -150,12 +150,12 @@ class ApiKeyTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test het verwijderen van een API Token met een ongeldige databank id. 
+     * @test
+     * @testdox Test het verwijderen van een API Token met een ongeldige databank id.
      */
     public function apiTokenVerwijderOngeldigeId(): void
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->get(route('admin.apikey.delete', ['id' => 100000]))
@@ -163,8 +163,8 @@ class ApiKeyTest extends TestCase
     }
 
     /**
-     * @test 
-     * @testdox Test of het verwijderen van een API token mogelijk is in het systeem. 
+     * @test
+     * @testdox Test of het verwijderen van een API token mogelijk is in het systeem.
      */
     public function apiTokenVerwijderSuccess(): void
     {
@@ -180,14 +180,14 @@ class ApiKeyTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('account.settings', ['type' => 'tokens']))
             ->assertSessionHas([
-                $this->flashSession . '.message'   => trans('flash.apikeys.delete', ['service' => $token->service]), 
-                $this->flashSession . '.level'     => 'info', 
+                $this->flashSession . '.message'   => trans('flash.apikeys.delete', ['service' => $token->service]),
+                $this->flashSession . '.level'     => 'info',
                 $this->flashSession . '.important' => true,
             ]);
     }
 
     /**
-     * @test 
+     * @test
      * @testdox Test of het verwijderen van een api token niet mogelijk is wanneer de gebruiker niet is aangemeld.
      */
     public function apiTokenVerwijderNietAangemeld(): void

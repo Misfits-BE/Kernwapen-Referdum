@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class BanTest extends TestCase
@@ -38,7 +38,7 @@ class BanTest extends TestCase
      */
     public function banSuccess(): void
     {
-        Mail::fake(); 
+        Mail::fake();
 
         $user = factory(User::class, 2)->create();
         $username = $user[1]->name;

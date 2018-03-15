@@ -6,9 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class helpderServiceProvider
- * ---- 
+ * ----
  * Service provider voor de aanmaken van helpers. (Blade views)
- * 
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     App\Providers

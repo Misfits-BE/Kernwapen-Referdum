@@ -44,7 +44,8 @@ class AccountSecurityValidator extends FormRequest
     protected function getRedirectUrl()
     {
         return $this->redirector->getUrlgenerator()->route(
-            $this->redirectRoute, ['type' => 'beveiliging']
+            $this->redirectRoute,
+            ['type' => 'beveiliging']
         );
     }
 }

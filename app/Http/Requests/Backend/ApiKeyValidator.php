@@ -5,10 +5,10 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ApiKeyValidator 
- * ---- 
- * Class voor de validatie tijdens het creeren van een nieuwe API token 
- * 
+ * Class ApiKeyValidator
+ * ----
+ * Class voor de validatie tijdens het creeren van een nieuwe API token
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     App\Http\Requests\Backend
@@ -46,7 +46,8 @@ class ApiKeyValidator extends FormRequest
     protected function getRedirectUrl()
     {
         return $this->redirector->getUrlGenerator()->route(
-            $this->redirectRoute, ['type' => 'tokens']
+            $this->redirectRoute,
+            ['type' => 'tokens']
         );
     }
 }

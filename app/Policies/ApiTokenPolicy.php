@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\User;
-use Misfits\ApiGuard\Models\ApiKey;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Misfits\ApiGuard\Models\ApiKey;
 
 /**
  * Class ApiTokenPolicy

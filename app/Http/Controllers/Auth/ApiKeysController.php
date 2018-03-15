@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Gate;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\ApiKeyRepository;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Backend\ApiKeyValidator;
+use App\Repositories\ApiKeyRepository;
+use Gate;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class ApikeysController
@@ -77,7 +76,7 @@ class ApiKeysController extends Controller
      * Genereer een nieuwe token voor bestaande service.
      *
      *!  @todo Implementatie phpunit tests
-     * @todo Connect to view 
+     * @todo Connect to view
      *
      * @param  int $apiKey De unieke identificatie van de api token.
      * @return RedirectResponse

@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
-use ActivismeBE\DatabaseLayering\Repositories\Contracts\RepositoryInterface;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
-use Misfits\ApiGuard\Models\ApiKey;
 use App\Http\Requests\Backend\ApiKeyValidator;
+use Misfits\ApiGuard\Models\ApiKey;
 
 /**
  * Class ApiKeyRepository
@@ -27,14 +26,14 @@ class ApiKeyRepository extends Repository
     }
 
     /**
-     * Creer een nieuwe API TOKEN in de databank. 
-     * 
+     * Creer een nieuwe API TOKEN in de databank.
+     *
      * @param  ApiKeyValidator $input De door gebruiker gegeven input data
      * @return ApiKey
      */
     public function storeKey(ApiKeyValidator $input): ApiKey
     {
-        $apiKey = auth()->user()->createApiKey(); 
+        $apiKey = auth()->user()->createApiKey();
         
         if ($apiKey && $apiKey->update(['service' => $input->service])) {
             return $apiKey;
