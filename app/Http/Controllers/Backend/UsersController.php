@@ -104,7 +104,7 @@ class UsersController extends Controller
     /**
      * Weergave formulier om een gebruiker te wijzigen.
      *
-     * @todo Implementatie phpunit
+     *! @todo Implementatie phpunit
      *
      * @param  int $user De unieke gebruikers waarde in de databank
      * @return View
