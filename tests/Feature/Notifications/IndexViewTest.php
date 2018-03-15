@@ -19,6 +19,8 @@ use Illuminate\Notifications\DatabaseNotification;
  */
 class IndexViewTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      * @testdox test de HTTP/1 code en doorverwijzing.
@@ -36,6 +38,20 @@ class IndexViewTest extends TestCase
      */
     public function indexGeenNotificaties(): void
     {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->get(route('notifications.index'))
+            ->assertStatus(200);
+    }
+
+    /**
+     * @test
+     * @testdox Test dat de gebruiker de notificatie weergave kan bekijken wanneer er notificaties gevonden zijn.
+     */
+    public function indexNotificaties(): void
+    {
+        factory(DatabaseNotification::class, 40)->create(); // Create 40 notifications
         $user = factory(User::class)->create();
 
         $this->actingAs($user)
