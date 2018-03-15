@@ -6,6 +6,15 @@ use App\City;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class StadsMonitorFrontEndTest
+ * ----
+ * Test for the frontend system from the city monitor
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class StadsMonitorFrontEndTest extends TestCase
 {
     use RefreshDatabase;

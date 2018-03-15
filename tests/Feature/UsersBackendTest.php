@@ -6,6 +6,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class UsersBackendTest 
+ * ----
+ * Test for the user management in the application 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class UsersBackendTest extends TestCase
 {
     use RefreshDatabase;

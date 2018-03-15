@@ -6,6 +6,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class HomeTest 
+ * ---- 
+ * Test the home routes for the application 
+ * 
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class HomeTest extends TestCase
 {
     use RefreshDatabase;

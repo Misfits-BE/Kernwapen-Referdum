@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9edc5c56b4d9f353d4b71574ad19e9c0",
+    "hash": "a745e572ae69b69d8814b06c2e791ca3",
+    "content-hash": "183bb86e7a6450ab2da3d7cefd1e890c",
     "packages": [
         {
             "name": "activismebe/database-layering",
@@ -4978,6 +4979,51 @@
             ],
             "description": "Super simple Laravel Validator for checking password via the Pwned Passwords service of Have I Been Pwned",
             "time": "2018-02-23T21:39:19+00:00"
+        },
+        {
+            "name": "valorin/pwned-validator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/valorin/pwned-validator.git",
+                "reference": "e6b3273d559a3892649fdc81b5e7b762cfa63c11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/valorin/pwned-validator/zipball/e6b3273d559a3892649fdc81b5e7b762cfa63c11",
+                "reference": "e6b3273d559a3892649fdc81b5e7b762cfa63c11",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "illuminate/support": "~5.5",
+                "php": ">=7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Valorin\\Pwned\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Valorin\\Pwned\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Rees-Carter",
+                    "email": "stephen@rees-carter.net"
+                }
+            ],
+            "description": "Super simple Laravel Validator for checking password via the Pwned Passwords service of Have I Been Pwned",
+            "time": "2018-02-23 21:39:19"
         },
         {
             "name": "vlucas/phpdotenv",

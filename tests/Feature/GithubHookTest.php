@@ -6,6 +6,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class GithubHookTest
+ * ----
+ * Tesscase for the github hook.
+ * 
+ * @author      Tim Joosten <topairy@gmail.com>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class GithubHookTest extends TestCase
 {
     use RefreshDatabase;
