@@ -19,16 +19,28 @@ class StoreTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @test
+     * @testdox
+     */
     public function nietAangemeld(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function success(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieRequiredNaam(): void
     {
 
@@ -39,41 +51,73 @@ class StoreTest extends TestCase
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validationStringNaam(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieRequiredRol(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieStringRol(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieMaxRol(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieEmailRequired(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieEmailUnique(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieEmailString(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox
+     */
     public function validatieEmailMax()
     {
 
