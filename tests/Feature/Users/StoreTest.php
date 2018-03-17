@@ -21,7 +21,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox test de HTTP/1 codd en doorverwijzing wanneer de gebruiker niet is aangemeld.
      */
     public function nietAangemeld(): void
     {
@@ -30,7 +30,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test if de geauthenceerde gebruiker een gebruiker kan aanmaken.
      */
     public function success(): void
     {
@@ -39,13 +39,17 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test of de naam in het formulier vereist is.
      */
     public function validatieRequiredNaam(): void
     {
 
     }
 
+    /**
+     * @test
+     * @testdox Test de maximum lengte van de naam die de gebruiker kan opgeven.
+     */
     public function validatieMaxNaam(): void
     {
 
@@ -53,7 +57,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test dof de waarde van het naam veld een string moet zijn. 
      */
     public function validationStringNaam(): void
     {
@@ -62,7 +66,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test of de waarde van het veld gebruikers rol vereist is. 
      */
     public function validatieRequiredRol(): void
     {
@@ -71,7 +75,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test of de waarde in de gebruikers permissie dropdown een string is. 
      */
     public function validatieStringRol(): void
     {
@@ -80,7 +84,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test validatie voor de maximum lengte van de gebruikersrol. 
      */
     public function validatieMaxRol(): void
     {
@@ -89,7 +93,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test dat het email veld vereist is. 
      */
     public function validatieEmailRequired(): void
     {
@@ -98,7 +102,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test of de waarde in het email veld een unieke waarde is in de databank.
      */
     public function validatieEmailUnique(): void
     {
@@ -107,7 +111,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Validatie check dat een email adres wel effectief een email adres is.
      */
     public function validatieEmailString(): void
     {
@@ -116,7 +120,7 @@ class StoreTest extends TestCase
 
     /**
      * @test
-     * @testdox
+     * @testdox Test de maximum lengte voor het email formulier veld.
      */
     public function validatieEmailMax()
     {
