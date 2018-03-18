@@ -45,7 +45,7 @@ class StadsMonitorFrontEndTest extends TestCase
      */
     public function searchSuccess(): void
     {
-        $this->call('GET', route('stadsmonitor.search'), ['term' => 'wtf'])
+        $this->get(route('stadsmonitor.search', ['term' => 'wtf']))
             ->assertStatus(200);
     }
 
