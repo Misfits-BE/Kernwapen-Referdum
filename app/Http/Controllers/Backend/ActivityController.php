@@ -39,8 +39,6 @@ class ActivityController extends Controller
     /**
      * Zoek een specifiek activeits log in de databank opslag.
      *
-     * @todo Implement phpunit (auth, no auth, blocked user)
-     *
      * @todo Refactor ActivitySearchValidator to the Search validator.
      *       Because multiple system have a search and te term is always called 'term'.
      *
