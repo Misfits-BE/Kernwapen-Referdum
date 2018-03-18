@@ -25,7 +25,7 @@ class SearchTest extends TestCase
      */
     public function backendNietAangemeld(): void
     {
-
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class SearchTest extends TestCase
      */
     public function successFrontend(): void 
     {
-
+        //
     }
 
     /**
@@ -43,7 +43,7 @@ class SearchTest extends TestCase
      */
     public function successBackend(): void 
     {
-
+        //
     }
 
     /**
@@ -52,7 +52,7 @@ class SearchTest extends TestCase
      */
     public function backendValidatieVereist(): void
     {
-
+        //
     }
 
     /**
@@ -61,6 +61,6 @@ class SearchTest extends TestCase
      */
     public function frontendValidatieVereist(): void 
     {
-
+        //
     }
 }
