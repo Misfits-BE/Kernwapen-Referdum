@@ -5,6 +5,8 @@ namespace Tests\Feature\Users;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
+use App\User;
 
 /**
  * Class StoreTest
@@ -25,7 +27,11 @@ class StoreTest extends TestCase
      */
     public function nietAangemeld(): void
     {
+        $input = []; 
 
+        $this->post(route('admin.users.store'), $input)
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     /**
@@ -34,7 +40,21 @@ class StoreTest extends TestCase
      */
     public function success(): void
     {
+        $role = factory(Role::class)->create();
+        $user = factory(User::class)->create();
+        $input = ['name' => 'Firstname Lastname', 'role' => $role->name, 'email' => 'test@domain.tld'];
 
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.users.index'))
+            ->assertSessionHas([
+                $this->flashSession . '.message'   => trans('flash.users.store', ['name' => $input['name']]), 
+                $this->flashSession . '.level'     => 'success', 
+                $this->flashSession . '.important' => true,
+            ]);
+
+            $this->assertDatabaseHas('users', ['name' => 'Firstname Lastname', 'email' => 'test@domain.tld']);
     }
 
     /**
@@ -43,7 +63,13 @@ class StoreTest extends TestCase
      */
     public function validatieRequiredNaam(): void
     {
+        $role  = factory(Role::class)->create();
+        $user  = factory(User::class)->create();
+        $input = ['role' => $role->name, 'email' => 'test@domain.tld'];
 
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['name' => trans('validation.required', ['attribute' => 'naam'])]);
     }
 
     /**
@@ -52,7 +78,15 @@ class StoreTest extends TestCase
      */
     public function validatieMaxNaam(): void
     {
-
+        $role  = factory(Role::class)->create(); 
+        $user  = factory(User::class)->create(); 
+        $input = ['role' => $role->name, 'email' => 'test@domain.tld', 'name' => str_random(275)];
+        
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors([
+                'name' => trans('validation.max.string', ['attribute' => 'naam', 'max' => 255])
+            ]);
     }
 
     /**
@@ -61,7 +95,13 @@ class StoreTest extends TestCase
      */
     public function validationStringNaam(): void
     {
+        $user  = factory(User::class)->create();
+        $role  = factory(Role::class)->create(); 
+        $input = ['name' => rand(0, 10), 'email' => 'test@domain.tld', 'role' => $role->name];
 
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['name' => trans('validation.string', ['attribute' => 'naam'])]);
     }
 
     /**
@@ -70,7 +110,12 @@ class StoreTest extends TestCase
      */
     public function validatieRequiredRol(): void
     {
-
+        $user  = factory(User::class)->create(); 
+        $input = ['name' => 'Firstname Lastname', 'email' => 'test@domain.tld'];
+        
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['role' => trans('validation.required', ['attribute' => 'role'])]);
     }
 
     /**
@@ -79,7 +124,13 @@ class StoreTest extends TestCase
      */
     public function validatieStringRol(): void
     {
+        $role  = factory(Role::class)->create(['name' => rand(0, 9)]); 
+        $user  = factory(User::class)->create();
+        $input = ['name' => 'Firstname Lastname', 'email' => 'test@domain.tld', 'role' => $role->name];
 
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['role' => trans('validation.string', ['attribute' => 'role'])]);
     }
 
     /**
@@ -88,7 +139,15 @@ class StoreTest extends TestCase
      */
     public function validatieMaxRol(): void
     {
-
+        $role  = factory(Role::class)->create(['name' => str_random(275)]);
+        $user  = factory(User::class)->create();
+        $input = ['name' => 'Firstname Lastname', 'email' => 'test@domain.tld', 'role' => $role->name]; 
+        
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors([
+                'role' => trans('validation.max.string', ['attribute' => 'role', 'max' => 255])
+            ]);
     }
 
     /**
@@ -97,7 +156,13 @@ class StoreTest extends TestCase
      */
     public function validatieEmailRequired(): void
     {
-
+        $user  = factory(User::class)->create();
+        $role  = factory(Role::class)->create();
+        $input = ['name' => 'Firstname Lastname', 'role' => $role->name];
+        
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['email' => trans('validation.required', ['attribute' => 'e-mailadres'])]);
     }
 
     /**
@@ -106,7 +171,13 @@ class StoreTest extends TestCase
      */
     public function validatieEmailUnique(): void
     {
+        $user  = factory(User::class)->create();
+        $role  = factory(Role::class)->create(); 
+        $input = ['name' => 'Firstname Lastname', 'role' => $role->name, 'email' => $user->email];
 
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['email' => trans('validation.unique', ['attribute' => 'e-mailadres'])]);
     }
 
     /**
@@ -115,15 +186,12 @@ class StoreTest extends TestCase
      */
     public function validatieEmailString(): void
     {
+        $user   = factory(User::class)->create();
+        $role   = factory(Role::class)->create();
+        $input  = ['name' => 'Firstname Lastname', 'role' => $role->name, 'email' => rand(0, 10)];
 
-    }
-
-    /**
-     * @test
-     * @testdox Test de maximum lengte voor het email formulier veld.
-     */
-    public function validatieEmailMax()
-    {
-
+        $this->actingAs($user)
+            ->post(route('admin.users.store'), $input)
+            ->assertSessionHasErrors(['email' => trans('validation.string', ['attribute' => 'e-mailadres'])]);
     }
 }
