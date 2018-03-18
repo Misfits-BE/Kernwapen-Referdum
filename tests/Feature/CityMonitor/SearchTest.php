@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 /**
  * Class SearchTest
  * ----
- * PHPUnit testcase voor the testen van de zoekfunctie in de satdsmonitor
+ * PHPUnit testcase voor het testen van de zoekfunctie in de satdsmonitor
  * 
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
