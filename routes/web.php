@@ -81,3 +81,8 @@ Route::patch('/admin/ondersteuning/wijzig/{id}', 'Backend\SupportController@upda
 Route::get('/admin/notities/nieuw/{city}', 'Backend\NotitionController@create')->name('admin.notition.create');
 Route::get('/admin/notities/verwijder/{notition}/{city}', 'Backend\NotitionController@destroy')->name('admin.notition.delete');
 Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store')->name('admin.notition.store');
+
+// API key routes
+Route::post('/admin/api-token-opslaan', 'Auth\ApiKeysController@store')->name('admin.apikey.store');
+Route::get('/admin/api/regenerate/{id}', 'Auth\ApiKeysController@regenerate')->name('admin.apikey.regenerate');
+Route::get('/admin/api/verwijder/{id}', 'Auth\ApiKeysController@destroy')->name('admin.apikey.delete');
