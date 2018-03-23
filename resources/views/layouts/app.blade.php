@@ -56,6 +56,13 @@
                                 Stadsmonitor
                             </a>
                         </li>
+
+                        <li role="presentation" @if (request()->is('nieuws*')) class="active" @endif>
+                            <a href="{{ route('news.index') }}">
+                                Nieuws
+                            </a>
+                        </li>
+
                         <li role="presentation" @if (Request::is('disclaimer')) class="active" @endif>
                             <a href="{{ route('disclaimer.index') }}">
                                 Disclaimer

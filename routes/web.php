@@ -36,6 +36,9 @@ Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@m
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 
+// Frontend news routes 
+Route::get('/nieuws', 'Frontend\NewsController@index')->name('news.index');
+
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
 
