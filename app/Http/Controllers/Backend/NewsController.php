@@ -44,7 +44,7 @@ class NewsController extends Controller
      */
     public function index(): View 
     {
-        //
+        return view('backend.news.index', ['articles' => $this->articleRepository->paginateArticles(15)]);
     }
 
     /**
@@ -52,18 +52,32 @@ class NewsController extends Controller
      * 
      * @todo Implementatie phpunit tests
      * @todo Opbouwen weergave
-     * @todo Implementate routering²    
+     * @todo Implementate routering    
      * 
      * @return View
      */
     public function create(): View 
     {
-        //
+        return view('backend.news.create');
     }
 
+    /**
+     * Slaag een nieuws artikel op in de database. 
+     * 
+     * @todo Registratie routering 
+     * @todo Implementatie phpunit tests. 
+     * @todo Opbouw van de validator
+     * 
+     * @param  ArticleStoreValidator $input De gegeven gebruikers invoer (gevalideerd).
+     * @return Redirectresponse
+     */
     public function store(ArticleStoreValidator $input): RedirectResponse 
     {
-        //
+        if ($this->articleRepository->create($input->all())) {
+            flash()->success();
+        }
+
+        return redirect()->route();
     }
 
     /**
@@ -78,7 +92,9 @@ class NewsController extends Controller
      */
     public function edit(string $article): View 
     {
-        //
+        return view('backend.news.edit', [
+            'article' => $this->articleRepository->findArticle($article)
+        ]);
     }
 
     /**
@@ -109,6 +125,8 @@ class NewsController extends Controller
      */
     public function destroy(string $article): RedirectResponse
     {
-        //
+        $article  = ''; 
+        
+        if ()
     }
 }

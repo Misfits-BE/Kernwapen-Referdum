@@ -42,4 +42,20 @@ class NewsController extends Controller
     {
         return view('frontend.news.index', ['articles' => $this->articleRespository->paginateArticles(7)]); 
     }
+
+    /**
+     * pagina voor een specifiek nieuwsbericht in het systeem. 
+     * 
+     * @todo Opbouwen weergave
+     * @todo Implementatie routering 
+     * @todo Implementatie phpunit tests. 
+     * @todo Implementatie social media (OpenGraph, Twitter cards)
+     * 
+     * @return View
+     */
+    public function show(string $slug): View 
+    {
+        $article = $this->articleRespository->findArticle($slug);
+        return view('frontend_news.show', compact('article'));
+    }
 }
