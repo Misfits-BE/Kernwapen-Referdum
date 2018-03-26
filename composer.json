@@ -24,6 +24,7 @@
         "spatie/laravel-backup": "^5.1",
         "spatie/laravel-permission": "^2.7",
         "spatie/laravel-robots-middleware": "^1.0",
+        "spatie/laravel-sluggable": "^2.1",
         "valorin/pwned-validator": "^1.0"
     },
     "require-dev": {

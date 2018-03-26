@@ -37,8 +37,6 @@ class NewsController extends Controller
      * De index pagina voor de beheersconsole van de nieuwsberichten. 
      * 
      * @todo opbouwen weergave
-     * @todo opbouwen routering
-     * @todo Implementatie phupunit test cases 
      * 
      * @return View
      */
@@ -50,9 +48,7 @@ class NewsController extends Controller
     /**
      * Create pagina voor een nieuwsbericht. 
      * 
-     * @todo Implementatie phpunit tests
      * @todo Opbouwen weergave
-     * @todo Implementate routering    
      * 
      * @return View
      */
@@ -73,11 +69,14 @@ class NewsController extends Controller
      */
     public function store(ArticleStoreValidator $input): RedirectResponse 
     {
-        if ($this->articleRepository->create($input->all())) {
-            flash()->success();
+        $article = $this->articleRepository->create($input->all());
+
+        if ($article) {
+            $this->addActivity($article, 'Heeft een nieuwsbericht aangemaakt.');
+            flash("{$article->title} is aangemaakt als nieuwsbericht in het systeem.")->success();
         }
 
-        return redirect()->route();
+        return redirect()->route('admin.news.index');
     }
 
     /**
@@ -103,7 +102,6 @@ class NewsController extends Controller
      * @todo opbouwen validator 
      * @todo registratie routering 
      * @todo implementatie phpunit tests
-     * @todo Opbouwen controller
      * 
      * @param  ArticleUpdateValidator   $input   De gegeven gebruiker incoer (Gevalideerd)
      * @param  string                   $article De unieke identicatie waarde in de databank.
@@ -111,13 +109,20 @@ class NewsController extends Controller
      */
     public function update(ArticleUpdateValidator $input, string $article): RedirectResponse
     {
-        //
+        $article = $this->articleRepository->findArticle($article); 
+
+        if ($article->update($input->all())) {
+            $this->addActivity($article, "Heeft het nieuwsbericht ({$article->title}) gewijzigd");
+            flash("Het nieuwsbericht {$article->title} is gewijzigd")->success();
+        }
+
+        return redirect()->route('admin.news.index');
     }
 
     /**
      * Methode voor het verwijderen van een nieuws artikel. 
      * 
-     * @todo Implemen phpunit test 
+     * @todo Implement phpunit test 
      * @todo Registratie routering
      * 
      * @param  string $article De unieke identificatie waarde van het artikel in de databank.  
@@ -125,8 +130,12 @@ class NewsController extends Controller
      */
     public function destroy(string $article): RedirectResponse
     {
-        $article  = ''; 
+        $article  = $this->articleRepository->findArticle($article);
         
-        if ()
+        if ($article->delete()) {
+            $this->addActivity($article, 'Heeft een artiàkel verwijderd in het systeem.');
+        }
+
+        return redirect()->route('admin.news.index');
     }
 }

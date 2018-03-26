@@ -38,6 +38,11 @@ Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signatur
 
 // Frontend news routes 
 Route::get('/nieuws', 'Frontend\NewsController@index')->name('news.index');
+Route::get('/neuws/{slug}', 'Frontend\NewsController@show')->name('news.show');
+
+// Backend news routes
+Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
+Route::get('/admin/nieuws/creatie', 'Backend\NewsController@create')->name('admin.news.create');
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');

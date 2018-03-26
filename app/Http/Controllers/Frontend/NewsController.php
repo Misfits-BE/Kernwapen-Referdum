@@ -33,8 +33,7 @@ class NewsController extends Controller
     /**
      * Haal de front-end index page op voor de nieuwsberichten. 
      * 
-     * @todo build up the view
-     * @todo Implementatie phpunit tests 
+     * @todo build up the view 
      * 
      * @return View
      */
@@ -47,15 +46,14 @@ class NewsController extends Controller
      * pagina voor een specifiek nieuwsbericht in het systeem. 
      * 
      * @todo Opbouwen weergave
-     * @todo Implementatie routering 
-     * @todo Implementatie phpunit tests. 
      * @todo Implementatie social media (OpenGraph, Twitter cards)
      * 
+     * @param  string $slug De unieke identificatie waarde van het nieuwsbericht in de databank.
      * @return View
      */
     public function show(string $slug): View 
     {
         $article = $this->articleRespository->findArticle($slug);
-        return view('frontend_news.show', compact('article'));
+        return view('frontend.news.show', compact('article'));
     }
 }
