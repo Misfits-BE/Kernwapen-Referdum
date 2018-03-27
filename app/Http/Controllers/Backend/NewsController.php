@@ -10,8 +10,8 @@ use App\Http\Requests\Backend\ArticleStoreValidator;
 use App\Http\Requests\Backend\ArticleUpdateValidator;
 
 /**
- * Class NewsController 
- *  
+ * Class NewsController
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     App\Http\Controllers\Backend
@@ -19,11 +19,11 @@ use App\Http\Requests\Backend\ArticleUpdateValidator;
 class NewsController extends Controller
 {
     /** @var \App\Repositories\ArticleRepository $articleRepository */
-    private $articleRepository; 
+    private $articleRepository;
 
     /**
      * NewsController constructor
-     * 
+     *
      * @param  ArticleRepository $articleRepository Abstractie laag tussen database en controller
      * @return void
      */
@@ -34,13 +34,13 @@ class NewsController extends Controller
     }
 
     /**
-     * De index pagina voor de beheersconsole van de nieuwsberichten. 
-     * 
+     * De index pagina voor de beheersconsole van de nieuwsberichten.
+     *
      * @todo opbouwen weergave
      * 
      * @return View
      */
-    public function index(): View 
+    public function index(): View
     {
         return view('backend.news.index', ['articles' => $this->articleRepository->paginateArticles(15)]);
     }
@@ -52,22 +52,22 @@ class NewsController extends Controller
      * 
      * @return View
      */
-    public function create(): View 
+    public function create(): View
     {
         return view('backend.news.create');
     }
 
     /**
-     * Slaag een nieuws artikel op in de database. 
-     * 
-     * @todo Registratie routering 
-     * @todo Implementatie phpunit tests. 
+     * Slaag een nieuws artikel op in de database.
+     *
+     * @todo Registratie routering
+     * @todo Implementatie phpunit tests.
      * @todo Opbouw van de validator
-     * 
+     *
      * @param  ArticleStoreValidator $input De gegeven gebruikers invoer (gevalideerd).
      * @return Redirectresponse
      */
-    public function store(ArticleStoreValidator $input): RedirectResponse 
+    public function store(ArticleStoreValidator $input): RedirectResponse
     {
         $article = $this->articleRepository->create($input->all());
 
@@ -80,16 +80,16 @@ class NewsController extends Controller
     }
 
     /**
-     * Weergave voor het wijzigen van een nieuwsbericht. 
-     * 
-     * @todo Implementatie phpunit tests 
+     * Weergave voor het wijzigen van een nieuwsbericht.
+     *
+     * @todo Implementatie phpunit tests
      * @todo Opbouwen van de weergave
-     * @todo Implementatie van de routering. 
-     * 
-     * @param  string $article De unieke identificatie warde van het nieuws artikel. 
-     * @return View 
+     * @todo Implementatie van de routering.
+     *
+     * @param  string $article De unieke identificatie warde van het nieuws artikel.
+     * @return View
      */
-    public function edit(string $article): View 
+    public function edit(string $article): View
     {
         return view('backend.news.edit', [
             'article' => $this->articleRepository->findArticle($article)
@@ -97,10 +97,10 @@ class NewsController extends Controller
     }
 
     /**
-     * Wijzig een nieuws rtikel in de databank. 
-     * 
-     * @todo opbouwen validator 
-     * @todo registratie routering 
+     * Wijzig een nieuws rtikel in de databank.
+     *
+     * @todo opbouwen validator
+     * @todo registratie routering
      * @todo implementatie phpunit tests
      * 
      * @param  ArticleUpdateValidator   $input   De gegeven gebruiker incoer (Gevalideerd)
@@ -124,8 +124,8 @@ class NewsController extends Controller
      * 
      * @todo Implement phpunit test 
      * @todo Registratie routering
-     * 
-     * @param  string $article De unieke identificatie waarde van het artikel in de databank.  
+     *
+     * @param  string $article De unieke identificatie waarde van het artikel in de databank.
      * @return RedirectResponse
      */
     public function destroy(string $article): RedirectResponse

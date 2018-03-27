@@ -36,7 +36,7 @@ Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@m
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 
-// Frontend news routes 
+// Frontend news routes
 Route::get('/nieuws', 'Frontend\NewsController@index')->name('news.index');
 Route::get('/neuws/{slug}', 'Frontend\NewsController@show')->name('news.show');
 
@@ -94,3 +94,7 @@ Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store'
 Route::post('/admin/api-token-opslaan', 'Auth\ApiKeysController@store')->name('admin.apikey.store');
 Route::get('/admin/api/regenerate/{id}', 'Auth\ApiKeysController@regenerate')->name('admin.apikey.regenerate');
 Route::get('/admin/api/verwijder/{id}', 'Auth\ApiKeysController@destroy')->name('admin.apikey.delete');
+
+// News backend routes
+Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
+Route::get('/admin/nieuws/creer', 'Backend\NewsController@create')->name('admin.news.create');
