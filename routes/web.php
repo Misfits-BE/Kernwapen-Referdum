@@ -43,6 +43,7 @@ Route::get('/neuws/{slug}', 'Frontend\NewsController@show')->name('news.show');
 // Backend news routes
 Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
 Route::get('/admin/nieuws/creatie', 'Backend\NewsController@create')->name('admin.news.create');
+Route::post('/admin/nieuws/opslaan', 'Backend\NewsController@store')->name('admin.news.store');
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');

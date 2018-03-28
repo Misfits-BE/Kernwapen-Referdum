@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.news.store') }}" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }} {{-- Form field protection --}}
 
                             <div class="form-group @error('titel', 'has-error')">

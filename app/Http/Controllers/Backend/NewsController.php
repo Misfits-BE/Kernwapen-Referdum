@@ -46,8 +46,6 @@ class NewsController extends Controller
     /**
      * Create pagina voor een nieuwsbericht. 
      * 
-     *! @todo Opbouwen weergave
-     * 
      * @return View
      */
     public function create(): View
@@ -58,15 +56,14 @@ class NewsController extends Controller
     /**
      * Slaag een nieuws artikel op in de database.
      *
-     * @todo Registratie routering
      * @todo Implementatie phpunit tests.
-     * @todo Opbouw van de validator
      *
      * @param  ArticleStoreValidator $input De gegeven gebruikers invoer (gevalideerd).
      * @return Redirectresponse
      */
     public function store(ArticleStoreValidator $input): RedirectResponse
     {
+        $input->merge(['author_id' => $input->user()->id]); 
         $article = $this->articleRepository->create($input->all());
 
         if ($article) {

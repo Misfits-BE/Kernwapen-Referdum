@@ -4,6 +4,15 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class ArticleStoreValidator 
+ * ---- 
+ * Validatie class voor het opslaan van een nieuwsbericht. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     App\Http\Requests\Backend
+ */
 class ArticleStoreValidator extends FormRequest
 {
     /**
@@ -11,9 +20,9 @@ class ArticleStoreValidator extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -21,10 +30,20 @@ class ArticleStoreValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'titel'     => 'string|required|max:190', 
+            'bericht'   => 'string|required', 
+            'is_public' => 'required|boolean'
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function messages(): array
+    {
+        return ['is_public' => 'u moet een status opgeven voor het nieuwsbericht'];
     }
 }
