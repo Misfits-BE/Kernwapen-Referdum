@@ -36,6 +36,10 @@ class NewsController extends Controller
     /**
      * De index pagina voor de beheersconsole van de nieuwsberichten.
      * 
+     * @todo Implementatie modal voor de zoekfuntie
+     * @todo Embed de zoekfunctie in de controller 
+     * @todo Uitschrijven van een een phpunit test voor de zoekfunctie. (auth, geen auth)
+     * 
      * @return View
      */
     public function index(): View
@@ -113,7 +117,7 @@ class NewsController extends Controller
     /**
      * Methode voor het verwijderen van een nieuws artikel. 
      * 
-     * @todo Implement phpunit test 
+     *! @todo Implement phpunit test 
      *
      * @param  string $article De unieke identificatie waarde van het artikel in de databank.
      * @return RedirectResponse
