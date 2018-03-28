@@ -35,8 +35,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group @error('bericht', 'has-error')">
                                 <label class="col-md-3 control-label">Nieuwsbericht: <span class="text-danger">*</span></label>
+
+                                <div class="col-md-9">
+                                     <textarea @input('bericht') class="form-control wysiwyg" data-provide="markdown" rows="5">{{ old('bericht') }}</textarea>
+                                     @error('bericht', '<span class="help-block text-danger"><span class="text-danger">:message</span></span>') {{-- Validation error view partial --}}
+                                </div>
                             </div>
                             
                             <div class="form-group">
@@ -57,3 +62,12 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-markdown.min.css') }}"></link>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
+    <script> $(function () { $('[data-toggle="tooltip"]').tooltip() }) </script> 
+@endpush

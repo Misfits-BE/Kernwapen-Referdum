@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css" rel="stylesheet">
+    @stack('stylesheets') {{-- Page specific stylesheets --}}
 </head>
 <body>
 <div id="app">
@@ -128,5 +129,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
+@stack('scripts') {{-- Page specific javascripts --}}
 </body>
 </html>

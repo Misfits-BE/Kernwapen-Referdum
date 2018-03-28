@@ -3,5 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/css/errors.css": "/css/errors.css",
     "/css/auth.css": "/css/auth.css",
-    "/js/auth.js": "/js/auth.js"
+    "/js/bootstrap-markdown.js": "/js/bootstrap-markdown.js",
+    "/js/auth.js": "/js/auth.js",
+    "/css/bootstrap-markdown.min.css": "/css/bootstrap-markdown.min.css"
 }
