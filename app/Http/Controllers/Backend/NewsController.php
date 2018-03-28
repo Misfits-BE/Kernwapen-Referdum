@@ -35,8 +35,6 @@ class NewsController extends Controller
 
     /**
      * De index pagina voor de beheersconsole van de nieuwsberichten.
-     *
-     * @todo opbouwen weergave
      * 
      * @return View
      */
@@ -48,7 +46,7 @@ class NewsController extends Controller
     /**
      * Create pagina voor een nieuwsbericht. 
      * 
-     * @todo Opbouwen weergave
+     *! @todo Opbouwen weergave
      * 
      * @return View
      */
