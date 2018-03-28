@@ -25,7 +25,7 @@ class Article extends Model
      * 
      * @return array
      */
-    protected $fillable = ['author_id', 'title'];
+    protected $fillable = ['author_id', 'titel', 'is_public', 'bericht'];
 
     /**
      * De data relatie voor gegevens van de autheur. 
@@ -45,7 +45,7 @@ class Article extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('titel')
             ->saveSlugsTo('slug');
     }
 }
