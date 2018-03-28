@@ -56,8 +56,6 @@ class NewsController extends Controller
     /**
      * Slaag een nieuws artikel op in de database.
      *
-     * @todo Implementatie phpunit tests.
-     *
      * @param  ArticleStoreValidator $input De gegeven gebruikers invoer (gevalideerd).
      * @return Redirectresponse
      */
@@ -68,7 +66,7 @@ class NewsController extends Controller
 
         if ($article) {
             $this->addActivity($article, 'Heeft een nieuwsbericht aangemaakt.');
-            flash("{$article->title} is aangemaakt als nieuwsbericht in het systeem.")->success();
+            flash("{$article->titel} is aangemaakt als nieuwsbericht in het systeem.")->success();
         }
 
         return redirect()->route('admin.news.index');
@@ -86,9 +84,7 @@ class NewsController extends Controller
      */
     public function edit(string $article): View
     {
-        return view('backend.news.edit', [
-            'article' => $this->articleRepository->findArticle($article)
-        ]);
+        return view('backend.news.edit', ['article' => $this->articleRepository->findArticle($article)]);
     }
 
     /**
@@ -107,8 +103,8 @@ class NewsController extends Controller
         $article = $this->articleRepository->findArticle($article); 
 
         if ($article->update($input->all())) {
-            $this->addActivity($article, "Heeft het nieuwsbericht ({$article->title}) gewijzigd");
-            flash("Het nieuwsbericht {$article->title} is gewijzigd")->success();
+            $this->addActivity($article, "Heeft het nieuwsbericht ({$article->titel}) gewijzigd");
+            flash("Het nieuwsbericht {$article->titel} is gewijzigd")->success();
         }
 
         return redirect()->route('admin.news.index');
@@ -118,7 +114,6 @@ class NewsController extends Controller
      * Methode voor het verwijderen van een nieuws artikel. 
      * 
      * @todo Implement phpunit test 
-     * @todo Registratie routering
      *
      * @param  string $article De unieke identificatie waarde van het artikel in de databank.
      * @return RedirectResponse
@@ -128,7 +123,8 @@ class NewsController extends Controller
         $article  = $this->articleRepository->findArticle($article);
         
         if ($article->delete()) {
-            $this->addActivity($article, 'Heeft een artiàkel verwijderd in het systeem.');
+            flash('Het nieuwsbericht ' . $article->titel . 'is verwijderd uit de applicatie')->info()->important();
+            $this->addActivity($article, 'Heeft een artikel verwijderd in het systeem.');
         }
 
         return redirect()->route('admin.news.index');

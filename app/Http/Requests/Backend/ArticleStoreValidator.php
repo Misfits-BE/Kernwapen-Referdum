@@ -33,8 +33,8 @@ class ArticleStoreValidator extends FormRequest
     public function rules(): array
     {
         return [
-            'titel'     => 'string|required|max:190', 
-            'bericht'   => 'string|required', 
+            'titel'     => 'string|required|max:190',
+            'bericht'   => 'string|required',
             'is_public' => 'required|boolean'
         ];
     }
@@ -44,6 +44,9 @@ class ArticleStoreValidator extends FormRequest
      */
     public function messages(): array
     {
-        return ['is_public' => 'u moet een status opgeven voor het nieuwsbericht'];
+        return [
+            'is_public.required' => 'U moet een status opgeven voor het nieuwsbericht.', 
+            'is_public.boolean'  => 'Kan alleen de waarde klad of publicatie bevatten.',
+        ];
     }
 }

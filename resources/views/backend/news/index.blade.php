@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+        @include('flash::message') {{-- Flash session view instance --}}
+
         <div class="row">
             <div class="col-md-12"> {{-- Content --}}
                 <div class="panel panel-default">
@@ -37,6 +39,23 @@
                                             <tr>
                                                 <td><strong>#{{ $article->id }}</strong></td>
                                                 <td>{{ $article->author->name }}</td>
+                                                <td>
+                                                    @if ($article->is_public)
+                                                        <span class="label label-success"><i class="fa fa-fw fa-check"></i> Gepubliceerd</span>
+                                                    @else {{-- Draft version --}}
+                                                        <span class="label label-warning"><i class="fa fa-fw fa-file-text-o"></i> Klad versie</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $article->titel }}</td>
+                                                <td>{{ $article->created_at->format('d/m/Y H:i') }}</td>
+
+                                                <td> {{-- Options --}}
+                                                    <span class="text-center">
+                                                        <a href="{{ route('admin.news.destroy', ['slug' => $article->slug]) }}" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
+                                                            <i class="fa fa-fw fa-close"></i>
+                                                        </a>
+                                                    </span>
+                                                </td> {{-- /// END options --}}
                                             </tr>
                                         @endforeach {{-- /// Einde loop v/d artikelen --}}
                                     @else {{-- Geen artikelen gevonden --}}
