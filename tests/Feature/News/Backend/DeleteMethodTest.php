@@ -5,6 +5,7 @@ namespace Tests\Feature\News\Backend;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Article;
 
 /**
  * Class DeletemethodTest 
@@ -34,7 +35,11 @@ class DeleteMethodTest extends TestCase
      */
     public function unauthenticated(): void 
     {
-        //
+        $article = factory(Article::class)->create(); 
+
+        $this->get(route('admin.news.destroy', ['slug' => $article->slug]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     /**
@@ -43,6 +48,6 @@ class DeleteMethodTest extends TestCase
      */
     public function invalidId(): void 
     {
-        //
+        $user = factory(User::class)->create();
     }
 }
