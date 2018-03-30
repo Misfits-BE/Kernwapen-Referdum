@@ -3,6 +3,7 @@
 namespace Tests\Feature\CityMonitor;
 
 use Tests\TestCase;
+use App\{City, User};
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,7 +26,11 @@ class SearchTest extends TestCase
      */
     public function backendNietAangemeld(): void
     {
-        //
+        $city = factory(City::class)->create();
+
+        $this->get(route('admin.stadsmonitor.search', ['term' => $city->name]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 
     /**
@@ -34,7 +39,10 @@ class SearchTest extends TestCase
      */
     public function successFrontend(): void 
     {
-        //
+        $cities = factory(City::class, 20)->create(); 
+
+        $this->get(route('stadsmonitor.search', ['term' => $cities[0]->name]))
+            ->assertStatus(200);
     }
 
     /**
@@ -43,7 +51,12 @@ class SearchTest extends TestCase
      */
     public function successBackend(): void 
     {
-        //
+        $user = factory(User::class)->create();
+        $cities = factory(City::class, 20)->create();
+
+        $this->actingAs($user)
+            ->get(route('admin.stadsmonitor.search', ['term' => $cities[0]->name]))
+            ->assertStatus(200);
     }
 
     /**
@@ -52,7 +65,11 @@ class SearchTest extends TestCase
      */
     public function backendValidatieVereist(): void
     {
-        //
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->get(route('admin.stadsmonitor.search'))
+            ->assertSessionhasErrors(['term' => trans('validation.required', ['attribute' => 'term'])]);
     }
 
     /**
@@ -61,6 +78,7 @@ class SearchTest extends TestCase
      */
     public function frontendValidatieVereist(): void 
     {
-        //
+        $this->get(route('stadsmonitor.search'))
+            ->assertSessionHasErrors(['term' => trans('validation.required', ['attribute' => 'term'])]);
     }
 }
