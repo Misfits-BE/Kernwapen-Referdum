@@ -38,8 +38,6 @@ class NewsController extends Controller
     /**
      * De index pagina voor de beheersconsole van de nieuwsberichten.
      * 
-     * @todo Uitschrijven van een een phpunit test voor de zoekfunctie. (auth, geen auth)
-     * 
      * @param  Request $input The instance for getting the data from the search form.
      * @return View
      */
@@ -101,9 +99,10 @@ class NewsController extends Controller
     /**
      * Wijzig een nieuws rtikel in de databank.
      *
-     * @todo opbouwen validator
-     * @todo registratie routering
-     * @todo implementatie phpunit tests
+     * @todo opbouwen validator             -> DONE
+     * @todo registratie routering          -> DONE (route: admin.news.update)
+     * @todo implementatie phpunit tests    -> DONE
+     * @todo Opbouwen van de weergave
      * 
      * @param  ArticleUpdateValidator   $input   De gegeven gebruiker incoer (Gevalideerd)
      * @param  string                   $article De unieke identicatie waarde in de databank.
@@ -114,8 +113,8 @@ class NewsController extends Controller
         $article = $this->articleRepository->findArticle($article); 
 
         if ($article->update($input->all())) {
-            $this->addActivity($article, "Heeft het nieuwsbericht ({$article->titel}) gewijzigd");
-            flash("Het nieuwsbericht {$article->titel} is gewijzigd")->success();
+            $this->addActivity($article, "Heeft het nieuwsbericht ({$article->titel}) is gewijzigd.");
+            flash("Het nieuwsbericht {$article->titel} is gewijzigd.")->success();
         }
 
         return redirect()->route('admin.news.index');

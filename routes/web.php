@@ -44,6 +44,7 @@ Route::get('/neuws/{slug}', 'Frontend\NewsController@show')->name('news.show');
 Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
 Route::get('/admin/nieuws/creatie', 'Backend\NewsController@create')->name('admin.news.create');
 Route::get('/admin/nieuws/wijzig/{slug}', 'Backend\NewsController@edit')->name('admin.news.edit');
+Route::patch('/admin/nieuws/wijzig/{slug}', 'Backend\NewsController@update')->name('admin.news.update');
 Route::get('/admin/nieuws/verwijder/{slug}', 'Backend\NewsController@destroy')->name('admin.news.destroy');
 Route::post('/admin/nieuws/opslaan', 'Backend\NewsController@store')->name('admin.news.store');
 
