@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Article;
+use App\User;
 
 /**
  * Class DeletemethodTest 
@@ -26,7 +27,23 @@ class DeleteMethodTest extends TestCase
      */
     public function success(): void 
     {
-        //
+        $article = factory(Article::class)->create(); 
+        $user    = factory(User::class)->create(); 
+        $dbCheck = ['id' => $article->id, 'slug' => $article->slug];
+
+        $this->assertDatabasehas('articles', $dbCheck);
+
+        $this->actingAs($user)
+            ->get(route('admin.news.destroy', ['article' => $article->slug]))
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.news.index'))
+            ->assertSessionHas([
+                $this->flashSession . '.message'   => 'Het nieuwsbericht ' . $article['titel'] . ' is verwijderd uit de applicatie', 
+                $this->flashSession . '.level'     => 'info', 
+                $this->flashSession . '.important' => true
+            ]);
+
+        $this->assertDatabaseMissing('articles', $dbCheck);
     }
 
     /**
@@ -49,5 +66,9 @@ class DeleteMethodTest extends TestCase
     public function invalidId(): void 
     {
         $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->get(route('admin.news.destroy', ['slug' => 'article-slug']))
+            ->assertStatus(404);
     }
 }

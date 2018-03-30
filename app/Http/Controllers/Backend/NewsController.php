@@ -79,9 +79,7 @@ class NewsController extends Controller
     /**
      * Weergave voor het wijzigen van een nieuwsbericht.
      *
-     * @todo Implementatie phpunit tests
      * @todo Opbouwen van de weergave
-     * @todo Implementatie van de routering.
      *
      * @param  string $article De unieke identificatie warde van het nieuws artikel.
      * @return View
@@ -116,8 +114,6 @@ class NewsController extends Controller
 
     /**
      * Methode voor het verwijderen van een nieuws artikel. 
-     * 
-     *! @todo Implement phpunit test 
      *
      * @param  string $article De unieke identificatie waarde van het artikel in de databank.
      * @return RedirectResponse
@@ -127,7 +123,7 @@ class NewsController extends Controller
         $article  = $this->articleRepository->findArticle($article);
         
         if ($article->delete()) {
-            flash('Het nieuwsbericht ' . $article->titel . 'is verwijderd uit de applicatie')->info()->important();
+            flash('Het nieuwsbericht ' . $article->titel . ' is verwijderd uit de applicatie')->info()->important();
             $this->addActivity($article, 'Heeft een artikel verwijderd in het systeem.');
         }
 

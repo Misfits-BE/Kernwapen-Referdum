@@ -51,6 +51,10 @@
 
                                                 <td> {{-- Options --}}
                                                     <span class="text-center">
+                                                        <a href="{{ route('admin.news.edit', ['slug' => $article->slug]) }}" class="text-warning" data-toggle="tooltip" data-placement="bottom" title="Wijzig">
+                                                            <i class="fa fa-fw fa-pencil"></i>
+                                                        </a>
+
                                                         <a href="{{ route('admin.news.destroy', ['slug' => $article->slug]) }}" class="text-danger" data-toggle="tooltip" data-placement="bottom" title="Verwijder">
                                                             <i class="fa fa-fw fa-close"></i>
                                                         </a>
