@@ -28,6 +28,7 @@
         "valorin/pwned-validator": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "friendsofphp/php-cs-fixer": "^2.9",
         "fzaninotto/faker": "~1.4",

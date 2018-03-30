@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ArticleStoreValidator;
 use App\Http\Requests\Backend\ArticleUpdateValidator;
+use App\Repositories\Criteria\Articles\SearchCriteria;
 
 /**
  * Class NewsController
@@ -37,22 +38,26 @@ class NewsController extends Controller
     /**
      * De index pagina voor de beheersconsole van de nieuwsberichten.
      * 
-     * @todo Embed de zoekfunctie in de controller 
      * @todo Uitschrijven van een een phpunit test voor de zoekfunctie. (auth, geen auth)
      * 
+     * @param  Request $input The instance for getting the data from the search form.
      * @return View
      */
     public function index(Request $input): View
     {
-        if ($input->has('term')) {
-            //
+        if ($input->has('term')) { //! There is term data found from the form. If not skip this part.
+            $baseQuery = $this->articleRepository->pushCriteria(new SearchCriteria('titel', $input->term));
+
+            if ($baseQuery->entity()->count() > 0) { //! There are records found in the search query
+                return view('backend.news.index', ['articles' => $this->articleRepository->simplePaginate(15)]);
+            }
         }
 
         return view('backend.news.index', ['articles' => $this->articleRepository->paginateArticles(15)]);
     }
 
     /**
-     * Create pagina voor een nieuwsbericht. 
+     * Creatie pagina voor een nieuwsbericht. 
      * 
      * @return View
      */
