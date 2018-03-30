@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Repositories\ArticleRepository;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ArticleStoreValidator;
 use App\Http\Requests\Backend\ArticleUpdateValidator;
 
@@ -36,14 +37,17 @@ class NewsController extends Controller
     /**
      * De index pagina voor de beheersconsole van de nieuwsberichten.
      * 
-     * @todo Implementatie modal voor de zoekfuntie
      * @todo Embed de zoekfunctie in de controller 
      * @todo Uitschrijven van een een phpunit test voor de zoekfunctie. (auth, geen auth)
      * 
      * @return View
      */
-    public function index(): View
+    public function index(Request $input): View
     {
+        if ($input->has('term')) {
+            //
+        }
+
         return view('backend.news.index', ['articles' => $this->articleRepository->paginateArticles(15)]);
     }
 

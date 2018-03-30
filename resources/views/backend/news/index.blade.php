@@ -11,9 +11,9 @@
                         <i class="fa fa-fw fa-file-text-o"></i> Nieuwsberichten
 
                         <span class="pull-right">
-                            <a href="" class="btn btn-link btn-xs">
+                            <button data-toggle="modal" data-target="#search" class="btn btn-link btn-xs">
                                 <i class="fa fa-search"></i> Nieuwsbericht zoeken
-                            </a>
+                            </button>
 
                             <a href="{{ route('admin.news.create') }}" class="btn btn-link btn-xs">
                                 <i class="fa fa-plus"></i> Nieuwsbericht toevoegen
@@ -65,7 +65,7 @@
                                     @else {{-- Geen artikelen gevonden --}}
                                         <tr>
                                             <td colspan="6">
-                                                <span class="text-muted">(Er zijn nog geen nieuwsberichten gevonden.)</span>
+                                                <span class="text-muted">(Er zijn geen nieuwsberichten gevonden met de gegeven zoekterm.)</span>
                                             </td>
                                         </tr>
                                     @endif
@@ -79,4 +79,6 @@
             </div> {{-- /// Content --}}
         </div>
     </div>
+
+    @include('backend.news.search') {{-- News search modal include --}}
 @endsection
