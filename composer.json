@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.2.0",
-        "activismebe/database-layering": "^0.32",
+        "activismebe/database-layering": "^0.33",
         "activismebe/laravel-form-helpers": "^1.2",
         "chencha/share": "^5.2",
         "cybercog/laravel-ban": "^3.0",

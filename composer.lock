@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3151b0c4e79f72747a4f8e40d59ebc7f",
-    "content-hash": "673b798454887aa9df59caad9c29bf9a",
+    "hash": "122207461416c55363bbe08c6b735682",
+    "content-hash": "010448ca7cec8f6ff15bfb626b7e313e",
     "packages": [
         {
             "name": "activismebe/database-layering",
-            "version": "0.32",
+            "version": "0.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Misfits-BE/L5.x-database-layering.git",
-                "reference": "a483d5c404cd5fff68dbcad4466c181ceb99973f"
+                "reference": "fe464c6bb13d20bdde99400abe125951ea838204"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Misfits-BE/L5.x-database-layering/zipball/a483d5c404cd5fff68dbcad4466c181ceb99973f",
-                "reference": "a483d5c404cd5fff68dbcad4466c181ceb99973f",
+                "url": "https://api.github.com/repos/Misfits-BE/L5.x-database-layering/zipball/fe464c6bb13d20bdde99400abe125951ea838204",
+                "reference": "fe464c6bb13d20bdde99400abe125951ea838204",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "repositories",
                 "repository"
             ],
-            "time": "2018-03-31 12:21:28"
+            "time": "2018-03-31 12:27:54"
         },
         {
             "name": "activismebe/laravel-form-helpers",
