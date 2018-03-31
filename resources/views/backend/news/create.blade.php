@@ -22,6 +22,15 @@
                                 </div>
                             </div>
 
+                            <div class="form-group @error('image', 'has-error')">
+                                <label class="col-md-3 control-label">Afbeelding: <span class="text-danger">*</label>
+
+                                <div class="col-md-9">
+                                    <input type="file" @input('image')>
+                                    @error('image')
+                                </div>
+                            </div>
+
                             <div class="form-group @error('is_public', 'has-error')">
                                 <label class="col-md-3 control-label">Status nieuwsbericht <span class="text-danger">*</span></label>
                                 

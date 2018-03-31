@@ -136,8 +136,8 @@ class UpdateMethodTest extends TestCase
         $input   = ['titel' => $faker->word, 'is_public' => $faker->boolean, 'bericht' => rand(0, 50)];
 
         $this->actingAs($user)
-        ->patch(route('admin.news.update', ['slug' => $article->slug]), $input)
-        ->assertSessionHasErrors(['bericht' => trans('validation.string', ['attribute' => 'bericht'])]);
+            ->patch(route('admin.news.update', ['slug' => $article->slug]), $input)
+            ->assertSessionHasErrors(['bericht' => trans('validation.string', ['attribute' => 'bericht'])]);
     }
 
     /**
@@ -152,8 +152,8 @@ class UpdateMethodTest extends TestCase
         $input   = ['is_public' => $faker->boolean, 'bericht' => $faker->paragraph];
 
         $this->actingAs($user)
-        ->patch(route('admin.news.update', ['slug' => $article->slug]), $input)
-        ->assertSessionHasErrors(['titel' => trans('validation.required', ['attribute' => 'titel'])]);  
+            ->patch(route('admin.news.update', ['slug' => $article->slug]), $input)
+            ->assertSessionHasErrors(['titel' => trans('validation.required', ['attribute' => 'titel'])]);  
     }
 
     /**
