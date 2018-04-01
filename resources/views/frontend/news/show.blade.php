@@ -3,9 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-9"> {{-- Main content --}}
-            <h3>{{ $article->titel }}</h3>
+            <h3>{{ ucfirst($article->titel) }}</h3>
+            {!! ucfirst(markdown($article->bericht)) !!}  
 
-            {{-- // TODO: Implement markdown helpder --}}  
+            <hr style="margin-top: 15px; margin-bottom: 5px;">
+            <small class="text-muted">1 week geleden gepubliceerd door <strong>Voornaam Achternaam</strong></small> 
         </div> {{-- // Main content --}}
 
         <div class="col-md-3">
@@ -15,7 +17,17 @@
                         <i class="fa fa-fw fa-arrow-left"></i> Terug naar overzicht
                     </a>
 
+                    <hr style="margin-top: 15px; margin-bottom: 15px;">
 
+                    <a href="" class="btn btn-block btn-social btn-facebook">
+                        <span class="fa fa-facebook"></span>
+                        Deel op facebook
+                    </a>
+                    
+                    <a href="" class="btn btn-block btn-social btn-twitter">
+                        <span class="fa fa-twitter"></span>
+                        Deel op Twitter
+                    </a>
                 </div>
             </div>
         </div>

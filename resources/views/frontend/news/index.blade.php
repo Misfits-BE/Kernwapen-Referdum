@@ -14,9 +14,8 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{{ $article->titel }}</h4>
-                            {{-- // TODO: Implement markdown helpder --}}
-                            {{ strip_tags($article->bericht) }}
+                            <h4 class="media-heading">{{ ucfirst($article->titel) }}</h4>
+                            {{ strip_tags(markdown($article->bericht)) }}
                         </div>
                     </div>
                 @endforeach {{-- /// END article loop --}}
