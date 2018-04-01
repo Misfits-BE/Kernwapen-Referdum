@@ -76,6 +76,10 @@ class NewsController extends Controller
         $article = $this->articleRepository->create($input->all());
 
         if ($article) {
+            $article->addMediaFromRequest('image')->sanitizingFileName(function($fileName) {
+                return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+             })->toMediaCollection('images');
+             
             $this->addActivity($article, 'Heeft een nieuwsbericht aangemaakt.');
             flash("{$article->titel} is aangemaakt als nieuwsbericht in het systeem.")->success();
         }

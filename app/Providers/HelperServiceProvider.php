@@ -23,5 +23,6 @@ class HelperServiceProvider extends ServiceProvider
     public function register(): void
     {
         require_once app_path() . '/Helpers/Dates.php';
+        require_once app_path() . '/Helpers/Markdown.php';
     }
 }
