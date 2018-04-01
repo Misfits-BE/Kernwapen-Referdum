@@ -35,6 +35,7 @@ Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@m
 
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
+Route::get('/onderteken/verwijder', 'Frontend\SignatureController@unsubscribe')->name('signature.delete');
 
 // Frontend news routes
 Route::get('/nieuws', 'Frontend\NewsController@index')->name('news.index');

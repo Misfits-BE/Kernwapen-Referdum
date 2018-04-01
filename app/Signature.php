@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Databank model voor de handtekeningen in het systeem.
@@ -14,12 +15,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Signature extends Model
 {
+    use Notifiable;
+
     /**
      * Mass-assign velden voor de databank tabel.
      *
      * @var array
      */
-    protected $fillable = ['voornaam', 'achternaam', 'geboortedatum', 'postcode', 'straatnaam', 'stadsnaam', 'huis_nr'];
+    protected $fillable = [
+        'unsubscribe_token', 'voornaam', 'achternaam', 'email', 'geboortedatum', 'postcode', 'straatnaam', 'stadsnaam', 'huis_nr'
+    ];
 
     /**
      * De velden die gemuteerd worden tot datums.
