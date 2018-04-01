@@ -22,7 +22,13 @@
 
                 {{ $articles->render('vendor.pagination.simple-default') }}{{-- Pagination view instance --}}
             @else {{-- No articles are found --}}
+
             @endif
         </div> {{-- // Main content --}}
+
+        <div class="col-md-3"> {{-- Sidenav --}}
+            <div class="well well-sm">
+            <div>
+        </div> {{-- // END Sidebar --}}
     </div>
 @endsection
