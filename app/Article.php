@@ -60,9 +60,6 @@ class Article extends Model implements HasMedia
      */
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-              ->width(92)
-              ->height(92)
-              ->sharpen(20);
+        $this->addMediaConversion('thumb')->width(92)->height(92);
     }
 }

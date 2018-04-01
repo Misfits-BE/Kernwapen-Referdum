@@ -33,8 +33,6 @@ class NewsController extends Controller
     /**
      * Haal de front-end index page op voor de nieuwsberichten. 
      * 
-     * @todo build up the view 
-     * 
      * @return View
      */
     public function index(): View 

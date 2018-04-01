@@ -15,6 +15,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">{{ $article->titel }}</h4>
+                            {{-- // TODO: Implement markdown helpder --}}
                             {{ strip_tags($article->bericht) }}
                         </div>
                     </div>
