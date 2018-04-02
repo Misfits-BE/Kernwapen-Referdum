@@ -12,6 +12,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
  * Class UsersCreateViewTest
  * ----
  * PHPUnit testsuite voor het testen van de view om gebruikers aan te maken.
+ *
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
  */
 class UsersCreateViewTest extends TestCase
 {
