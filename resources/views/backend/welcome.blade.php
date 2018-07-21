@@ -2,22 +2,21 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in!
+        <div class="row"> {{-- Panel cards --}}
+            <div class="col-md-3">
+                <div class="panel panel-default"> {{-- Signature card --}}
+                    <div class="panel-body p-3">
+                        <div class="d-flex align-items-center">
+                            <span class="stamp tw-shadow stamp-md bg-red mr-3">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </span>
+                        <div>
+                      
+                        <h4 class="m-0"><a class="text-muted" href="">1,352 <small>Handtekeningen</small></a></h4>
+                        <small class="text-muted">163 handtekeningen vandaag</small>
                     </div>
-                </div>
+                </div> {{-- /// Signature card --}}
             </div>
-        </div>
+        </div> {{-- /// Panel cards --}}
     </div>
 @endsection
