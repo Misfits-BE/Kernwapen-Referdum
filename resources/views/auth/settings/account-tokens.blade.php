@@ -52,7 +52,7 @@
 
                                 <td> {{-- Options --}}
                                     <span class="pull-right">
-                                        <a class="text-muted" href="" data-toggle="tooltip" data-placement="bottom" title="Ververs">
+                                        <a class="text-muted" href="{{ route('admin.apikey.regenerate', $apikey) }}" data-toggle="tooltip" data-placement="bottom" title="Ververs">
                                             <i class="fa fa-fw fa-refresh"></i> 
                                         </a>
 
