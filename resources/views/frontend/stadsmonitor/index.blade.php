@@ -21,9 +21,9 @@
                                 <tr>
                                     <td>
                                         @if ($city->kernwapen_vrij)
-                                            <span class="label label-success">Kernwapen vrij</span>
+                                            <span class="label label-success">Kernwapenvrij</span>
                                         @else
-                                            <span class="label label-danger">Niet kernwapen wrij</span>
+                                            <span class="label label-danger">Niet kernwapenvrij</span>
                                         @endif
                                     </td>
                                     <td><strong>{{ $city->postal }}</strong></td>
