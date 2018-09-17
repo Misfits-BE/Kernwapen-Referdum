@@ -35,6 +35,19 @@ Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@m
 
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
+Route::get('/onderteken/verwijder', 'Frontend\SignatureController@unsubscribe')->name('signature.delete');
+
+// Frontend news routes
+Route::get('/nieuws', 'Frontend\NewsController@index')->name('news.index');
+Route::get('/neuws/{slug}', 'Frontend\NewsController@show')->name('news.show');
+
+// Backend news routes
+Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
+Route::get('/admin/nieuws/creatie', 'Backend\NewsController@create')->name('admin.news.create');
+Route::get('/admin/nieuws/wijzig/{slug}', 'Backend\NewsController@edit')->name('admin.news.edit');
+Route::patch('/admin/nieuws/wijzig/{slug}', 'Backend\NewsController@update')->name('admin.news.update');
+Route::get('/admin/nieuws/verwijder/{slug}', 'Backend\NewsController@destroy')->name('admin.news.destroy');
+Route::post('/admin/nieuws/opslaan', 'Backend\NewsController@store')->name('admin.news.store');
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
@@ -56,6 +69,7 @@ Route::get('/stadsmonitor/{name}', 'Frontend\StadsMonitorController@show')->name
 
 // User management routes
 Route::get('/admin/gebruikers', 'Backend\UsersController@index')->name('admin.users.index');
+Route::get('/admin/wijzig/{id}', 'Backend\UsersController@edit')->name('admin.users.edit');
 Route::get('/admin/gebruikers/nieuw', 'Backend\UsersController@create')->name('admin.users.create');
 Route::get('/admin/gebruikers/verwijder/{id}', 'Backend\UsersController@destroy')->name('admin.users.delete');
 Route::post('/admin/gebruikers/creatie', 'Backend\UsersController@store')->name('admin.users.store');
@@ -80,3 +94,12 @@ Route::patch('/admin/ondersteuning/wijzig/{id}', 'Backend\SupportController@upda
 Route::get('/admin/notities/nieuw/{city}', 'Backend\NotitionController@create')->name('admin.notition.create');
 Route::get('/admin/notities/verwijder/{notition}/{city}', 'Backend\NotitionController@destroy')->name('admin.notition.delete');
 Route::post('/admin/notities/opslaan/{city}', 'Backend\NotitionController@store')->name('admin.notition.store');
+
+// API key routes
+Route::post('/admin/api-token-opslaan', 'Auth\ApiKeysController@store')->name('admin.apikey.store');
+Route::get('/admin/api/regenerate/{id}', 'Auth\ApiKeysController@regenerate')->name('admin.apikey.regenerate');
+Route::get('/admin/api/verwijder/{id}', 'Auth\ApiKeysController@destroy')->name('admin.apikey.delete');
+
+// News backend routes
+Route::get('/admin/nieuws', 'Backend\NewsController@index')->name('admin.news.index');
+Route::get('/admin/nieuws/creer', 'Backend\NewsController@create')->name('admin.news.create');

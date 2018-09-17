@@ -17,10 +17,12 @@ class CreateSignaturesTable extends Migration
             $table->increments('id');
             $table->string('voornaam', 50);
             $table->string('achternaam', 50);
+            $table->string('email', 100);
             $table->timestamp('geboortedatum');
             $table->string('postcode', 4);
             $table->string('straatnaam', 125);
             $table->string('stadsnaam', 100);
+            $table->string('unsubscribe_token', 40)->default('N/A');
             $table->string('huis_nr', 7);
             $table->timestamps();
         });

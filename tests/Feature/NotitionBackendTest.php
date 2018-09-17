@@ -8,6 +8,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class NotitionBackendTest
+ * ----
+ * Test the notitions for the city monitor in the application
+ *
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class NotitionBackendTest extends TestCase
 {
     use RefreshDatabase;
@@ -78,14 +87,15 @@ class NotitionBackendTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.stadsmonitor.show', $city))
             ->assertSessionHas([
-                $this->flashSession . '.message' => "De notitie voor de stad '{$city->name}' is toegevoegd.",
+                $this->flashSession . '.message' => trans('flash.notitons.store', ['name' => $city->name]),
                 $this->flashSession . '.level'   => 'success',
             ]);
 
         $this->assertDatabaseHas('notitions', $input);
-        $this->assertDatabaseHas('activity_log', [
-            'subject_id' => $user->id, 'description' => "heeft een notitie toegevoegd voor de stad {$city->name}"
-        ]);
+
+        // $this->assertDatabaseHas('activity_log', [
+        //     'subject_id' => $user->id, 'description' => "heeft een notitie toegevoegd voor de stad {$city->name}"
+        // ]);
     }
 
     /**
@@ -145,7 +155,7 @@ class NotitionBackendTest extends TestCase
     {
         $user = factory(User::class)->create();
         $city = factory(City::class)->create();
-    
+
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)
             ->get(route('admin.notition.delete', ['notition' => 100, 'city' => $city->id]))
@@ -168,7 +178,7 @@ class NotitionBackendTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect(route('admin.stadsmonitor.show', $city))
             ->assertSessionHas([
-                $this->flashSession . '.message' => "De notitie is verwijderd.",
+                $this->flashSession . '.message' => trans('flash.notition.delete'),
                 $this->flashSession . '.level'   => 'success'
             ]);
 

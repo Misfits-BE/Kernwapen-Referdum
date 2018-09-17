@@ -34,6 +34,8 @@ class NotificationController extends Controller
     /**
      * Index pagina voor de notificaties.
      *
+     * @todo implementatie phpunit tests
+     *
      * @return \Illuminate\View\View
      */
     public function index(): View
@@ -42,22 +44,26 @@ class NotificationController extends Controller
             'notifications' => $this->notifications->getUserNotifications('simple', 5)
         ]);
     }
-    
+
     /**
      * Markeer alle notificaties als gelezen.
+     *
+     * @todo Implementatie phpunit tests
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function markAll(): RedirectResponse
     {
         $this->notifications->markAllAsRead();
-        flash(flash('flash.notifications.mark-all'))->success()->important();
+        flash(trans('flash.notifications.mark-all'))->success()->important();
 
         return redirect()->route('notifications.index');
     }
 
     /**
      * Markeer een notificatie als gelezen in het systeem.
+     *
+     * @todo Implementatie phpunit tests
      *
      * @param  string $notification     De UUID van de notificatie in de databank.
      * @return \Illuminate\Http\RedirectResponse

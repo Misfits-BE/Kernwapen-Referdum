@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
         // Confirm roles needed
         if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
             // Ask role from input
-            $inputRoles = $this->command->ask('Enter roles in comma seperated format.', 'admin,user');
+            $inputRoles = $this->command->ask('Enter roles in comma seperated format.', 'admin,api,user');
 
             // Explode roles
             $rolesArray = explode(',', $inputRoles); // BOOM!

@@ -1,0 +1,20 @@
+.md-editor .wysiwyg, .md-preview {
+    padding: 10px;
+}
+
+.btn-reply {
+    margin-top: 10px;
+}
+
+.markdown-correct {
+    padding-bottom: 5px;
+}
+
+.markdown-correct > blockquote, 
+.md-preview > blockquote {
+    padding: 5px 10px;
+
+    > p {
+        font-size: 14px;
+    }
+}

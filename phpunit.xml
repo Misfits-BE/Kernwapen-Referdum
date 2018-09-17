@@ -7,7 +7,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="true">
      <listeners>
         <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
     </listeners>

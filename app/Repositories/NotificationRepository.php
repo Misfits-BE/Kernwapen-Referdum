@@ -9,6 +9,8 @@ use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Pagination\Paginator;
+use App\Signature;
+use App\Notifications\SubscribeMailNotification;
 
 /**
  * Class NotificationRepository
@@ -47,10 +49,24 @@ class NotificationRepository extends Repository
             }
         }
 
-        // Lege exception omdat er geen output nodig is
+        // Log de exception voor debugging doeleindes
         // Wanneer er geen stad word gevonden onder de gegeven postcode
         catch (ModelNotFoundException $exception) {
+            app('log')->error($exception);
         }
+    }
+
+    /**
+     * Zend een notificatie naar de gebruiker om te laten weten dat hij de petitie heeft ondertekend; 
+     * 
+     * @param  Signature $email Het email adres van de persoon die de petitie heeft ondertekend.
+     * @return void
+     */
+    public function sendSubscribeNotification(Signature $signature): void 
+    {
+        $signature->notify((new SubscribeMailNotification($signature))->delay(
+            now()->addMinute()
+        ));
     }
 
     /**
@@ -72,6 +88,11 @@ class NotificationRepository extends Repository
         }
     }
 
+    /**
+     * Markeer alle notificiaties van de aangemelde gebruiker als gelezen. 
+     * 
+     * @return null|bool
+     */
     public function markAllAsread(): ?bool
     {
         return auth()->user()->unreadNotifications->markAsRead();
