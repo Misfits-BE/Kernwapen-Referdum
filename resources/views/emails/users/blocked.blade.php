@@ -1,7 +1,7 @@
 @component('mail::message')
 # Uw account is tijdelijk geblokkeerd.
 
-Via deze weg delen we je mee dat je accout op {{ config('app.name') }} tijdelijk is geblokkeerd. 
+Via deze weg delen we je mee dat je account op {{ config('app.name') }} tijdelijk is geblokkeerd. 
 
 Indien je denkt dat dit een vergissing is kan je de persoon die je geblokkeerd heeft bereiken. Door op de contact button te klikken.
 
