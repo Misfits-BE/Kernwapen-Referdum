@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\City;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\Paginator;
 
 /**
@@ -55,11 +56,11 @@ class CityRepository extends Repository
     public function determineFlashSession(bool $status, City $city): string
     {
         switch ($status) {
-            case true:  return "{$city->name} heeft zich kernwapen vrij verklaard.";
-            case false: return "{$city->name} heeft zich niet kernwapen vrij verklaard.";
+            case true:  return trans('flash.city-monitor.nuclear-free-true', ['name' => $city->name]);
+            case false: return trans('flash.city-monitor.nuclear-free-false', ['name' => $city->name]);
 
             // Indien geen van beide is gegeven
-            default: return "Kon niet uitmaken of de stad kernwapen vrij is of niet.";
+            default: return trans('flash.city-monitor.nuclear-free-unknown');
         }
     }
 
@@ -98,5 +99,28 @@ class CityRepository extends Repository
     public function findCity(string $city): City
     {
         return $this->entity()->where('name', $city)->firstOrFail();
+    }
+
+    /**
+     * Check of een gegeven stad genoeg handtekeningen heeft voor spreek recht.
+     *
+     * @param  int $postal De postcode van de gegeven stad
+     * @return bool
+     */
+    public function hasSpreakRight(int $postal): bool
+    {
+        try {
+            $city = City::where('postal', $postal)->firstOrFail();
+
+            if ($city->signatures()->count() === config('platform.amount_speakRight')) {
+                return true; // TRUE omdat een stad de nodige handtekeningen heeft voor het spreekrecht.
+            }
+
+            // FALSE omdat de gegeven gemeente al het aantal heeft bereikt
+            // of nog geen nodige handtekeningen heeft.
+            return false;
+        } catch (ModelNotFoundException $exception) {
+            return false; // FALSE wegens ongeldige postcode
+        }
     }
 }

@@ -4,8 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Steden model voor de databank.
+ *
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     \App
+ */
 class City extends Model
 {
     /**
@@ -24,6 +32,16 @@ class City extends Model
     {
         return $this->belongsTo(Province::class, 'province_id')
             ->withDefault(['name' => 'Provincie onbekend.']);
+    }
+
+    /**
+     * Haal de handtekeningen op van de gegeven stad.
+     *
+     * @return \Illmûnate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function signatures(): BelongsToMany
+    {
+        return $this->belongsToMany(Signature::class)->withTimestamps();
     }
 
     /**

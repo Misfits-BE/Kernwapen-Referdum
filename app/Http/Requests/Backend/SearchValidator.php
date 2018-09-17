@@ -5,8 +5,8 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Validatie voor de zoek opdrachten in de databank. 
- * 
+ * Validatie voor de zoek opdrachten in de databank.
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 TIm Joosten
  * @package     \App\Http\Requests\Backend

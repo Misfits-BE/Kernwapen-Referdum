@@ -3,7 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Databank model voor de handtekeningen in het systeem.
+ *
+ * @author      Tim Joosten <tim@ctivisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     \App
+ */
 class Signature extends Model
 {
     /**
@@ -19,6 +27,16 @@ class Signature extends Model
      * @var array
      */
     protected $dates = ['geboortedatum', 'created_at', 'updated_at'];
+
+    /**
+     * Data relatie voor het koppelen van de handtekening aan de stad.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function city(): BelongsToMany
+    {
+        return $this->belongsToMany(City::class)->withTimestamps();
+    }
 
     /**
      * Zorg ervoor dat de eerste letter van de voornaam altijd een hoofdletter is.

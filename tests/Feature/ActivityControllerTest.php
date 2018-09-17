@@ -2,29 +2,28 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ActivityControllerTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
 
     /**
-     * @test 
-     * @testdox Testde error response wanneer een niet aangemelde gebruiker de activiteiten log wilt bekijken. 
+     * @test
+     * @testdox Testde error response wanneer een niet aangemelde gebruiker de activiteiten log wilt bekijken.
      */
-    public function indexNoAuth() 
+    public function indexNoAuth()
     {
         $this->get(route('admin.logs.index'))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
     }
 
-    public function indexSuccess() 
+    public function indexSuccess()
     {
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->assertAuthenticatedAs($user)

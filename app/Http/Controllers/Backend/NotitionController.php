@@ -74,7 +74,7 @@ class NotitionController extends Controller
         $notition = $this->notitionRepository->prepHasMany($input);
 
         if ($city->notitions()->save($notition)) {
-            flash("De notitie voor de stad '{$city->name}' is toegevoegd.")->success();
+            flash(trans('flash.notitons.store', ['name' => $city->name]))->success();
             $this->addActivity($city, "heeft een notitie toegevoegd voor de stad {$city->name}");
         }
 
@@ -95,7 +95,7 @@ class NotitionController extends Controller
     public function destroy(Notitions $notition, City $city): RedirectResponse
     {
         if ($notition->delete()) {
-            flash("De notitie is verwijderd.")->success();
+            flash(trans('flash.notition.delete'))->success();
             $this->addActivity($city, 'Heeft een notitie verwijderd voor de stad ' . $city->name);
         }
 

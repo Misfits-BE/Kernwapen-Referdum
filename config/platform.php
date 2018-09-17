@@ -58,4 +58,14 @@ return [
      *
      */
     'contact_email' => 'info@activisme.be',
+
+    /**
+     * ---------------------------------------------------------------------------
+     * Aantal spreekrecht
+     * ---------------------------------------------------------------------------
+     *
+     * Het aantal nodige handtekeningen dat nodig is voor speekrecht te krijgen in een gemeenteraad.
+     *
+     */
+    'amount_speakRight' => 1,
 ];

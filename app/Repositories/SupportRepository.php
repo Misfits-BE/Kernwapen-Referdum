@@ -6,7 +6,6 @@ use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\Support;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
-use RuntimeException;
 
 /**
  * Class SupportRepository
@@ -48,8 +47,7 @@ class SupportRepository extends Repository
             case 'simple':  return $this->entity()->simplePaginate($perPage);
             case 'default': return $this->paginate($perPage);
 
-            // Geen correct type gegeven dus smijt een runtime exception.
-            default: throw new RuntimeException('The needs to ben simple or default', 500);
+            default: return $this->paginate($perPage);
         }
     }
 
@@ -76,8 +74,8 @@ class SupportRepository extends Repository
     }
 
     /**
-     * Zoek voor een specifieke ondersteunende organisatie in de databank. 
-     * 
+     * Zoek voor een specifieke ondersteunende organisatie in de databank.
+     *
      * @param  string   $term       De gegeven zoek term door de gebruiker
      * @param  int      $perPage    Het aantal resultaten per pagina.
      * @return \Illuminate\Pagination\Paginator

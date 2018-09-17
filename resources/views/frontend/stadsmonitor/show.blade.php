@@ -76,6 +76,15 @@
 
             <hr style="margin-top: 10px; margin-bottom: 10px;">
 
+            <div class="panel panel-default" style="margin-bottom: 0">
+                <div class="panel-body" style="padding-top: 5px;">
+                    <h4 style="padding-top:0"><strong> {{ $city->signatures->count() }} </strong></h4>
+                    <span class="text-muted">Handtekeningen</span>
+                </div>
+            </div>
+
+            <hr style="margin-top: 10px; margin-bottom: 10px;">
+
             <a href="" class="btn btn-block btn-social btn-facebook">
                 <span class="fa fa-facebook"></span>
                 Deel op facebook

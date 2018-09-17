@@ -5,10 +5,10 @@ namespace App\Http\Requests\Shared;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * SignatureValidator 
- * 
+ * SignatureValidator
+ *
  * @author      Tim Joosten <tim@activisme.be>
- * @copyright   2018 Tim Joosten 
+ * @copyright   2018 Tim Joosten
  * @package     \App\Http\Requests\Shared
  */
 class SignatureValidator extends FormRequest

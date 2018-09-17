@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\UserValidator;
+use App\Notifications\CredentialsNotification;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
-use App\Notifications\CredentialsNotification;
+use App\Traits\ActivityLog;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use App\Traits\ActivityLog;
 
 /**
  * UsersController
@@ -78,14 +77,14 @@ class UsersController extends Controller
     }
 
     /**
-     * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer. 
-     * 
+     * Creer een nieuw login in het systeem. Op basis van de gebruikers invoer.
+     *
      * @todo implementatie phpunit test (forbid-banned-user, 'auth', 'no auth')
-     * 
+     *
      * @param  UserValidator $input De gegeven gebruikers invoer (Gevalideerd).
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserValidator $input): RedirectResponse 
+    public function store(UserValidator $input): RedirectResponse
     {
         $password = str_random(16);
         $sendAt   = now()->addMinute();
@@ -96,7 +95,7 @@ class UsersController extends Controller
             $user->notify((new CredentialsNotification($user, $password))->delay($sendAt));
             $this->addActivity($user, 'Heeft een login aangemaakt in het systeem.');
 
-            flash("Er is een gebruiker aangemaakt voor {$user->name}")->success()->important();
+            flash(trans('flash.users.store', ['name' => $user->name]))->success()->important();
         }
 
         return redirect()->route('admin.users.index');
@@ -129,7 +128,7 @@ class UsersController extends Controller
     public function update(User $user, UserValidator $input): RedirectResponse
     {
         if ($user->update($input->all())) {
-            flash("{$user->name} is aangepast in het systeem.")->success();
+            flash(trans('flash.users.update', ['name' => $user->name]))->success();
         }
 
         return redirect()->route('admin.users.index');
@@ -147,7 +146,7 @@ class UsersController extends Controller
 
         if ($user->delete()) {
             $this->addActivity($user, 'Heeft een gebruiker verwijderd uit het systeem.');
-            flash("De gebruiker is verwijderd uit het systeem.")->success();
+            flash(trans('flash.users.delete'))->success();
         }
 
         return redirect()->route('admin.users.index');

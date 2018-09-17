@@ -40,7 +40,7 @@ class ContactController extends Controller
     public function send(ContactValidator $input): RedirectResponse
     {
         Mail::to(config('platform.contact_email'))->send(new contactForm($input->all()));
-        flash('We hebben je email verzonden, en nemen spoedig contact met je op.')->success();
+        flash(trans('flash.contact.send'))->success();
 
         return redirect()->route('contact.index');
     }

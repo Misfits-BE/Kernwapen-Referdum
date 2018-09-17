@@ -5,6 +5,18 @@ All notable changes to `Misfits-BE/Kernwapen-Referendum` will be documented in t
 ## 1.0.0-RC3 - 12-01-2018
 
 - Fix bug in password key generation. (accidently double hashing)
+- Bij het verklaren van een kernwapen vrije gemeente word er nu ook een notitie aangemaakt.
+- Bij het intrekken van de detaun omtrent kernwapen vrije gemeente wordt er een notitie aangemaakt.
+- Implementatie missende docblock. (Stadsmonitor front-end show).
+- Refactoring RunTimeException naar een default paginatie. 
+- Implementatie van een notificatie wanneer een gemeente beroep kan doen op spraakrecht.
+- Fix #73 | Global auth user variable.
+- Fix #90 | Implementatie class doc blocks -> models
+- Fix #95 | Implementatie nunomaduro/collision package.
+- Fix #37 | Implement google analytics
+- Fix #91 | Translate controller flash messages.
+- Fix #97 | Inweven van de handtekeningen per stad. In de stadsmonitor. 
+- Fix #99 | Fix typo in the activity log 
 
 ## 1.0.0-RC2 - 29-01-2018
 

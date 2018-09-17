@@ -5,8 +5,8 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * BugValidator 
- * 
+ * BugValidator
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     \App\Http\Requests\Backend

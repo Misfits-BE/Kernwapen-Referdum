@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\OrganizationValidator;
 use App\Http\Requests\Backend\OrganizationUpdateValidator;
+use App\Http\Requests\Backend\OrganizationValidator;
 use App\Http\Requests\Backend\SearchValidator;
 use App\Repositories\SupportRepository;
 use Illuminate\Http\RedirectResponse;
@@ -52,15 +52,15 @@ class SupportController extends Controller
     }
 
     /**
-     * Zoek voor een speicifieke ondersteunende organisatie. 
-     * 
-     * @todo Implementatie IF/ELSE wanneer er meer dan 12 organisaties zijn. (view) 
+     * Zoek voor een speicifieke ondersteunende organisatie.
+     *
+     * @todo Implementatie IF/ELSE wanneer er meer dan 12 organisaties zijn. (view)
      * @todo Implement phpunit test (auth, no auth, forbid-banned-user)
-     * 
+     *
      * @param  SearchValidator $input De gegeven gebruikersinvoer (Gevalideerd)
      * @return \Illuminate\View\View
      */
-    public function search(SearchValidator $input): View 
+    public function search(SearchValidator $input): View
     {
         return view('backend.support.index', [
             'organizations' => $this->supportRepository->searchOrganization($input->term, 15)
@@ -81,7 +81,6 @@ class SupportController extends Controller
      * Sla de ondersteunende organisatie op in de databanK.
      *
      * @todo Translatie flash message
-     * @todo Implement activity logger.
      *
      * @param  OrganizationValidator $input De door de gebruiker gegeven invoer (Gevalideerd).
      * @return RedirectResponse
@@ -92,21 +91,21 @@ class SupportController extends Controller
 
         if ($organisation) {
             $this->addActivity($organisation, 'Heeft een ondersteunende organisatie toegevoegd.');
-            flash('De ondersteunende organisatie is toegevoegd aan het systeem.')->success();
+            flash(trans('flash.support.store'))->success();
         }
 
         return redirect()->route('admin.support.index');
     }
 
     /**
-     * Weergave voor het wijzigen van een ondersteundende organisatie in het systeem. 
-     * 
-     * @todo implementatie phpunit test 
-     * 
+     * Weergave voor het wijzigen van een ondersteundende organisatie in het systeem.
+     *
+     * @todo implementatie phpunit test
+     *
      * @param   int $organisation   The unieke identificatie van de organisatie in het systeem.
      * @return \Illuminate\View\View
      */
-    public function edit(int $organisation): View 
+    public function edit(int $organisation): View
     {
         return view('backend.support.edit', [
             'organisation' => $this->supportRepository->findOrFail($organisation)
@@ -114,13 +113,13 @@ class SupportController extends Controller
     }
 
     /**
-     * Update de ondersteunende organisatie in de databank. 
-     * 
-     * @todo Implementatie phpunit test 
-     * 
-     * @param  OrganizationUpdateValidator $input           De gegeven gebruikers invoer (gevalideerd). 
+     * Update de ondersteunende organisatie in de databank.
+     *
+     * @todo Implementatie phpunit test
+     *
+     * @param  OrganizationUpdateValidator $input           De gegeven gebruikers invoer (gevalideerd).
      * @param  int                         $organisation    De unieke identificatie van de organisatie
-     * @return \Illuminate\Http\RedirectResponse 
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(OrganizationUpdateValidator $input, int $organisation): RedirectResponse
     {
@@ -128,7 +127,7 @@ class SupportController extends Controller
 
         if ($organisation->update($input->except('_token', '_method'))) {
             $this->addActivity($organisation, 'Heeft een ondersteunende organisatie gewijzigd.');
-            flash('De ondersteunende organisatie is gewijzigd in het systeem.')->success();
+            flash(trans('flash.support.update'))->success();
         }
 
         return redirect()->route('admin.support.index');
@@ -146,7 +145,7 @@ class SupportController extends Controller
 
         if ($organisation->delete()) {
             $this->addActivity($organisation, 'Heeft een ondersteunende organisatie verwijderd');
-            flash('De ondersteunende organisatie is verwijder.')->success();
+            flash(trans('flash.support.delete'))->success();
         }
 
         return redirect()->route('admin.support.index');

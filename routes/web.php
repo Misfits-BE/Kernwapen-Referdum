@@ -28,13 +28,18 @@ Route::post('/admin/meld-ons-probleem', 'Backend\GithubController@store')->name(
 Route::get('/contact', 'Frontend\ContactController@index')->name('contact.index');
 Route::post('/contact/verzend', 'Frontend\ContactController@send')->name('contact.send');
 
+// Notification routes
+Route::get('/admin/notificaties', 'Backend\NotificationController@index')->name('notifications.index');
+Route::get('/admin/notificaties/alles-gelezen', 'Backend\NotificationController@markAll')->name('notifications.markall');
+Route::get('/admin/notificaties/gelezen/{id}', 'Backend\NotificationController@markOne')->name('notifications.markOne');
+
 // Signature route
 Route::post('/onderteken', 'Frontend\SignatureController@store')->name('signature.store');
 
 // Disclaimer routes
 Route::get('/disclaimer', 'Frontend\DisclaimerController@index')->name('disclaimer.index');
 
-// Backend activity console routes 
+// Backend activity console routes
 Route::get('/admin/logs', 'Backend\ActivityController@index')->name('admin.logs.index');
 Route::get('/admin/logs/zoek', 'Backend\ActivityController@search')->name('admin.logs.search');
 

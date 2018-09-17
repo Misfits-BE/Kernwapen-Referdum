@@ -5,8 +5,8 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * AccountSecurityValidator 
- * 
+ * AccountSecurityValidator
+ *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten
  * @package     App\Http\Requests\Auth

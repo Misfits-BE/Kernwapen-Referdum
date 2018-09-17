@@ -9,6 +9,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-home fa-fw"></i> {{ $city->postal}} - {{ $city->name }}
+
+                        <div class="pull-right">{{ $city->signatures->count() }} Handtekeningen</div>
                     </div>
 
                     <div class="panel-body">
