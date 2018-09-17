@@ -58,7 +58,7 @@ Route::get('/admin/logs/zoek', 'Backend\ActivityController@search')->name('admin
 
 // Stads monitor routes (Backend)
 Route::get('/admin/stadsmonitor', 'Backend\StadsMonitorController@index')->name('admin.stadsmonitor.index');
-Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitorController@kernwapenVrij')->name('admin.stadsmonitor.status');
+Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitor\NukeFreeController@show')->name('admin.stadsmonitor.status');
 Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')->name('admin.stadsmonitor.show');
 Route::get('/admin/zoek/stad', 'Backend\StadsMonitorController@search')->name('admin.stadsmonitor.search');
 
