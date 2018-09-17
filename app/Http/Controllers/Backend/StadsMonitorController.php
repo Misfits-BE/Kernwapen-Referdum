@@ -33,19 +33,13 @@ class StadsMonitorController extends Controller
     private $cityRepository;
 
     /**
-     * @var NotitionsRepository $notitionRepository
-     */
-    private $notitionRepository;
-
-    /**
      * StadsMonitorConstructor
      *
      * @param  ProvinceRepository   $provinceRepository     Abstractie laag tussen controller, logica en database
      * @param  CityRepository       $cityRepository         Abstractie laag tussen controller, logica en database
-     * @param  NotititionsRepoitory $NotitionsRepository    Abstractie laag tussen controller, logica en database
      * @return void
      */
-    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository, NotitionsRepository $notitionRepository)
+    public function __construct(ProvinceRepository $provinceRepository, CityRepository $cityRepository)
     {
         parent::__construct();
 
@@ -53,7 +47,6 @@ class StadsMonitorController extends Controller
 
         $this->provinceRepository = $provinceRepository;
         $this->cityRepository     = $cityRepository;
-        $this->notitionRepository = $notitionRepository;
     }
 
     /**
@@ -85,27 +78,6 @@ class StadsMonitorController extends Controller
         $kernvrijeGemeentes = $this->cityRepository->count('kernwapen_vrij', true);
 
         return view('backend.stadsmonitor.index', compact('cities', 'kernvrijeGemeentes'));
-    }
-
-    /**
-     * Wijzig een stad zijn status in de databank.
-     *
-     * @param  int  $city   De databank entiteit van de stad
-     * @param  bool $status De door de gebruiker gegeven invoer.
-     * @return RedirectResponse
-     */
-    public function kernwapenVrij(int $city, bool $status): RedirectResponse
-    {
-        $city = $this->cityRepository->findOrFail($city);
-
-        if ($city->update(['kernwapen_vrij' => $status])) {
-            $this->addActivity($city, 'Heeft de stad ' . $city->name . ' zijn status gewijzigd.');
-            $this->notitionRepository->notitionKernvrij($status, $city->id);
-
-            flash($this->cityRepository->determineFlashSession($status, $city))->info();
-        }
-
-        return redirect()->back(302);
     }
 
     /**
