@@ -7,6 +7,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
+/**
+ * Class ContactTest 
+ * ---- 
+ * Tests for testing the contact system. 
+ * 
+ * @author      Tim Joosten <topairy@gmail.com>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class ContactTest extends TestCase
 {
     use RefreshDatabase;

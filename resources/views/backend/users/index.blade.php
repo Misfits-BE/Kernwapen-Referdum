@@ -55,7 +55,7 @@
 
                                                 <td> {{-- Opties --}}
                                                     <span class="pull-right">
-                                                        <a href="" class="text-muted">
+                                                        <a href="{{ route('admin.users.edit', $user) }}" class="text-muted">
                                                             <i class="fa fa-fw fa-cogs"></i>
                                                         </a>
 

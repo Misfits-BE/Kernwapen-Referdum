@@ -34,49 +34,60 @@
                     </div>
                 </div>
 
+                <div class="form-group @error('email', 'has-error')">
+                    <label class="control-label col-md-3">E-mail adres: <span class="text-danger">*</span> </label>
+
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" @input('email') placeholder="Uw E-mail adres">
+                        
+                        <small class="help-block">
+                            <span class="text-danger">*</span> Uw E-mail adres word alleen gebruikt voor de notificatie v/d ondertekening
+                        </small>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label col-md-3">Geboortedatum: <span class="text-danger">*</span> </label>
 
                     <div class="col-md-9 @error('geboortedatum', 'has-error')">
-                    <input type="date" class="form-control" @input('geboortedatum')>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-3"> Uw adres: <span class="text-danger">*</span></label>
-
-                <div class="col-md-6 @error('straatnaam' , 'has-error')">
-                    <input type="text" class="form-control" @input('straatnaam') placeholder="Uw straatcnaam">
+                        <input type="date" class="form-control" @input('geboortedatum')>
+                    </div>
                 </div>
 
-                <div class="col-md-3 @error('huis_nr', 'has-error')">
-                    <input type="text" class="form-control" placeholder="Uw Huisnummer" @input('huis_nr')>
+                <div class="form-group">
+                    <label class="control-label col-md-3"> Uw adres: <span class="text-danger">*</span></label>
+
+                    <div class="col-md-6 @error('straatnaam' , 'has-error')">
+                        <input type="text" class="form-control" @input('straatnaam') placeholder="Uw straatcnaam">
+                    </div>
+
+                    <div class="col-md-3 @error('huis_nr', 'has-error')">
+                        <input type="text" class="form-control" placeholder="Uw Huisnummer" @input('huis_nr')>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-3 col-md-3 @error('postcode', 'has-error')">
-                    <input type="text" class="form-control" placeholder="Postcode" @input('postcode')>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-3 @error('postcode', 'has-error')">
+                        <input type="text" class="form-control" placeholder="Postcode" @input('postcode')>
+                    </div>
+
+                    <div class="col-md-6 @error('stadsnaam', 'has-error')">
+                        <input type="text" class="form-control" @input('stadsnaam') placeholder="Stadsnaam">
+                    </div>
                 </div>
 
-                <div class="col-md-6 @error('stadsnaam', 'has-error')">
-                    <input type="text" class="form-control" @input('stadsnaam') placeholder="Stadsnaam">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            <i class="fa fa-check"></i> Tekenen
+                        </button>
+
+                        <button type="reset" class="btn btn-sm btn-link">
+                            <i class="fa fa-undo"></i> Annuleren
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn btn-sm btn-success">
-                        <i class="fa fa-check"></i> Tekenen
-                    </button>
-
-                    <button type="reset" class="btn btn-sm btn-link">
-                        <i class="fa fa-undo"></i> Annuleren
-                    </button>
-                </div>
-            </div>
-        </form>
-
+            </form>
         </div>
 
         <div class="col-md-3">

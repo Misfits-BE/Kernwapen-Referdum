@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css" rel="stylesheet">
+    @stack('stylesheets') {{-- Page specific stylesheets --}}
 </head>
 <body>
 <div id="app">
@@ -55,6 +56,12 @@
                         </a>
                     </li>
 
+                    <li @if (request()->is('admin/nieuws*')) class="active" @endif>
+                        <a href="{{ route('admin.news.index') }}">
+                            <i class="fa fa-file-text-o"></i> Nieuws
+                        </a>
+                    </li>
+
                     <li @if (request()->is('admin/logs')) class="active" @endif>
                         <a href="{{ route('admin.logs.index') }}">
                             <i class="fa fa-list"></i> Logs
@@ -69,8 +76,8 @@
                         <li>
                             <a href="{{ route('notifications.index') }}">
                                 <span class="fa fa-bell-o"></span>
-                        
-                                @if ($user->unreadNotifications->count() > 0) {{-- Er is meer dan een notificatie in het systeem. --}} 
+
+                                @if ($user->unreadNotifications->count() > 0) {{-- Er is meer dan een notificatie in het systeem. --}}
                                     <span class="label label-info">
                                         {{ $user->unreadNotifications()->count() }}
                                     </span>
@@ -122,5 +129,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
+@stack('scripts') {{-- Page specific javascripts --}}
 </body>
 </html>

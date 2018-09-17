@@ -7,6 +7,15 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class SupportOrganizationTest
+ * ---- 
+ * Tests for the organization support system in the application. 
+ * 
+ * @author      Tim Joosten <tim@activisme.be>
+ * @copyright   2018 Tim Joosten
+ * @package     Tests\Feature
+ */
 class SupportOrganizationTest extends TestCase
 {
     use RefreshDatabase;
@@ -111,7 +120,7 @@ class SupportOrganizationTest extends TestCase
             ->assertAuthenticatedAs($user)
             ->get(route('admin.support.delete', $organisation))
             ->assertSessionHas([
-                $this->flashSession . '.message' => 'De ondersteunende organisatie is verwijder.',
+                $this->flashSession . '.message' => trans('flash.support.delete'),
                 $this->flashSession . '.level'   => 'success'
             ]);
 

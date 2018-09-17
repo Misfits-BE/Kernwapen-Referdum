@@ -14,6 +14,10 @@
                     <a href="#security" aria-controls="security" role="tab" data-toggle="tab" class="list-group-item">
                         <i class="fa fa-fw fa-key"></i> Account beveiliging
                     </a>
+
+                    <a href="#tokens" aria-controls="tokens" role="tab" data-toggle="tab" class="list-group-item">
+                        <i class="fa fa-fw fa-code"></i> API Tokens
+                    </a>
                 </div>
             </div> {{-- /Side navigation --}}
 
@@ -25,6 +29,10 @@
 
                     <div class="tab-pane fade in @if (Request::is('admin/account/instellingen/beveiliging')) active @endif" id="security" role="tabpanel">
                         @include('auth.settings.account-security')
+                    </div>
+
+                    <div class="tab-pane fade in @if (Request::is('admin/account/instellingen/tokens')) active @endif" id="tokens" role="tabpanel">
+                        @include('auth.settings.account-tokens')
                     </div>
                 </div>
             </div> {{-- /Content --}}

@@ -18,7 +18,7 @@ class SignatureValidator extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -28,11 +28,12 @@ class SignatureValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'voornaam'      => 'required|string|max:50',
             'achternaam'    => 'required|string|max:50',
+            'email'         => 'required|email',
             'geboortedatum' => 'required|max:12',
             'postcode'      => 'required|max:4',
             'straatnaam'    => 'required|string|max:125',

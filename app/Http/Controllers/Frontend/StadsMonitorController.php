@@ -52,7 +52,7 @@ class StadsMonitorController extends Controller
     /**
      * Zoek voor een specifieke stad in het systeem.
      *
-     * @param  Request $input
+     * @param  Request $input De gegeven parameter voor de routering.
      * @return View
      */
     public function search(Request $input): View

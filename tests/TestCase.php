@@ -11,7 +11,14 @@ abstract class TestCase extends BaseTestCase
     /**
      * Session bag voor de flash sessies. (package: laracasts/flash)
      *
-     * @var $flashSession
+     * @var string $flashSession
      */
     protected $flashSession = 'flash_notification.0';
+
+    /**
+     * Register the locale from the config. 
+     * 
+     * @var string $locale
+     */
+    protected $locale = 'nl';
 }
