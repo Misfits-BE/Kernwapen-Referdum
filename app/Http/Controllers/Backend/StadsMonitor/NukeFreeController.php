@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\City;
+use Gate;
 
 /**
  * Class NukeFreeController
@@ -35,6 +36,10 @@ class NukeFreeController extends Controller
      */
     public function show(City $city, bool $status): View 
     {
-        
+        if (Gate::denies('kernwapen-vrij')) {
+            return view('backend.stadsmonitor.nuclear-free', compact('city'));
+        }
+
+        return view('backend.stadsmonitor.nuclear-not-free', compact('city'));
     }
 }

@@ -24,7 +24,7 @@ class CityPolicy
      * @param  bool $status De status indicater die gegeven word door de gebruiker
      * @return bool
      */
-    public function isKernwapenVrij(City $city, bool $status): bool 
+    public function kernwapenVrij(City $city, bool $status): bool 
     {
         return $city->kernwapen_vrij === $status; 
     }
