@@ -28,7 +28,7 @@ class NotitionsRepository extends Repository
      * Prepping v/d data voor de notitie die word gebruikt als een gemeente kernwapen vrij is. 
      * 
      * @param  City $city De databank entiteit van de gegeven stad? 
-     * @return Notitions 
+     * @return void
      */
     public function notitionNuclearFree(City $city): void
     {
@@ -37,6 +37,23 @@ class NotitionsRepository extends Repository
         $notition->status       = 0; // Indication voor een publieke notitie.
         $notition->titel        = 'heeft zich kernwapen vrij verklaard.'; 
         $notition->beschrijving = "{$city->name} heeft zich kernwapen vrij verklaard."; 
+
+        $city->notitions()->save($notition);
+    }
+
+    /**
+     * Prepping v/d data voor de notitie die word gebruikt wanneer een kernwapen-vrij statuut word ingetrokken. 
+     * 
+     * @param  City $city De databank entiteit van de gegeven stad.
+     * @return void
+     */
+    public function notitionNuclearNonFree(City $city): void 
+    {
+        $notition               = new Notitions; 
+        $notition->author_id    = auth()->user()->id; 
+        $notition->status       = 0; // Indicatie voor een publieke notitie. 
+        $notition->titel        = 'Heeft zijn steun als kernwapen vrije gemeente ingetrokken.';
+        $notition->beschrijving = "{$city} heeft zijn steun als kernwapen vrije gemeente ingetrokken.";
 
         $city->notitions()->save($notition);
     }
