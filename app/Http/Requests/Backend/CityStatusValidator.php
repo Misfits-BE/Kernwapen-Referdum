@@ -30,6 +30,6 @@ class CityStatusValidator extends FormRequest
      */
     public function rules(): array
     {
-        return ['verklaring' => 'required|max:2000|mimes:pdf'];
+        return ['verklaring' => 'required|mimes:pdf'];
     }
 }

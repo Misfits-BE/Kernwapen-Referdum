@@ -5,6 +5,7 @@ namespace App\Repositories;
 use ActivismeBE\DatabaseLayering\Repositories\Eloquent\Repository;
 use App\City;
 use App\Notitions;
+use App\Http\Requests\Backend\CityStatusValidator;
 
 /**
  * Class NotitionsRepository
@@ -24,19 +25,19 @@ class NotitionsRepository extends Repository
     }
 
     /**
-     * Voorbereiding van de data omtrent de notitie
-     *
-     * @param  mixed $înput De data rechtstreeks van de data validator instantie.
-     * @return Notitions
+     * Prepping v/d data voor de notitie die word gebruikt als een gemeente kernwapen vrij is. 
+     * 
+     * @param  City $city De databank entiteit van de gegeven stad? 
+     * @return Notitions 
      */
-    public function prepHasMany($input): Notitions
+    public function notitionNuclearFree(City $city): void
     {
         $notition               = new Notitions;
-        $notition->author_id    = $input->user()->id;
-        $notition->titel        = $input->titel;
-        $notition->status       = $input->status;
-        $notition->beschrijving = $input->beschrijving;
+        $notition->author_id    = auth()->user()->id;
+        $notition->status       = 0; // Indication voor een publieke notitie.
+        $notition->titel        = 'heeft zich kernwapen vrij verklaard.'; 
+        $notition->beschrijving = "{$city->name} heeft zich kernwapen vrij verklaard."; 
 
-        return $notition;
+        $city->notitions()->save($notition);
     }
 }

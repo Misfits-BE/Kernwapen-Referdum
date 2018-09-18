@@ -47,24 +47,6 @@ class CityRepository extends Repository
     }
 
     /**
-     * Bepaal de flash message indien de gemeente kernwapen vrij is of niet.
-     *
-     * @param  bool $status De status. Is de gemeente kernwapen vrij of niet?
-     * @param  City $city   De databank entiteit van de gemeente
-     * @return string
-     */
-    public function determineFlashSession(bool $status, City $city): string
-    {
-        switch ($status) {
-            case true:  return trans('flash.city-monitor.nuclear-free-true', ['name' => $city->name]);
-            case false: return trans('flash.city-monitor.nuclear-free-false', ['name' => $city->name]);
-
-            // Indien geen van beide is gegeven
-            default: return trans('flash.city-monitor.nuclear-free-unknown');
-        }
-    }
-
-    /**
      * Zoek voor een specifieke waarde. En tel de gevonden records op.
      *
      * @param  string $column De naam van de databank kolom.

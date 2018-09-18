@@ -25,7 +25,7 @@
 
                         <hr>
 
-                        <form method="POST" action="{{ route('admin.stadsmonitor.nuke-free', $city) }}" class="form-horizontal">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('admin.stadsmonitor.nuke-free', $city) }}" class="form-horizontal">
                             {{ csrf_field() }}             {{-- Form field protection --}}
                             {{ method_field('PATCH') }}    {{-- HTTP method spoofing --}}
 
@@ -40,7 +40,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-sm btn-success">
                                         Invoegen
                                     </button>
                                 </div>
