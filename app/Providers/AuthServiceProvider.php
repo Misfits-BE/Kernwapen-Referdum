@@ -7,6 +7,8 @@ use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Misfits\ApiGuard\Models\ApiKey;
+use App\City;
+use App\Policies\CityPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class     => UserPolicy::class,
         ApiKey::class   => ApiTokenPolicy::class,
+        City::class     => CityPolicy::class,
     ];
 
     /**
