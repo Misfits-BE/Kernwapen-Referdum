@@ -2,8 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\City;
+use App\{User, City};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
@@ -18,14 +17,14 @@ class CityPolicy
     use HandlesAuthorization;
 
     /**
-     * Check dat een gemeente als kernwapen vrij verklaard staat geregistreerd. 
+     * Authorisatie check voor zeker te zijn dat de gegeven gemeente kernwapen vrij is. 
      * 
-     * @param  City $city   De databank entity van de stad. 
-     * @param  bool $status De status indicater die gegeven word door de gebruiker
-     * @return bool Yes, return bool. Because fuck you, that's why.
+     * @param  User $user De databank entiteit van de aangemelde gebruiker. 
+     * @param  City $city De gegeven databank entiteit van de gemeente.
+     * @return bool 
      */
-    public function kernwapenVrij(City $city, bool $status): bool 
+    public function kernwapenVrij(User $user, City $city): bool 
     {
-        return $city->kernwapen_vrij === $status; 
+        return $user->hasRole('admin') && (bool) $city->kernwapen_vrij;
     }
 }

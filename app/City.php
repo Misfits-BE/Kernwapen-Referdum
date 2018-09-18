@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * Steden model voor de databank.
@@ -14,8 +16,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @copyright   2018 Tim Joosten
  * @package     \App
  */
-class City extends Model
+class City extends Model implements HasMedia
 {
+    use HasMediaTrait;
+    
     /**
      * Mass-assign velden voor de databnak tabel.
      *
