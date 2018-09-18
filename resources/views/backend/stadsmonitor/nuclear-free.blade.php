@@ -25,8 +25,9 @@
 
                         <hr>
 
-                        <form method="POST" action="" class="form-horizontal">
-                            {{ csrf_field() }} {{-- Form field protection --}}
+                        <form method="POST" action="{{ route('admin.stadsmonitor.nuke-free', $city) }}" class="form-horizontal">
+                            {{ csrf_field() }}             {{-- Form field protection --}}
+                            {{ method_field('PATCH') }}    {{-- HTTP method spoofing --}}
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="verklaring">Verklaring <span class="text-danger">*</span></label>
@@ -40,7 +41,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
                                     <button type="submit" class="btn btn-success">
-                                        Vrij verklaren
+                                        Invoegen
                                     </button>
                                 </div>
                             </div>

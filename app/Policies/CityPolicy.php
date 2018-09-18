@@ -22,7 +22,7 @@ class CityPolicy
      * 
      * @param  City $city   De databank entity van de stad. 
      * @param  bool $status De status indicater die gegeven word door de gebruiker
-     * @return bool
+     * @return bool Yes, return bool. Because fuck you, that's why.
      */
     public function kernwapenVrij(City $city, bool $status): bool 
     {

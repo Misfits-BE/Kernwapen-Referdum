@@ -5,7 +5,7 @@ namespace App\Http\Requests\Backend;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * NotitionValidator
+ * Class NotitionValidator
  *
  * @author      Tim Joosten <tim@activisme.be>
  * @copyright   2018 Tim Joosten

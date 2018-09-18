@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\City;
 use Gate;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Backend\CityStatusValidator;
 
 /**
  * Class NukeFreeController
@@ -41,5 +43,10 @@ class NukeFreeController extends Controller
         }
 
         return view('backend.stadsmonitor.nuclear-not-free', compact('city'));
+    }
+
+    public function update(CityStatusValidator $input, City $city): RedirectResponse
+    {
+        dd($input, $city);
     }
 }

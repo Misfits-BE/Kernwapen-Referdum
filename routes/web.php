@@ -62,6 +62,10 @@ Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitor\NukeFree
 Route::get('/admin/stadsmonitor/{city}', 'Backend\StadsMonitorController@show')->name('admin.stadsmonitor.show');
 Route::get('/admin/zoek/stad', 'Backend\StadsMonitorController@search')->name('admin.stadsmonitor.search');
 
+// City status pages
+Route::get('/admin/stadsmonitor/{city}/{status}', 'Backend\StadsMonitor\NukeFreeController@show')->name('admin.stadsmonitor.status');
+Route::patch('/admin/statsmonitor/{city}/nuke-free', 'Backend\StadsMonitor\NukeFreeController@update')->name('admin.stadsmonitor.nuke-free');
+
 // Stads monitor routes (Frontend)
 Route::get('/stadsmonitor', 'Frontend\StadsMonitorController@index')->name('stadsmonitor.index');
 Route::get('/stadsmonitor/zoek', 'Frontend\StadsMonitorController@search')->name('stadsmonitor.search');
