@@ -31,6 +31,8 @@
 
                                             @if ($city->kernwapen_vrij) {{-- Gemeente is kernwapen vrij --}}
                                                 <span class="label label-success">Kernwapen vrij</span>
+
+                                                (<a _target="blank" href="{{ $city->getFirstMediaUrl('verklaringen') }}">Verklaring</a>)
                                             @else {{-- Gemeente is niet kernwapen vrij --}}
                                                 <span class="label label-danger">Niet kernwapen vrij</span>
                                             @endif
