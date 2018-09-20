@@ -5,7 +5,7 @@ Via deze weg delen we je mee dat je account op {{ config('app.name') }} tijdelij
 
 Indien je denkt dat dit een vergissing is kan je de persoon die je geblokkeerd heeft bereiken. Door op de contact button te klikken.
 
-@component('mail::button', ['url' => 'mailto:' . $user->email])
+@component('mail::button', ['url' => 'mailto:' . $user['email']])
 Contact
 @endcomponent
 
