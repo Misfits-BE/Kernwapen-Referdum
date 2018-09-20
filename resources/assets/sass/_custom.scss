@@ -13,8 +13,18 @@
 
 // Images
 .front-image {
-  width: 450px;
+  width: 100%;
   height: 315px;
   margin-top:10px;
   margin-bottom: 20px;
+}
+
+// Panels 
+
+.panel {
+    box-shadow: 0 2px 4px rgba(0 , 0, 0, .18) !important;
+}
+
+.panel-default > .panel-heading {
+    background-color: hsl(210, 9%, 96%) !important;
 }

@@ -1,1 +1,124 @@
-!function(t){function e(s){if(n[s])return n[s].exports;var r=n[s]={i:s,l:!1,exports:{}};return t[s].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};e.m=t,e.c=n,e.d=function(t,n,s){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:s})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=47)}({47:function(t,e,n){t.exports=n(48)},48:function(t,e){$(function(){$("input[type='password'][data-eye]").each(function(t){var e=$(this);e.wrap($("<div/>",{style:"position:relative"})),e.css({paddingRight:60}),e.after($("<div/>",{html:"Bekijke",class:"btn btn-primary btn-sm",id:"passeye-toggle-"+t,style:"position:absolute;right:10px;top:50%;transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"})),e.after($("<input/>",{type:"hidden",id:"passeye-"+t})),e.on("keyup paste",function(){$("#passeye-"+t).val($(this).val())}),$("#passeye-toggle-"+t).on("click",function(){e.hasClass("show")?(e.attr("type","password"),e.removeClass("show"),$(this).removeClass("btn-outline-primary")):(e.attr("type","text"),e.val($("#passeye-"+t).val()),e.addClass("show"),$(this).addClass("btn-outline-primary"))})})})}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 47:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(48);
+
+
+/***/ }),
+
+/***/ 48:
+/***/ (function(module, exports) {
+
+$(function () {
+    $("input[type='password'][data-eye]").each(function (i) {
+        var $this = $(this);
+
+        $this.wrap($("<div/>", {
+            style: 'position:relative'
+        }));
+
+        $this.css({
+            paddingRight: 60
+        });
+
+        $this.after($("<div/>", {
+            html: 'Bekijke',
+            class: 'btn btn-primary btn-sm',
+            id: 'passeye-toggle-' + i,
+            style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;'
+        }));
+
+        $this.after($("<input/>", {
+            type: 'hidden',
+            id: 'passeye-' + i
+        }));
+
+        $this.on("keyup paste", function () {
+            $("#passeye-" + i).val($(this).val());
+        });
+
+        $("#passeye-toggle-" + i).on("click", function () {
+            if ($this.hasClass("show")) {
+                $this.attr('type', 'password');
+                $this.removeClass("show");
+                $(this).removeClass("btn-outline-primary");
+            } else {
+                $this.attr('type', 'text');
+                $this.val($("#passeye-" + i).val());
+                $this.addClass("show");
+                $(this).addClass("btn-outline-primary");
+            }
+        });
+    });
+});
+
+/***/ })
+
+/******/ });

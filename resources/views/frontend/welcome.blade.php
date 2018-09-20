@@ -93,14 +93,22 @@
         <div class="col-md-3">
             <div class="p-30">
 
-                <div class="panel panel-default" style="margin-bottom: 0">
-                    <div class="panel-body" style="padding-top: 5px;">
-                        <h4 style="padding-top:0"><strong>{{ $signatures }}</strong></h4>
-                        <span class="text-muted">Handtekeningen</span>
-                    </div>
-                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body p-4">
+                        <div class="d-flex align-items-center">
+                            <span class="stamp tw-shadow stamp-md bg-red mr-3">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </span>
 
-                <hr style="margin-top: 15px; margin-bottom: 15px;">
+                            <div>
+                                <h4 class="m-0">{{ $signatures }} <small>Handtekeningen</small></h4>
+                                <small class="text-muted">163 handtekeningen vandaag</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+                <hr style="margin-top: -5px; margin-bottom: 15px;">
 
                 <a href="{{ $social['facebook'] }}" class="btn btn-block btn-social btn-facebook">
                     <span class="fa fa-facebook"></span>

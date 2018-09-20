@@ -27,7 +27,7 @@
         </div> {{-- // Main content --}}
 
         <div class="col-md-3"> {{-- Sidenav --}}
-            <div class="well well-sm">
+            <div style="margin-top: 22px;" class="well well-sm">
             <div>
         </div> {{-- // END Sidebar --}}
     </div>

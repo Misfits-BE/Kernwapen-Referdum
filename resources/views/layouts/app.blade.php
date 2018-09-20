@@ -26,11 +26,11 @@
 <body>
 <div class="container" id="app">
     <div class="row">
-        <div class="col-md-offset-1 col-md-10 text-center" style="padding-top:20px;">
+        <div class="col-md-12 text-center" style="padding-top:20px;">
             <img class="img-rounded tw-shadow-md front-image" src="{{ asset('img/ican.jpg') }}">
         </div>
 
-        <div class="col-md-offset-1 col-md-10 text-color">
+        <div class="col-md-12 text-color">
             <div class="panel panel-default tw-shadow-md">
                 <div class="panel-body">
 
