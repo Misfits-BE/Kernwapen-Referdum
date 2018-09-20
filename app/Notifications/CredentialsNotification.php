@@ -65,7 +65,7 @@ class CredentialsNotification extends Notification implements ShouldQueue
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Er is een login op activisme.be voor u aangemaakt.')
+            ->subject('Er is een login op ' . config('app.name') . ' voor u aangemaakt.')
             ->greeting('Geachte,')
             ->line('Een adminstrator heeft voor jouw een login aangemaakt op '  . config('app.name'))
             ->line("U kunt zich aanmelden met uw email adres en het volgende wachtwoord: `{$this->password}`")
